@@ -1,0 +1,19 @@
+<script>
+    // 传统的方式创建方法
+    var f1 = function(m) {
+        return m
+    }
+
+    // es6箭头函数写法
+    var f2 = m => m
+    console.log(f2(13))
+
+    var f3 = (a, b) => {
+        let r = a + b
+        return r
+    }
+    // 简化
+    var f4 = (a, b) => a + b
+    console.log(f3(2, 3))
+    console.log(f4(2, 3))
+</script>
