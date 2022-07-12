@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello World</h1>
+        <p>
+            <!--
+                使用router-link组件来导航，它默认会被渲染成一个`<a></a>`标签；
+                通过传入to属性指定连接
+            -->
+            <router-link to="/">首页</router-link>
+            <router-link to="/student">会员管理</router-link>
+            <router-link to="/teacher">讲师管理</router-link>
+        </p>
+        <!-- 
+            路由出口
+            路由匹配到的组件将渲染在router-view
+        -->
+        <router-view></router-view>
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="vue-router.min.js"></script>
+    <!-- vue-router文件必须在vue文件之后引入 -->
+    <script>
+        // 1. 定义路由组件。可以从其它文件import进来
+        const Welcome = {template: '<div>欢迎</div>'}
+        const Student = {template: '<div>student list</div>'}
+        const Teacher = {template: '<div>teacher list</div>'}
+        
+        // 2. 定义路由。每个路由应该映射一个组件
+        const routes = [
+            {path: '/', redirect: '/welcome'},      //设置默认指向的路径
+            {path: '/welcome', component: Welcome},
+            {path: '/student', component: Student},
+            {path: '/teacher', component: Teacher}
+        ]
+
+        // 3. 创建router实例，然后传入routes配置
+        const router = new VueRouter({
+            routes      // 缩写。相当于 routes: routes
+        })
+
+        // 4. 创建和挂载根实例。从而让整个应用都有路由功能。
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+</html>
