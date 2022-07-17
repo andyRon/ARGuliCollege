@@ -58,11 +58,12 @@
 
 <script>
 import  teacherApi  from "@/api/edu/teacher"
+// 引入组件
 import ImageCropper from "@/components/ImageCropper"
 import PanThumb from "@/components/PanThumb"
 
 export default {
-    components: {ImageCropper, PanThumb},
+    components: {ImageCropper, PanThumb},  // 声明组件
     data() {
         return {
             teacher: {  // 字段不加也可以

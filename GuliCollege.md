@@ -2445,6 +2445,8 @@ $ webpack -v
 
 选取一个模板（框架）进行环境搭建 [vue-admin-template](https://gitee.com/panjiachen/vue-admin-template#http://panjiachen.github.io/vue-admin-template)  4.4
 
+> 完整版的https://github.com/PanJiaChen/vue-element-admin，`src/components`中含有很可用插件或组件。
+
 1. `git clone https://github.com/PanJiaChen/vue-admin-template.git`
 
 2. 依赖安装 `npm install`
@@ -3156,13 +3158,19 @@ methods: {
 
 > 第六天
 
+讲师头像上传
+
 ### 阿里oss
 
 https://www.aliyun.com/
 
-控制台，创建bucket
+达到一定存储量会收费
+
+控制台，首先创建bucket
 
 ![](./images/image-20211113171531631.png)
+
+
 
 
 
@@ -3223,7 +3231,7 @@ https://www.aliyun.com/
 
    原因：启动时，没找到数据库配置。但本模块不需要操作数据库
 
-   解决方式：在启动类注解上加上参数，让其不去加载数据库配置
+   解决方式：在启动类注解上加上注解，让其不去加载数据库配置
 
    ```java
    @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
@@ -3233,10 +3241,55 @@ https://www.aliyun.com/
 
 #### 上传讲师头像
 
-1. 创建常量类
+1. 创建常量类，读取配置文件相关内容。
+
+Spring的注解`@Value`，接口`InitializingBean`
+
+```java
+/**
+ @Component 表示把类交给spring管理
+ @Value 会把值赋值给对应属性，再通过SpEL表达式直接读取配置文件中参数；这样就保证spring启动时，读取配置文件中对应参数，并复制给对应属性
+ 继承Spring接口InitializingBean会在上面操作加载完后，执行afterPropertiesSet方法；这样就可以定义公开的静态常量
+ */
+@Component
+public class ConstantPropertiesUtils implements InitializingBean {
+
+    @Value("${aliyun.oss.file.endpoint}")
+    private String endpoint;
+    @Value("${aliyun.oss.file.keyid}")
+    private String keyid;
+    @Value("${aliyun.oss.file.keysecret}")
+    private String keysecret;
+    @Value("${aliyun.oss.file.bucketname}")
+    private String bucketname;
+
+    /**
+     * 定义公开静态常量
+     */
+    public static String END_POINT;
+    public static String KEY_ID;
+    public static String KEY_SECRET;
+    public static String BUCKET_NAME;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        END_POINT = endpoint;
+        KEY_ID = keyid;
+        KEY_SECRET = keysecret;
+        BUCKET_NAME = bucketname;
+    }
+}
+```
+
+
 
 2. 创建controller，创建service
+
+`MultipartFile`
+
 3. 在service中实现上传文件到oss
+
+使用swagger测试http://localhost:8002/swagger-ui.html
 
 
 
@@ -3262,29 +3315,45 @@ filename = datePath + "/" + filename;
 
 ### Nginx概念回顾
 
+反向代理服务器
+
 三个功能：
 
 1. 请求转发
 
    ![](./images/image-20211115082134677.png)
 
+   路径匹配
+
 2. 负载均衡（分配可能是轮询、请求时间长短等来判断）
 
    ![](./images/image-20211115082404272.png)
 
+   有很多负载均衡算法：
+
+   - 轮询，
+   - 请求时间长短（那个服务器访问时间短就访问谁）
+   - 随机法
+   - 加权轮询法
+
 3. 动静分离
 
+   动静分离从目前实现角度来讲大致分为两种：
 
-
-<font color=#FF263D>注意：</font>
-
-多路复用：Nginx开启可能有多个进程
-
-Nginx开启后，关闭命令行不会关闭Nginx
+   - 把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案
+   - 动态跟静态文件混合在一起发布，通过 nginx 来分开（通过 location 指定不同的后缀名实现不同的请求转发）。
 
 
 
-安装
+> ==注意：==
+>
+> 多路复用：Nginx开启可能有多个进程
+>
+> Nginx开启后，关闭命令行不会关闭Nginx
+
+
+
+安装使用关闭
 
 ```shell
 brew install nginx
@@ -3293,7 +3362,9 @@ brew install nginx
 
 ps -ef | grep nginx
 
+nginx
 
+nginx -s stop
 ```
 
 
@@ -3324,7 +3395,7 @@ VUE_APP_BASE_API = 'http://localhost:9001/'
 
 ```
 
-
+重启nginx，重启前端项目，访问测试，查看是否访问是9001
 
 ### 上传头像前端部分
 
@@ -3370,8 +3441,8 @@ PanThumb
 
 ```js
 imagecropperShow: false,
-            imagecropperKey: 0, // 上传组件key值
-            BASE_API: process.env.BASE_API, // 
+imagecropperKey: 0, // 上传组件key值
+BASE_API: process.env.BASE_API, // 
 ```
 
 4. 引入组件和声明组件
@@ -3389,6 +3460,8 @@ export default {
 
 
 
+> 注意：前端框架为了防止出现图片名为中文等情况，默认把图片名称都改为了file.png。
+
 问题：
 
 ![](./images/image-20211115120219976.png)
@@ -3401,11 +3474,39 @@ export default {
 
 ## 7 课程分类管理
 
+表`edu_subject`
+
+```mysql
+CREATE TABLE `edu_subject` (
+  `id` char(19) DEFAULT NULL COMMENT '课程类别ID',
+  `title` varchar(10) NOT NULL COMMENT '类别名称',
+  `parent_id` char(19) NOT NULL DEFAULT '0' COMMENT '父ID',
+  `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序字段',
+  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  KEY `idx_parent_id` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='课程科目';
+```
+
+二级分类
+
+![](images/image-20220717063605065.png)
+
 ### EasyExcel写
 
-[EasyExcel](https://github.com/alibaba/easyexcel)，阿里，比以前Apache poi、jxl更高效，高效的原因是一行一行地读取
+Excel导入导出的应用场景：
+
+1. 数据导入：减轻导入工作量
+2. 数据导出：统计信息归档
+3. 数据传输：不同系统之间的数据传输
+
+[EasyExcel](https://github.com/alibaba/easyexcel)，阿里，比以前Apache poi、jxl更高效，高效的原因是一行一行地解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。
+
+
 
 1. 引入依赖
+
+>  easyexcel是对poi的封装，所以也需要引入poi，而且版本是有一定对应关系的，easyexcel的2.1.1对应poi的3.17
 
 ```xml
 <!--  需要apache poi的依赖，在service模块中已经引入  -->
@@ -3416,7 +3517,7 @@ export default {
 </dependency>
 ```
 
-2. 创建实体类
+2. 创建实体类（在service_edu的test中）
 
    ```java
    @Data
@@ -3468,7 +3569,7 @@ export default {
    private String sname;
    ```
 
-2. 创建监听进行excel的读取
+2. 创建监听器，进行excel的读取。读取操作都在这里写。
 
    ```java
    public class ExcelListenser extends AnalysisEventListener<DemoData> {
@@ -3511,7 +3612,7 @@ export default {
 
 1. 使用代码生成器生成课程分类的相关代码
 
-2. 创建实体类和Excel文件对应
+2. 创建实体类和Excel文件对应关系
 
    ```java
    @Data
@@ -3624,13 +3725,15 @@ export default {
 
    
 
-P99 
-
-
-
-添加课程分类
-
-使用easyexcel
+> day7
+>
+> 添加课程分类前端实现
+>
+> 课程分类列表显示功能（树形）
+>
+> 课程管理模块需求
+>
+> 添加课程基本信息功能
 
 
 

@@ -60,7 +60,7 @@ public class SubjectExcelListenser extends AnalysisEventListener<SubjectData> {
     }
 
     /**
-     * 判断一级分类不能重复添加
+     * 判断二级分类不能重复添加
      */
     private EduSubject existTwoSubject(EduSubjectService eduSubjectService, String name, String pid) {
         QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();

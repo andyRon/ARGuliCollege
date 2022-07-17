@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- @Component 和 @Value 保证spring启动时，读取配置文件中对应参数，并复制给对应属性
- 接口InitializingBean会在上面操作加载完后，执行afterPropertiesSet方法
+ @Component 表示把类交给spring管理
+ @Value 会把值赋值给对应属性，再通过SpEL表达式直接读取配置文件中参数；这样就保证spring启动时，读取配置文件中对应参数，并复制给对应属性。
+ （@Value不能直接用于静态）
+ 继承Spring接口InitializingBean会在上面操作加载完后，执行afterPropertiesSet方法；这样就可以定义公开的静态常量
  */
 @Component
 public class ConstantPropertiesUtils implements InitializingBean {
@@ -21,7 +23,7 @@ public class ConstantPropertiesUtils implements InitializingBean {
     private String bucketname;
 
     /**
-     * 定义公开静态常量
+     * 定义公开静态
      */
     public static String END_POINT;
     public static String KEY_ID;

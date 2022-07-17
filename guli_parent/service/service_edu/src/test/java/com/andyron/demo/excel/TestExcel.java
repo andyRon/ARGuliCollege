@@ -11,7 +11,7 @@ public class TestExcel {
     @Test
     public void writeTest() {
         String fileName = "/Users/andyron/tmp/write.xlsx";
-
+        // 文件流会自动关闭
         EasyExcel.write(fileName, DemoData.class).sheet("学生列表").doWrite(getData());
     }
 
