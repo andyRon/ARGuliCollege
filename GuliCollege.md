@@ -3735,13 +3735,170 @@ Excel导入导出的应用场景：
 >
 > 添加课程基本信息功能
 
+### 课程分类添加前端
+
+1. 添加课程分类路由
+
+2. 创建课程分类页面，并修改上面的路由对应的页面路径
+3. 使用Element的“手动上传”组件
 
 
-## 8 课程分类列表
 
-树形结构显示
+> 服务器本地的文件下载不行？
+>
+> ```html
+> <a :href="'/public/static/01.xlsx'">点击下载模板</a>
+> ```
+>
+> 
+
+### 课程分类列表
+
+树形结构显示。选择element中tree树形控件中的“节点过滤”：
+
+```vue
+				<el-input
+            placeholder="输入关键字进行过滤"
+            v-model="filterText">
+        </el-input>
+
+        <el-tree
+            class="filter-tree"
+            :data="data"
+            :props="defaultProps"
+            default-expand-all
+            :filter-node-method="filterNode"
+            ref="tree">
+        </el-tree>
+```
+
+需要的数据格式：
+
+```json
+{
+  "id": 1,
+  "label": "一级 1",
+  "children": [
+    {
+    "id": 4,
+    "label": "二级 1-1"
+    }
+  ]
+}
+```
+
+可以采用字符串拼凑的方式，但一般不这样做
+
+#### 后端接口
+
+1. 针对返回数据创建对应的实体类。一级和二级分类实体
+2. 在两个实体类之间表示关系（一个一级分类有多个二级分类）
+
+3. 编写具体封装代码
+
+   ```java
+       @Override
+       public List<OneSubject> getAllSubject() {
+           // 1 查询所有一级分类
+           QueryWrapper<EduSubject> oneWrapper = new QueryWrapper<>();
+           oneWrapper.eq("parent_id", "0");
+           List<EduSubject> oneSubjects = baseMapper.selectList(oneWrapper);
+   
+           // 2 查询所有二级分类
+           QueryWrapper<EduSubject> twoWrapper = new QueryWrapper<>();
+           twoWrapper.ne("parent_id", "0");
+           List<EduSubject> twoSubjects = baseMapper.selectList(twoWrapper);
+   
+           // 存储最终封装数据
+           List<OneSubject> finalSubjects = new ArrayList<>();
+           // 3 封装一级分类
+           for (EduSubject subject : oneSubjects) {
+               OneSubject oneSubject = new OneSubject();
+               // 使用spring中的工具类，把一个对象的属性复制到另一个对象（目标对象有的属性）
+               BeanUtils.copyProperties(subject, oneSubject);
+   
+               // 4 封装二级分类
+               for (EduSubject tSubject : twoSubjects) {
+                   if (subject.getId().equals(tSubject.getParentId())) {
+                       TwoSubject twoSubject = new TwoSubject();
+                       BeanUtils.copyProperties(tSubject, twoSubject);
+                       oneSubject.getChildren().add(twoSubject);
+                   }
+               }
+               finalSubjects.add(oneSubject);
+           }
+   
+           return finalSubjects;
+       }
+   ```
+
+   
+
+#### 前端
+
+```vue
+<template>
+    <div class="app-container">
+        <el-input
+            placeholder="输入关键字进行过滤"
+            v-model="filterText"
+            style="margin-bottom: 30px;">
+        </el-input>
+
+        <el-tree
+            class="filter-tree"
+            :data="data"
+            :props="defaultProps"
+            default-expand-all
+            :filter-node-method="filterNode"
+            ref="tree">
+        </el-tree>
+
+    </div>
+</template>
+
+<script>
+import subject from '@/api/edu/subject'
+
+export default {
+    data() {
+        return {
+            filterText: '',
+            data: [],
+            defaultProps: {
+                children: 'children',
+                label: 'title'
+            }
+        };
+    },
+    created() {
+        this.getSubjectList()
+    },
+    watch: {
+        filterText(val) {
+            this.$refs.tree.filter(val)
+        }
+    },
+    methods: {
+        getSubjectList() {
+            subject.getSubjectList()
+                .then( response => {
+                    this.data = response.data.list
+                })
+        },
+        filterNode(value, data) {
+            if (!value) return true
+            return data.title.toLowerCase().indexOf(value) !== -1
+        }
+    }
+}
+</script>
+```
+
+```javascript
+        this.$router.push({path: '/subject/list'})
+```
 
 
 
-
-
+## 8 课程管理

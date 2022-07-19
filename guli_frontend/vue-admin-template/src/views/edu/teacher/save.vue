@@ -143,7 +143,8 @@ export default {
         
         close() { // 关闭上传弹框
             this.imagecropperShow=false
-            // 上传组件初始化，就上传成功后，想要更换图片时，图片组件初始化
+            
+            // 上传组件初始化，就上传成功后，想要更换图片时，图片组件初始化（每次值做个变化）
             this.imagecropperKey = this.imagecropperKey + 1
         },
         cropSuccess(data) { // 上传成功
