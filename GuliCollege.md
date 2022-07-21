@@ -3902,3 +3902,223 @@ export default {
 
 
 ## 8 课程管理
+
+### 分析
+
+> 课程添加
+>
+> 1. 编辑课程基本信息
+>
+> ![](images/image-20220721071029553.png)
+>
+> 注意细节：
+>
+> a. 创建vo实体类用于表单数据封装（因为表单数据和表对应的实体对象不一致）。
+>
+> b. 把表单提交过的数据添加到数据库，需要添加两张表：课程表和课程描述表。
+>
+> c. 讲师和课程分类要做成下拉列表显示，课程分类还要有二级联动效果。
+>
+> 2.  编辑课程大纲
+>
+> ![](images/image-20220721071242009.png)
+>
+> 3. 课程最终发布
+>
+> ![](images/image-20220721071500943.png)
+
+#### 课程相关表之间的关系
+
+> edu_coure	课程表：存储课程基本信息
+>
+> edu_coure_description	课程简介表：存储课程简介信息
+>
+> edu_chapter	课程章节表：存储课程章节信息
+>
+> edu_video	课程小节表：存储章节里面小节信息
+>
+> edu_teacher	讲师表
+>
+> edu_subject	分类表
+
+表之间的关系：一对一，一对多，多对多
+
+![](images/image-20220721073221124.png)
+
+### 添加课程基本信息
+
+1. 代码生成器，生成课程相关代码
+
+   ```java
+   strategy.setInclude("edu_chapter", "edu_course", "edu_course_description", "edu_video");
+   ```
+
+   删除EduCourseDescriptionController.java，不需要单独做操作简介，在课程中操作
+
+2. 创建vo类封装表单提交的数据，CourseInfoVo
+
+> 价格 BigDecimal 精度更准确
+
+
+
+3. 编写controller和service
+
+课程和简介表示一对一关系，添加时要注意id值一样
+
+```java
+    @Override
+    public void saveCourseInfo(CourseInfoVo courseInfoVo) {
+        // 1 向课程表中添加课程基本信息
+        EduCourse course = new EduCourse();
+        BeanUtils.copyProperties(courseInfoVo, course);
+        if (baseMapper.insert(course) == 0) {
+            throw new GuliException(20001, "添加课程信息失败");
+        }
+        // 2 向课程简介表中添加简介
+        EduCourseDescription courseDescription = new EduCourseDescription();
+        // 一对一关系，id要相同
+        courseDescription.setId(course.getId());
+        courseDescription.setDescription(courseInfoVo.getDescription());
+        courseDescriptionService.save(courseDescription);
+    }
+```
+
+EduCourseDescription的添加策略要改成`IdType.INPUT`：
+
+```java
+    @ApiModelProperty(value = "课程ID")
+    @TableId(value = "id", type = IdType.INPUT)
+    private String id;
+```
+
+### 添加课程信息前端
+
+1. 添加课程管理路由。（添加一些隐藏路由，做页面跳转）
+
+```javascript
+  {
+    path: '/course',
+    component: Layout,  
+    redirect: '/course/list', 
+    name: '课程管理',
+    meta: { title: '课程管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: '课程列表',
+        component: () => import('@/views/edu/course/list'),
+        meta: { title: '课程列表', icon: 'table' }
+      },
+      {
+        path: 'info',
+        name: '添加课程',
+        component: () => import('@/views/edu/course/info'),
+        meta: { title: '添加课程', icon: 'tree' }
+      },
+      {
+        path: 'info/:id',
+        name: 'EduCourseInfoEdit',
+        component: () => import('@/views/edu/course/info'),
+        meta: { title: '编辑课程基本信息', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'chapter/:id',
+        name: 'EduCourseChapterEdit',
+        component: () => import('@/views/edu/course/chapter'),
+        meta: { title: '编辑课程大纲', noCache: true },
+        hidden: true
+      },
+      {
+        path: 'publish/:id',
+        name: 'EduCoursePublishEdit',
+        component: () => import('@/views/edu/course/publish'),
+        meta: { title: '发布课程', noCache: true },
+        hidden: true
+      }
+    ]
+  }
+```
+
+
+
+2. 编写表单页面，实现接口调用
+
+先把流程走通
+
+Element的Steps 步骤条
+
+
+
+3. 添加之后，返回课程id。修改后端接口
+
+
+
+4. 完善课程信息添加中的讲师
+
+下拉列表
+
+```vue
+<!-- 课程讲师 -->
+<el-form-item label="课程讲师">
+  <el-select v-model="courseInfo.teacherId" placeholder="请选择">
+    <el-option 
+               v-for="teacher in teacherList"
+               :key="teacher.id"
+               :label="teacher.name"
+               :value="teacher.id"
+               />
+  </el-select>
+</el-form-item>
+```
+
+
+
+5. 课程分类二级联动
+
+![](images/image-20220721113130795.png)
+
+```vue
+<!-- 课程分类 -->
+<el-form-item label="课程分类">
+  <el-select v-model="courseInfo.subjectParentId" placeholder="一级分类" @change="subjectOneChange">
+    <el-option 
+               v-for="subject in subjectOneList"
+               :key="subject.id"
+               :label="subject.title"
+               :value="subject.id"
+               />
+  </el-select>
+
+  <el-select v-model="courseInfo.subjectId" placeholder="二级分类" >
+    <el-option 
+               v-for="subject in subjectTwoList"
+               :key="subject.id"
+               :label="subject.title"
+               :value="subject.id"
+               />
+  </el-select>
+</el-form-item>
+```
+
+```javascript
+// 选择一级分类，显示对应二级分类
+subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉列表中选择项值传过来，不要再定义了
+  for(var i=0; i < this.subjectOneList.length; i++) {
+    if (this.subjectOneList[i].id == value) {
+      this.subjectTwoList = this.subjectOneList[i].children
+      // 清空二级分类id
+      this.courseInfo.subjectId = ''
+    }
+  }
+}
+```
+
+
+
+6. 课程封面
+
+
+
+> Day8
+
