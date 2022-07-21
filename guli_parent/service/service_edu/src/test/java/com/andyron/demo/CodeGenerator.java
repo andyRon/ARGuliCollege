@@ -16,8 +16,8 @@ public class CodeGenerator {
     public void run() {
 
         // 生成目录
-//        String des = "/src/main/java";
-        String des = "/src/test/java";
+        String des = "/src/main/java";
+//        String des = "/src/test/java";
 
         // 1、创建代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -64,8 +64,9 @@ public class CodeGenerator {
 
         // 表名
 //        strategy.setInclude("edu_teacher");
-//        strategy.setInclude("edu_chapter", "edu_course", "edu_course_description", "edu_video");
-        strategy.setInclude("edu_subject");
+//        strategy.setInclude("edu_subject");
+        strategy.setInclude("edu_chapter", "edu_course", "edu_course_description", "edu_video");
+
 
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
