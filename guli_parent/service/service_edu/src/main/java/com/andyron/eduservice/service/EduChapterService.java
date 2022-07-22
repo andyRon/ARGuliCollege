@@ -1,7 +1,10 @@
 package com.andyron.eduservice.service;
 
 import com.andyron.eduservice.entity.EduChapter;
+import com.andyron.eduservice.entity.chapter.ChapterVo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduChapterService extends IService<EduChapter> {
 
+    List<ChapterVo> getChapterVideoByCourseId(String courseId);
 }

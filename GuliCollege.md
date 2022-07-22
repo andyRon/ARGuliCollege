@@ -1,7 +1,7 @@
 谷粒学苑
 ------
 
-https://www.bilibili.com/video/BV1dQ4y1A75e
+[尚硅谷_谷粒学苑-微服务+全栈在线教育实战项目](https://www.bilibili.com/video/BV1dQ4y1A75e)
 
 ```
 Java基础
@@ -31,9 +31,8 @@ SpringBoot
 >
 > 启动后端项目
 >
-> 
 
-
+> [vue-element-admin](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
 
 ---
 
@@ -2506,7 +2505,26 @@ $ webpack -v
 
 > 模板**vue-admin-template**，封装了开发中需要的es6通过babel转es5等很多功能
 
-> Vscode ESlint插件，自动整理代码格式，缺点：检查太严格。
+> ESlint开源的 JavaScript 代码检查工具
+>
+> Vscode ESlint插件，自动检查代码格式，缺点：检查太严格。
+>
+>  `.eslintrc.js`是配置文件:
+>
+> ```javascript
+> {
+>     rules: {
+>         'semi': [2, 'never'],  // 不使用分号，否则报错
+>         'quotes': [2, 'single'] // 使用单引号，否则报错
+>     }
+> }
+> ```
+>
+> "semi" 和 "quotes" 是 ESLint 中 规则 的名称。第一个值是错误级别，可以使下面的值之一：
+>
+> - "off" or 0 - 关闭规则
+> - "warn" or 1 - 将规则视为一个警告
+> - "error" or 2 - 将规则视为一个错误
 
 
 
@@ -4121,4 +4139,62 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
 
 
 > Day8
+>
+> 课程简介整合文本编辑器
+>
+> 课程大纲管理
+>
+> ​	课程大纲列表显示
+>
+> ​	章节添加修改删除
+>
+> ​	小结添加修改删除
+>
+> 课程信息确认
+>
+> ​	编写SQL语句实现（多表）
+
+
+
+#### 课程简介 整合文本编辑器
+
+复制组件
+
+🔖  p115 框架版本不同，富文本组件有变化
+
+
+
+#### 课程大纲列表功能
+
+> 参考课程分类列表
+>
+> edu_chapter
+>
+> edu_video
+
+1. 创建两个实体类（ChapterVo、VideoVo），章节和小节，在章节实体类中使用list表示小节
+
+
+
+2. 编写封装代码
+
+
+
+3. 前端
+
+前端样式可采用类似课程分类中el的二级，不过这里为了练习，采用原始的ul
+
+```vue
+<ul class="chanpterList">
+  <li v-for="chapter in chapterVideoList" :key="chapter.id">
+    {{chapter.title}}
+
+    <ul class="chanpterList videoList">
+      <li v-for="video in chapter.children" :key="video.id">
+        {{video.title}}
+      </li>
+    </ul>
+  </li>
+</ul>
+```
 

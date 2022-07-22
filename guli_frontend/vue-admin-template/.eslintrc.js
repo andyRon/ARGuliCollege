@@ -9,7 +9,9 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['plugin:vue/recommended', 'eslint:recommended'],
+  extends: [
+    'plugin:vue/essential', 'eslint:recommended'
+  ],
 
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
@@ -53,7 +55,7 @@ module.exports = {
       'after': true
     }],
     'handle-callback-err': [2, '^(err|error)$'],
-    'indent': [2, 2, {
+    'indent': [1, 4, {
       'SwitchCase': 1
     }],
     'jsx-quotes': [2, 'prefer-single'],
