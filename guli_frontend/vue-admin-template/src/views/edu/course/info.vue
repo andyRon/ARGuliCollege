@@ -97,6 +97,7 @@ export default {
                 cover: '/static/avatar.jpg',
                 price: 0
             },
+            courseId:'',
             teacherList: [],
             subjectOneList: [],
             subjectTwoList: [],
@@ -105,12 +106,19 @@ export default {
         }
     },
     created() {
-        // 初始化所有讲师
-        this.getListTeacher()
-        this.getSubjectOneList() 
+        if (this.$route.params && this.$route.params.id) {
+            this.courseId = this.$route.params.id
+            this.getCourseInfo()
+        } else {
+            // 初始化所有讲师
+            this.getListTeacher()
+            this.getSubjectOneList() 
+        }
+
+        
     },
     methods: {
-        saveOrUpdate() {
+        addInfo() {
             course.addCourseInfo(this.courseInfo)
                 .then(response => {
                     this.$message({
@@ -120,8 +128,25 @@ export default {
                     // 跳转到第二步
                     this.$router.push({path: '/course/chapter/' + response.data.courseId})
                 })
+        },
+        updateInfo() {
+            course.updateCourseInfo(this.courseInfo)
+                .then(response => {
+                    this.$message({
+                        type: 'success',
+                        message: '修改课程信息成功！'
+                    })
+                    this.$router.push({path: '/course/chapter/' + this.courseId})
+                })
+        },
+        saveOrUpdate() {
+            // 判断是添加还是修改
+            if (!this.courseInfo.id) {
+                this.addInfo()
+            } else {
+                this.updateInfo()
+            }
 
-            
         },
         // 查询所有讲师
         getListTeacher() {
@@ -163,6 +188,25 @@ export default {
                 this.$message.error('上传头像图片大小不能超过2M')
             }
             return isJPG && isLt2M
+        },
+        // 获取课程信息
+        getCourseInfo() {
+            course.getCourseInfoById(this.courseId)
+                .then(response => {
+                    this.courseInfo = response.data.courseInfoVo
+                    // 获取所有分类，包括一级和二级
+                    subject.getSubjectList()
+                        .then(r => {
+                            this.subjectOneList = r.data.list
+                            for (var i = 0; i < this.subjectOneList.length; i++) {
+                                if (this.courseInfo.subjectParentId === this.subjectOneList[i].id) {
+                                    this.subjectTwoList = this.subjectOneList[i].children
+                                }
+                            }
+                        })
+                    // 初始化所有讲师
+                    this.getListTeacher()
+                })
         }
     }
 }

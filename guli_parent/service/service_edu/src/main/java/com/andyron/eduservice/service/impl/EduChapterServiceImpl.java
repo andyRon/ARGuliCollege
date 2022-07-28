@@ -9,6 +9,7 @@ import com.andyron.eduservice.mapper.EduChapterMapper;
 import com.andyron.eduservice.service.EduChapterService;
 import com.andyron.eduservice.service.EduCourseService;
 import com.andyron.eduservice.service.EduVideoService;
+import com.andyron.servicebase.exceptionhandler.GuliException;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -98,5 +99,27 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         }
 
         return chapterVoList;
+    }
+
+    @Override
+    public boolean deleteChapter(String chapterId) {
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id", chapterId);
+        if (videoService.count(wrapper) > 0) {
+            throw new GuliException(20001, "章节不能删除");
+        } else {
+            return baseMapper.deleteById(chapterId) > 0;
+        }
+    }
+
+    /**
+     * 根据课程id删除章节
+     * @param courseId
+     */
+    @Override
+    public void removeChapterByCourseId(String courseId) {
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id", courseId);
+        baseMapper.delete(wrapper);
     }
 }
