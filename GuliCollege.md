@@ -23,13 +23,13 @@ SpringBoot
 
 > 开启前提：
 >
-> 开启MySQL
+> 开启MySQL `mysql.service start`
 >
-> 配置Nginx，并开启
+> 配置Nginx，并开启 `nginx`
 >
-> 启动前端项目
+> 启动前端项目 `npm run dev`
 >
-> 启动后端项目
+> 启动后端项目 
 >
 
 > [vue-element-admin](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
@@ -3371,7 +3371,7 @@ filename = datePath + "/" + filename;
 
 
 
-安装使用关闭
+#### 安装使用关闭
 
 ```shell
 brew install nginx
@@ -3387,9 +3387,9 @@ nginx -s stop
 
 
 
-配置Nginx转发规则：
+#### 配置Nginx转发规则：
 
-```
+```nginx
     server {
         listen      9001;
         server_name localhost;
@@ -4197,4 +4197,267 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
   </li>
 </ul>
 ```
+
+
+
+### 修改课程基本信息
+
+1. 点击**上一步**，回到第一步，把课程基本信息数据回显
+
+后端接口：
+
+根据课程id查询课程基本信息接口；
+
+修改课程信息接口。
+
+前端：
+
+在api/course.js定义两个接口方法；
+
+修改chapter页面的，跳转路径（添加课程id）；
+
+
+
+2. 在数据回显页面，修改内容，保存，修改数据库内容
+
+
+
+> 403 错误 一般：
+>
+> - 跨域
+> - 路径错误
+
+
+
+3. 下拉列表数据的回显
+
+```javascript
+// 获取课程信息
+getCourseInfo() {
+  course.getCourseInfoById(this.courseId)
+    .then(response => {
+    this.courseInfo = response.data.courseInfoVo
+    // 获取所有分类，包括一级和二级
+    subject.getSubjectList()
+      .then(r => {
+      this.subjectOneList = r.data.list
+      for (var i = 0; i < this.subjectOneList.length; i++) {
+        if (this.courseInfo.subjectParentId === this.subjectOneList[i].id) {
+          this.subjectTwoList = this.subjectOneList[i].children
+        }
+      }
+    })
+    // 初始化所有讲师
+    this.getListTeacher()
+  })
+}
+```
+
+
+
+> 小bug，添加和修改，回显数据清空
+
+4. 保存并下一步
+
+```javascript
+addInfo() {
+  course.addCourseInfo(this.courseInfo)
+    .then(response => {
+    this.$message({
+      type: 'success',
+      message: '添加课程信息成功！'
+    })
+    // 跳转到第二步
+    this.$router.push({path: '/course/chapter/' + response.data.courseId})
+  })
+},
+  updateInfo() {
+    course.updateCourseInfo(this.courseInfo)
+      .then(response => {
+      this.$message({
+        type: 'success',
+        message: '修改课程信息成功！'
+      })
+      this.$router.push({path: '/course/chapter/' + this.courseId})
+    })
+  },
+    saveOrUpdate() {
+      // 判断是添加还是修改
+      if (!this.courseInfo.id) {
+        this.addInfo()
+      } else {
+        this.updateInfo()
+      }
+
+    },
+```
+
+### 课程章节 添加、修改、删除
+
+1. “添加章节” 按钮
+
+
+
+2. 弹出框 输入章节信息
+
+
+
+3. 章节相关接口
+
+> 删除章节（章节有小节）时，这种有关联的数据删除有两种删除方式：
+>
+> - 删除章节时，同时删除该章节下的所有小节
+> - 章节下有小节时，不能删除，先要删除了小节才能删除章节
+
+
+
+4. 添加章节前端
+
+
+
+5. 修改章节
+
+
+
+6. 章节删除
+
+### 章节的小节添加、修改、删除
+
+> 🔖 删除弹框，取消时有一个js错误
+
+
+
+### 发布新课程最终确认发布
+
+![](images/image-20220728083255946.png)
+
+查询很多表时直接使用SQL语句
+
+> 多表连接查询
+>
+> 内连接    查出两表之间有关联数据
+>
+> 左外连接	左边的表不管有没有数据都查出来
+>
+> 右外连接
+
+```mysql
+# 思路：当一张表有多个字段同时关联一个表时，可以连接多次
+Select ec.id, ec.title, ec.price, ec.lesson_num, ec.cover
+			ecd.description,
+			et.`name`,
+			es1.title AS OneSubject,
+			es2.title AS TwoSubject
+From edu_course ec 
+Left Outer Join edu_course_description ecd on ec.id=ecd.id
+Left Outer Join edu_teacher et on ec.teacher_id=et.id
+Left Outer Join edu_subject es1 on ec.subject_parent_id=es1.id
+Left Outer Join edu_subject es2 on ec.subject_id=es2.id
+Where ec.id=?
+```
+
+> 报错：
+>
+> ```
+> org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
+> ```
+>
+> 两中原因：
+>
+> - 方法名写错了
+>
+> - maven没有编译mybatis的xml文件
+>
+>   maven默认加载机制：只会加载src/main/java中的java文件而不会加载其它文件
+>
+>   3种解决方式：
+>
+>   1. 复制xml文件到target中（临时）
+>
+>   2. maven的配置文件pom中配置。`**/*.xml`中两个星号表示是多层目录。
+>
+>      ```xml
+>          <build>
+>              <resources>
+>                  <resource>
+>                      <directory>src/main/java</directory>
+>                      <includes>
+>                          <include>**/*.xml</include>  
+>                      </includes>
+>                      <filtering>false</filtering>
+>                  </resource>
+>              </resources>
+>          </build>
+>      ```
+>
+>      ```xml
+>              <resources>
+>      <!--        手动指定java文件夹为resources文件夹-->
+>      <!--        当xml文件在java文件夹而不在resources文件夹时，该xml文件不能被编译进target目录，-->
+>      <!--        又因为代码在执行时是执行的target中编译过的文件，所以加载不到该xml文件。因此必须进行指定。-->
+>                  <resource>
+>                      <directory>src/main/java</directory>
+>                      <includes>
+>      <!--                    指定java文件夹下子包中的所有.xml文件-->
+>                          <include>**/*.xml</include>
+>                      </includes>
+>                  </resource>
+>      
+>      <!--            上述的指定是将原有的编译资源resources目录覆盖掉了，而不是添加编译目录，因此需要补充原有的编译资源目录-->
+>                  <resource>
+>                      <directory>src/main/resources</directory>
+>                      <includes>
+>                          <include>**/*.*</include>
+>                      </includes>
+>                  </resource>
+>                  
+>      <!--            有webapp的Maven工程也需要重新指定webapp这个目录-->
+>      <!--            <resource>-->
+>      <!--                <directory>src/main/webapp</directory>-->
+>      <!--                <targetPath>META-INF/resources</targetPath>-->
+>      <!--                <includes>-->
+>      <!--                    <include>*.*</include>-->
+>      <!--                </includes>-->
+>      <!--            </resource>-->
+>              </resources>
+>      ```
+>
+>      这种方式需要右击pom文件，**Maven->Generate xxxxx**
+>
+>   3. 在spring的配置文件application.yml中配置
+>
+>      ```yaml
+>      # 配置mapper xml文件路径
+>      mybatis-plus:
+>        mapper-locations: classpath:com/andyron/eduservice/mapper/xml/*.xml
+>      ```
+>
+>   🔖第二种方式有时还是不成功，原因？
+
+
+
+> day9
+>
+> 1. 课程最终发布实现。课程信息确认；课程发布
+> 2. 课程列表
+> 3. 阿里云视频点播服务
+> 4. 添加小节视频上传
+
+
+
+### 课程的最终发布
+
+
+
+### 课程列表
+
+![](images/image-20220728171045653.png)
+
+#### 课程删除
+
+课程相关信息：课程描述、章节、小节、视频
+
+> 外键，一般不建议声明出来
+>
+> ![](images/image-20220728191808916.png)
 

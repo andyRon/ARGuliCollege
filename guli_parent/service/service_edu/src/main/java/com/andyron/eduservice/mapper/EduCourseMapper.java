@@ -1,6 +1,7 @@
 package com.andyron.eduservice.mapper;
 
 import com.andyron.eduservice.entity.EduCourse;
+import com.andyron.eduservice.entity.vo.CoursePublishVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -12,5 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-07-21
  */
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
+
+    public CoursePublishVo getPublishCourseInfo(String courseId);
+
 
 }
