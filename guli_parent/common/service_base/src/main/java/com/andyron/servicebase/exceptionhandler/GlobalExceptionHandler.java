@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * 处理全局异常
+ *
+ * @author andyron
+ */
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {

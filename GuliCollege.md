@@ -23,16 +23,31 @@ SpringBoot
 
 > 开启前提：
 >
-> 开启MySQL `mysql.service start`
+> - 开启MySQL `mysql.service start`
 >
-> 配置Nginx，并开启 `nginx`
+> - 配置Nginx，并开启 
 >
-> 启动前端项目 `npm run dev`
+> ```shell
+> # 打开
+> nginx
+> 
+> # 关闭
+> nginx -s stop
+> # 重启
+> nginx -s reload
+> ```
 >
-> 启动后端项目 
+> 配置转发规则
 >
+> - 启动前端项目 `npm run dev`
+>
+> - 启动后端项目 
+>
+> 访问swagger  http://localhost:8001/swagger-ui.html
 
 > [vue-element-admin](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
+>
+> [element官网](https://element.eleme.cn/#/zh-CN)
 
 ---
 
@@ -213,7 +228,7 @@ MyBatis-Plus (opens new window)（简称 MP）是一个 MyBatis (opens new windo
 
 6. 编写代码 
 
-   - MP提供的BaseMapper省去了mybatis中xml的编写，它提供了很多操作数据库的方法：
+   - <u>MP提供的BaseMapper省去了mybatis中xml的编写</u>，它提供了很多操作数据库的方法：
 
    ```java
    public interface BaseMapper<T> {
@@ -362,24 +377,24 @@ public enum IdType {
     INPUT(2), // 需要主动输入
     ID_WORKER(3),		// 雪花算法生成19位得数字
     UUID(4),		
-    ID_WORKER_STR(5); // 雪花算法生成19位得字符串
+    ID_WORKER_STR(5); // 雪花算法生成19位得字符串类型
 
 }
 ```
 
 ### 自动填充
 
-1. 数据库添加字段create_time，update_time
+1. 数据库添加字段gmtCreate，gmtModified
 
-2. 实体类添加属性createTime，updateTime
+2. 实体类添加属性gmtCreate，gmtModified
 
 3. 为实体类自动填充属性添加注解
 
    ```java
    		@TableField(fill = FieldFill.INSERT)
-       private Date createTime;
+       private Date gmtCreate;
        @TableField(fill = FieldFill.INSERT_UPDATE) // 插入和更新都填充值
-       private Date updateTime;
+       private Date gmtModified;
    ```
 
 4. 实现接口MetaObjectHandler
@@ -621,7 +636,10 @@ guli_parent： 在线教学根目录（父工程），管理四个子模块：
 	canal-client： canal数据库表同步模块（统计同步数据）
 	common： 公共模块父节点
     common-util：工具类模块，所有模块都可以依赖于它
+    			统一返回数据格式
     service-base: service服务的base包，包含service服务的公共配置类，所有service模块依赖于它
+    			swagger
+    			统一异常处理
     spring-security：认证与授权模块，需要认证授权的service服务依赖于它
   infrastructure：基础服务模块父节点
     api-gateway： api网关服务
@@ -962,7 +980,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
    @RequestBody(required = false) TeacherQuery teacherQuery) { // false表示这个参数可以为空
    ```
 
-   ![image-20220709071633282](images/image-20220709071633282.png)
+   ![](images/image-20220709071633282.png)
 
 > @RequestBody，使用JSON传递数据，把json数据封装到对应对象里面 
 >
@@ -1028,7 +1046,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 ![](images/image-20220709074445184.png)
 
-在common模块中建立统一异常处理：
+在service_base模块中建立统一异常处理：
 
 ```java
 @ControllerAdvice
@@ -1080,7 +1098,7 @@ public class GlobalExceptionHandler {
 
 
 
->  注意pom文件中模块之间不要重复引用，**依赖传递**（Maven）
+>  注意pom文件中模块之间不要重复引用，**==依赖传递==**（Maven）
 >
 > ![](images/image-20220709075808546.png)
 
@@ -1278,7 +1296,7 @@ ECMAScript是一套标准，一套规范，JavaScript很好遵循了这套规范
 #### ECMAScript 和Javascript 的关系
 
 要讲清楚这个向题，需要回顾历史，1996年11 月，Javascript前创造者 Netscape 公司，决定将 Jawascript提交给标准化组织ECMA，希望这种语言能够成为国际标准。次年，ECMA 发布 262 号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是1.0版。
-因此，ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（ 另外的 ECMAScript 方言还有Jscript和ActionScript)。
+因此，ECMAScript 和 JavaScript 的关系是，前者是后者的==规格==，后者是前者的一种==实现==（ 另外的 ECMAScript 方言还有Jscript和ActionScript)。
 
 #### ES6和ES5
 
@@ -1798,7 +1816,9 @@ Vue.component('Navbar', {
 
 #### 实例的生命周期
 
-![](https://cn.vuejs.org/images/lifecycle.png)
+
+
+![组件生命周期图示](images/lifecycle.16e4c08e.png)
 
 数据渲染（页面渲染）之前执行：beforeCreate、**created**
 
@@ -3380,9 +3400,17 @@ brew install nginx
 
 ps -ef | grep nginx
 
+# 打开
 nginx
 
+# 关闭
 nginx -s stop
+# 重启
+nginx -s reload
+```
+
+```shell
+http://localhost:8080/
 ```
 
 
@@ -4461,3 +4489,197 @@ Where ec.id=?
 >
 > ![](images/image-20220728191808916.png)
 
+
+
+## 阿里视频点播
+
+[阿里视频点播](https://www.aliyun.com/product/vod)
+
+开通-按流量计费。量少基本不需要花钱
+
+视频点播（ApsaraVideo VoD，简称VoD）是集视频采集、编辑、上传、媒体资源管理、自动化转码处理（窄带高清™）、视频审核分析、分发加速于一体的一站式音视频点播解决方案。
+
+### 应用场景
+
+- 音视频网站：无论是初创视频服务企业，还是已拥有海量视频资源，可定制化的点播服务帮助客户快速搭建拥有极致观看体验安全可靠的视频点播应用。
+- 短视频：集音视频拍摄、特效编程、本地转码、高速上传、 自动化云端转码、媒体资源管理、分发加速、播放于一体的完整短视频解決方案。目前已帮助1000+APP快速实现手机短视频功能。
+- 直播转点播：将直播流同步录制为点播视频，用于回看。并支持媒资管理、媒体处理（转码及内容审核智能首图等AI处理）、内容制作（ 云剪輯）、CDN分发加速等一系列操作。
+- 在线教育：为在线教育客户提供简单易用、安全可靠的视频点播服务。可通过控制台/API等多种方式上传教学视频，强大的转码能力保证视频可以快速发布，覆盖全网的加速节点保证学生观看的流畅度。防盗链、视频加密等版权保护方案保护教学内容不被窃取。
+- 视频生产制作：提供在线可视化剪辑平台及丰富的OpenAPI，帮助客户高效处理、制作视频内容。除基础的剪切拼接、混音、遮标 特效 合成等一系列功能外 ，依托云剪輯及点播一体化服务还可实现标准化、智能化剪辑生产，大大降低视频制作的槛，缩短制作时间，提升内容生产效率。
+- 内容审核：应用于短视频平台、传媒行业审校等场景，帮助客户从从语音、文字、视觉等多維度精准识别视频、封面、标题或评论的违禁内容进行A智能审校与人工审核。
+
+### 管理控制台
+
+![](images/image-20220729094402804.png)
+
+转码模板组就是加密视频
+
+### SDK
+
+SDK相当于对API的封装，使用更方便
+
+httpclient技术，不需要浏览器，模拟浏览器请求
+
+![](images/image-20220729095643602.png)
+
+1. 获取视频播放地址
+
+
+
+2. 获取视频播放凭证
+
+> 因为上传视频可以进行加密，加密之后，使用加密之后地址不能进行视频播放，在数据库不存储地址，而是存储**视频id**。
+
+3. 上传视频到阿里云视频点播服务
+
+### 简单测试
+
+1. 创建子模块service_vod
+2. 初始化，创建DefaultAcsClient对象
+3. 根据视频id获取视频播放地址
+4. 根据视频id获取视频播放凭证
+
+
+
+#### 视频上传
+
+![](images/image-20230227080657874.png)
+
+> 注意：以下列举出部分依赖jar包的版本，您可直接在您的项目中添加maven依赖，也可以将VODUploadDemo-java-1.4.9.zip包中的所有jar包引入您的项目中使用。其中，<u>aliyun-java-vod-upload-1.4.9.jar</u> 还未正式开源，请您直接引入 jar包至您的项目中使用。
+
+* 引入上传依频，但是这个依赖不能在maven中央仓库下我到，需要手动把依赖安装到本地仓库里面。
+
+安装的方式：
+
+* 使用Maven命令进行安装。从[阿里云下载上传jar包](https://help.aliyun.com/document_detail/51992.htm?spm=a2c4g.11186623.0.0.767a4821eqPiR5#table-jql-3ej-tg4)。在对应的包目录下使用如下命令进行安装，就能把包安装到本地mvn仓库中。
+
+  ```shell
+  mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.14 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.14.jar
+  
+  mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.11 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.11.jar
+  
+  mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
+  ```
+
+* 也可直接把jar包拷贝到项目中，然后pom文件配置jar位置，如：
+
+  ```xml
+  <dependency>
+    <groupId>com.aliyun.vod</groupId>
+    <artifactId>upload</artifactId>
+    <version>1.4.14</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/src/main/resources/aliyun-java-vod-upload-1.4.14.jar</systemPath>
+  </dependency>
+  ```
+
+## 8 课程管理
+
+```mysql
+create table edu_video
+(
+    id                  char(19)                         not null comment '视频ID'
+        primary key,
+    course_id           char(19)                         not null comment '课程ID',
+    chapter_id          char(19)                         not null comment '章节ID',
+    title               varchar(50)                      not null comment '节点名称',
+    video_source_id     varchar(100)                     null comment '云端视频资源',
+    video_original_name varchar(100)                     null comment '原始文件名称',
+    sort                int unsigned     default '0'     not null comment '排序字段',
+    play_count          bigint unsigned  default '0'     not null comment '播放次数',
+    is_free             tinyint unsigned default '0'     not null comment '是否可以试听：0收费 1免费',
+    duration            float            default 0       not null comment '视频时长（秒）',
+    status              varchar(20)      default 'Empty' not null comment 'Empty未上传 Transcoding转码中  Normal正常',
+    size                bigint unsigned  default '0'     not null comment '视频源文件大小（字节）',
+    version             bigint unsigned  default '1'     not null comment '乐观锁',
+    gmt_create          datetime                         not null comment '创建时间',
+    gmt_modified        datetime                         not null comment '更新时间'
+)
+    comment '课程视频' charset = utf8mb4;
+```
+
+
+
+### 小节上传视频
+
+![](images/image-20230227102052274.png)
+
+1. 配置模块service_vod的依赖（之前测试已经配置过）
+
+2. 初始化模块：创建配置文件、启动类、controller、service
+
+```java
+/**
+ * 这个模块不需要加载数据库，用这个注解排除加载数据库
+ */
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@ComponentScan(basePackages = {"com.andyron"})
+public class VodApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(VodApplication.class, args);
+    }
+}
+```
+
+用swagger测试一下
+
+> 注意：Tomcat默认上传文件大小是1M，需要配置：
+>
+> ```properties
+> # 最大上传单个文件大小
+> spring.servlet.multipart.max-file-size=1024MB
+> # 最大总上传的数据大小
+> spring.servlet.multipart.max-request-size=1024MB
+> ```
+
+
+
+
+
+### 前端整合添加小节上传视频
+
+P148 和p147视频顺序反了
+
+1. 需要在nginx配置8003端口规则
+
+   ```
+   				location ~ /eduvod/ {
+               proxy_pass http://localhost:8003;
+           }
+   
+   ```
+
+2. nginx支持上传文件大小也有限制的
+
+![](images/image-20230227122437584.png)
+
+413 请求体过大
+
+添加配置：
+
+```
+http {
+    client_max_body_size 1024m;
+```
+
+
+
+3. 视频名称存储到数据库中
+
+```js
+ 				handleVodUploadSuccess(response, file, filelist) {
+            this.video.videoSourceId = response.data.videoId
+            this.video.videoOriginalName = file.name
+        }
+```
+
+> Day 10
+>
+> - 添加小节中删除阿里云里的视频
+>
+> - 微服务、springcloud
+>   - 删除小节删除视频（完善）
+>   - 删除课程也需要删除掉视频（完善）
+
+![](images/image-20230228145343911.png)
