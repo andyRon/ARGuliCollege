@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 异常类
+ *
+ * @author andyron
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
