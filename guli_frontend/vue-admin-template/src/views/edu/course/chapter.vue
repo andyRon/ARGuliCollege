@@ -292,6 +292,26 @@ export default {
         },
         handleUploadExceed() {
             this.$message.warning('想要重新上传视频，请先删除已上传的视频')
+        },
+        // 点击删除x是调用
+        beforeVodRemove(file, filelist) {
+            return this.$confirm(`确定删除 ${file.name}`)
+        },
+        // 点击删除弹框确定调用
+        handleVodRemove() {
+            // 调用接口删除视频
+            video.deleteAliyunVideo(this.video.videoSourceId)
+                .then(response => {
+                    this.$message({
+                        type: 'success',
+                        message: '删除视频成功'
+                    });
+                    // 把文件列表清空
+                    this.fileList = []
+                    // 把视频id和视频名称清空
+                    this.video.videoSourceId = ''
+                    this.video.videoOriginalName = ''
+                })
         }
 
     }

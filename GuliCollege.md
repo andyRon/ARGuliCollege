@@ -4674,7 +4674,7 @@ http {
         }
 ```
 
-> Day 10
+> day10
 >
 > - 添加小节中删除阿里云里的视频
 >
@@ -4683,3 +4683,572 @@ http {
 >   - 删除课程也需要删除掉视频（完善）
 
 ![](images/image-20230228145343911.png)
+
+![](images/image-20230228150952901.png)
+
+[阿里云视频点播文档。。。媒资管理](https://help.aliyun.com/document_detail/61065.html#section-ny5-84h-1rz)
+
+- 后台接口
+
+```java
+    @ApiOperation(value = "根据视频id删除阿里云视频")
+    @DeleteMapping("deleteAliVideo/{id}")
+    public R  deleteAliVideo(@PathVariable String id) {
+        try {
+            // 初始化对象
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            // 创建删除视频的request对象
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            request.setVideoIds(id);
+            // 调用初始化对象的方法实现删除
+            client.getAcsResponse(request);
+            return R.ok();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new GuliException(20001, "删除视频失败");
+        }
+    }
+```
+
+- 前端
+
+vedio.js
+
+```javascript
+		// 删除视频
+    deleteAliyunVideo(id) {
+        return request({
+            url: '/eduvod/video/deleteAliVideo/' + id,
+            method: 'delete'
+        })
+    },
+```
+
+chapter.vue
+
+```javascript
+				// 点击删除x是调用
+        beforeVodRemove(file, filelist) {
+            return this.$confirm(`确定删除 ${file.name}`)
+        },
+        // 点击删除弹框确定调用
+        handleVodRemove() {
+            // 调用接口删除视频
+            video.deleteAliyunVideo(this.video.videoSourceId)
+                .then(response => {
+                    this.$message({
+                        type: 'success',
+                        message: '删除视频成功'
+                    });
+                    // 把文件列表清空
+                    this.fileList = []
+                    // 把视频id和视频名称清空
+                    this.video.videoSourceId = ''
+                    this.video.videoOriginalName = ''
+                })
+        }
+```
+
+## 微服务、springcloud
+
+### 微服务是什么
+
+![](images/image-20230228183058896.png)
+
+- 微服务是架构风格
+
+- 把一个项目拆分成独立的多个服务，每个服务独立运行，每个服务占用独立进程
+
+  
+
+### 微服务与单体架构区别
+
+- 微服务每个模块就相当于一个单独的项目，代码量明显减少，遇到问题也相对来说比较好解决
+
+- 微服务每个模块都可以使用不同的存储方式（比如有的用redis，有的用mysql等）
+
+- 微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活
+
+  项目外包
+
+
+
+### 什么样的项目适合微服务
+
+微服务可以按照业务功能本身的独立性来划分，如果系统提供的业务是非常**底层**的，如：<u>操作系统内核、存储系统、网络系统、数据库系统等等</u>，这类系统都偏底层，功能和功能之同有着紧密的配合关系，如果强制拆分为较小的服务单元，会让集成工作量急剧上升，并且这种人为的切割无法带来业务上的真正的隔离，所以无法做到独立部署和运行，也就不适合做成微服务了。
+
+
+
+### 微服务开发框架
+
+- spring cloud
+- Dubbo
+
+### springcloud
+
+- springcloud并不是一种技术，是很多技术总称，很多技术集合
+- springcloud里面有很多框架（技术），使用springcloud里面这些框架实现微服务操作
+- 要使用springcloud，需要依赖springboot
+
+
+
+### springcloud和springboot是什么关系
+
+spring Boot 是spring 的一套快速配置脚手架，可以基于spring Boot快速开发单个微服务，spring Cloud是一个基于Spring Boot实现的开发工具；
+
+Spring Boot专注于快速、方便集成的单个微服务个体，Spring Cloud关注全局的服务治理框架；
+
+Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮你选择好了，能不配置就不配置，Spring Cloud很大的一部分是基于Spring Boot来实现，必须基于Spring Boot开发。
+
+可以单独使用Spring Boot开发项目，但是Spring Cloud离不开 Spring Boot。
+
+
+
+### Spring Cloud相关基础服务组件
+
+![](images/image-20230228193549869.png)
+
+
+
+### Spring Cloud的版本
+
+![](images/image-20230228193934253.png)
+
+
+
+#### 小版本
+
+spring Cloud 小版本分为：
+
+- SNAPSHOT：快照版本，随时可能修改，临时版本，一般不使用；
+
+- M:Milestone，M1表示第公个里程碑版本 ，一般同时标注PRE ，表示预览版版。
+
+- SR : Service Release，SR1表示第1个正式版本，一般同时标注GA：(GenerallyAvailable),表示稳定版本。
+
+选择顺序：GA -> SR -> M
+
+
+
+
+
+### 删除小节删除阿里云视频
+
+![](images/image-20230301080946030.png)
+
+实现不同模块间的调用（不是引入，独立运行）。把这些模块在注册中心进行注册，注册之后，实现互相调用。
+
+
+
+### Nacos
+
+Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构(例如微服务范式、 云原生范式）的服务基础设施。
+
+#### 常见的注册中心：
+
+1. Eureka（原生，2.0遇到性能瓶额，停止维护）
+2. zookeeper （支持，专业的独立产品。例如：dubbo）
+3. Consul（ 原生，GO语言开发）
+4. ﻿﻿﻿Nacos
+
+​	相对于 Spring Cloud Eureka 来说，Nacos 更强大。Nacos = Spring Cloud Eureka + Spring Cloud Config；
+
+​	Nacos 可以与Spring, Spring Boot, Spring Cloud 集成，并能代替 Spring Cloud Eureka, Spring Cloud Config；
+
+​	通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现服务的注册与发现。
+
+#### Nacos四大功能
+
+Nacos是以服务为主要服务对象的中间体，Nacos支持所有主流的服务发现、配置和管理。
+
+1. 服务发现和服务健康检测
+2. 动态配置服务
+3. 动态DNS服务
+4. 服务及其元数据管理
+
+
+
+#### Nacos结构图
+
+![](images/image-20230301082308968.png)
+
+#### Nacos安装
+
+https://github.com/alibaba/nacos/releases
+
+解压文件，找到运行文件，启动就可以了
+
+#### Nacos启动
+
+- Linux/Mac
+
+  启动命令：`sh startup.sh -m standalone` （standalone代表单机模式运行，非集群模式）
+
+- Windows
+
+  启动命令：`cmd startup.cmd` 后直接双击
+
+
+
+访问： http://localhost:8848/nacos
+
+用户名密码： nacos/nacos
+
+#### 把service-edu服务在Nacos进行注册
+
+1. 在**service**模块的pom文件中，引入依赖：
+
+   ```xml
+   <!--服务注册-->
+   <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+   </dependency>
+   ```
+
+2. 在要注册的服务（service-edu）的配置文件中进行配置nacos地址：
+
+```yaml
+spring:
+  # nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+```
+
+3. 在service-edu启动类添加注解：
+
+   ```java
+   @EnableDiscoveryClient // nacos注册
+   ```
+
+#### 把service-edu服务在Nacos进行注册
+
+类似的方法 
+
+
+
+#### Feign
+
+- ﻿Feign是Netflix开发的声明式、模板化的HTTP客户端，Feign可以帮助我们更快捷、 优雅地调用HTTP API。
+- ﻿Feign支持多种汪解，例如Feign自带的注解或者 JAX-RS注解等。
+- ﻿Spring Cloud对Feign进行了增强，使Feign支持了Spring MVC注解，并整合了Ribbon和Eureka，从而让Feign的使用更加方便。
+- ﻿﻿**Spring Gloud Feign**是基于Netflx feign实现，整合了Spring Cloud Rilbbon和Spring Cloud Hystrix，除了提供这两者的强大功能外，还提供了一种声明式的Web服务客户端定义的方式。
+- ﻿Spring Cloud Feign帮助我们定义和实现依赖服务接口的定义。在Spring Cloud feign的实现下，只需要创建一个接口并用注解方式配置它，即可完成服务提供方的接口绑定，简化了在使用Spring Cloud Ribbon时自行封装服务调用客户端的开发量。
+
+
+
+#### 实现服务调用
+
+> 前提条件：把互相调用服务在Nacos进行注册
+
+1. 在service模块引入依赖：
+
+```xml
+<!--服务调用-->
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+```
+
+2. 在调用端（service-edu）服务启动类添加注解：
+
+```java
+@SpringBootApplication
+@ComponentScan("com.andyron")
+@EnableDiscoveryClient // nacos注册
+@EnableFeignClients // 服务调用
+public class EduApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EduApplication.class, args);
+    }
+}
+```
+
+3. 在调用端创建一个interface，使用注解制定调用服务名称（`@FeignClient("service-vod")`），定义调用的方法路径（要完整路径）：
+
+```java
+@FeignClient("service-vod") // 指定调用的服务名称
+@Component
+public interface VodClient {
+
+    /**
+     * 方法路径要完整路径
+     * `@PathVariable`注解一定要指定参数名称，否则出错
+     */
+    @DeleteMapping("/eduvod/video/deleteAliVideo/{id}")
+    public R deleteAliVideo(@PathVariable("id") String id);
+}
+```
+
+- `@FeignClient`注解用于指定从哪个服务中调用功能，名称与被调用的服务保持一致。
+- `@PathVariable`注解一定要指定参数名称，否则出  错。
+
+4. 实现代码删除小节同时删除阿里云视频
+
+```java
+    @ApiOperation(value = "删除小节、删除对应阿里云视频")
+    @DeleteMapping("{id}")
+    public R delete(@PathVariable String id) {
+        // 根据小节id获得视频id
+        String videoSourceId = videoService.getById(id).getVideoSourceId();
+        if (!StringUtils.isEmpty(videoSourceId)) {
+            // 根据视频id，远程调用实现删除视频
+            vodClient.deleteAliVideo(videoSourceId);
+        }
+        videoService.removeById(id);
+        return R.ok();
+    }
+```
+
+
+
+5. 测试
+
+
+
+
+
+> 注意，此时启动service_oss会出现下面错误：
+>
+> ```shell
+> java.lang.IllegalArgumentException: no server available
+> 	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:354) ~[nacos-client-1.0.0.jar:na]
+> 	at com.alibaba.nacos.client.naming.net.NamingProxy.reqAPI(NamingProxy.java:304) ~[nacos-client-1.0.0.jar:na]
+> 	.
+> 	.
+> 	.
+> ```
+>
+> 这是因为在service模块中引入了服务注册等依赖，service_oss启动时也会去寻找nacos注册中心。
+>
+> 配置一下就好了（之后所有模块都需要注册到注册中）：配置文件添加nacos地址，启动文件上添加注解。
+
+
+
+## 8 课程管理
+
+### 删除课程的同时删除阿里云视频
+
+一个课程有很多章节，一个章节有很多小节，每个小节都可能有视频。
+
+1. 在service-vod创建删除多个视频的接口：
+
+```java
+    @ApiOperation(value = "根据视频id的List删除多个阿里云视频")
+    @DeleteMapping("delete-batch")
+    public R deleteBatch(@RequestParam("videoIdList") List videoIdList) {
+        vodService.removeMoreAliVideo(videoIdList);
+        return R.ok();
+    }
+```
+
+```java
+		@Override
+    public void removeMoreAliVideo(List videoIdList) {
+        try {
+            // 初始化对象
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            // 创建删除视频的request对象
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            request.setVideoIds(StringUtils.join(videoIdList.toArray(), ","));
+            // 调用初始化对象的方法实现删除
+            client.getAcsResponse(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new GuliException(20001, "删除视频失败");
+        }
+    }
+```
+
+2. 在service-edu调用service-vod接口实现删除多个视频的功能。
+
+在接口VodClient中添加：
+
+```java
+@DeleteMapping("/eduvod/video/delete-batch")
+public R deleteBatch(@RequestParam("videoIdList") List videoIdList);
+```
+
+
+
+修改EduVideoServiceImpl中的：
+
+```java
+/**
+     * 根据课程id删除小节
+     * @param courseId
+     */
+@Override
+public void removeVideoByCourseId(String courseId) {
+  // 根据课程id查询课程中所有视频id
+  QueryWrapper<EduVideo> wrapperVideo = new QueryWrapper<>();
+  wrapperVideo.eq("course_id", courseId);
+  wrapperVideo.select("video_source_id");
+  List<EduVideo> eduVideoList = baseMapper.selectList(wrapperVideo);
+  List<String> videoIds = new ArrayList<>();
+  for (int i = 0; i < eduVideoList.size(); i++) {
+    EduVideo eduVideo = eduVideoList.get(i);
+    String videoSourceId = eduVideo.getVideoSourceId();
+    if (!StringUtils.isEmpty(videoSourceId)) {
+      videoIds.add(videoSourceId);
+    }
+  }
+
+  if (videoIds.size() > 0 ) {
+    vodClient.deleteBatch(videoIds);
+  }
+
+  QueryWrapper wrapper = new QueryWrapper<>();
+  wrapper.eq("course_id", courseId);
+  baseMapper.delete(wrapper);
+}
+
+```
+
+
+
+> 问题报错时，主要看错误信息头尾。
+>
+> ![](images/image-20230301204344223.png)
+>
+> 泛型类型没有定义。补上类型：
+>
+> ![](images/image-20230301204513987.png)
+
+3. 测试
+
+> 🔖小bug，前端连续添加小节时，视频重复
+
+
+
+
+
+## Hystrix基本概念
+
+### Spring Cloud调用接口过程
+
+> Feign -> Hystrix -> Ribbon -> Http Client（apache http components 或 Okhttp）
+>
+> 具体交互流程图：
+
+![](images/image-20230302083713327.png)
+
+![](images/image-20230302083833000.png)
+
+- Feign：根据服务的名字（如service-vod），找到对应的地址（如`"/eduvod/video/deleteAliVideo/{id}"`）进行调用。
+
+- Hystrix（熔断器）：调用过程中，如果服务突然挂掉了，就之心熔断机制（切断调用过程）；如果能调用到，就继续执行。
+
+- Ribbon（负载均衡器）：挑选合适的服务提供端。
+
+### Hystrix
+
+Hystrix是一个供分布式系统使用，提供==延迟==和==容错==功能，保证复杂的分布式系统在面临不可避免的失败时，仍能有其弹性。
+
+> 延迟：一般情况消费者请求过一段时间（假设1000ms）没有相应就会报错，Hystrix的延迟就可以让这个时间变长（比如5000ms），在这个时间内不报错。
+
+![](images/image-20230302084804275.png)
+
+比如系统中有很多服务，某些服务不稳定的时候，使用这些服务的用户线程将会阻塞，如果没有隔离机制，系统随时就有可能会挂掉，从而带来很大的风险。SpringCloud使用Hystrix组件提供断路器、资源隔离与自我修复功能。下图表示服务B触发了断路器，阻止了级联失败：
+
+![](images/image-20230302085112331.png)
+
+### Feign结合Hystrix使用
+
+1. 在service添加熔断器相关依赖：
+
+```xml
+        <!--hystrix依赖，主要是用  @HystrixCommand -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+```
+
+2. 在调用端service-edu开启熔断器
+
+```yaml
+# 开启熔断器
+feign:
+  hystrix:
+    enabled: true
+```
+
+
+
+3. 创建接口VodClient的实现类，并实现方法，用于调用出错时调用
+
+```java
+@Component
+public class VodFileDegradeFeignClient implements VodClient {
+    @Override
+    public R deleteAliVideo(String id) {
+        return R.error().message("删除视频出错了");
+    }
+
+    @Override
+    public R deleteBatch(List<String> videoIdList) {
+        return R.error().message("删除多个视频出错了");
+    }
+}
+
+```
+
+4. 在接口VodClient的注解添加相应属性
+
+```java
+@FeignClient(name = "service-vod", fallback = VodFileDegradeFeignClient.class) // 指定调用的服务名称
+@Component
+public interface VodClient {
+```
+
+5. 测试
+
+P163后半段
+
+- 在删除小节的接口添加测试代码
+
+```java
+//            vodClient.deleteAliVideo(videoSourceId);
+            R r = vodClient.deleteAliVideo(videoSourceId);
+            if (r.getCode() == 20001) {
+                throw new GuliException(20001, "删除视频视频，熔断器。。。");
+            }
+```
+
+
+
+- 重现在前端页面添加一个课程、章节、小节，然后停掉series-vod服务
+- 在删除小节的接口添加断点，并用Debug启动service_edu，==Debug EduApplication==。
+
+![](images/image-20230302094125207.png)
+
+> day11
+>
+> 1 搭建前台系统环境
+>
+> ​	Nuxt
+>
+> 2 整合前台系统页面
+>
+> 3 首页banner数据
+>
+> 4 首页面显示热门课程和名师
+>
+> 5 把首页数据使用redis缓存
+
+![](images/image-20230302145539335.png)
+
+## 9 前台系统
+
+### 搭建项目前台系统环境
+
+使用Nuxt框架搭建前台环境
