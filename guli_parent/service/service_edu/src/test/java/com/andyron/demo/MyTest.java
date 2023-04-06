@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
+
 public class MyTest {
     @Autowired
     EduCourseMapper eduCourseMapper;
@@ -31,6 +29,21 @@ public class MyTest {
 
 
         System.out.println(page.getTotal());
+
+    }
+
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        List<Integer> res = new ArrayList();
+        for (int i = 1; i <= nums.length ; i++) {
+            if (!set.contains(i)) {
+                res.add(i);
+            }
+        }
+        return res;
 
     }
 

@@ -1,3 +1,8 @@
+# personal
+guli_parent/service/service_oss/src/main/resources/application.properties
+guli_parent/service/service_vod/src/main/resources/application.properties
+guli_parent/service/service_oss/src/test/
+
 # Logs
 logs
 *.log

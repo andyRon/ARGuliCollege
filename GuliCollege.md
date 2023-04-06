@@ -43,11 +43,25 @@ SpringBoot
 >
 > - 启动后端项目 
 >
-> 访问swagger  http://localhost:8001/swagger-ui.html
+> - 访问swagger  http://localhost:8001/swagger-ui.html
+>
+> - Nacos
+>
+>   进入安装目录启动`sh startup.sh -m standalone` （standalone代表单机模式运行，非集群模式）
+>
+>   关闭 `sh shutdown.sh`
+>
+>   访问： http://localhost:8848/nacos
+>
+>   用户名密码： nacos/nacos
 
-> [vue-element-admin](https://panjiachen.gitee.io/vue-element-admin-site/zh/)
+> [vue-element-admin](https://panjiachen.gitee.io/vue-element-admin-site/zh/)：是一个后台前端解决方案，它基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element)实现。
 >
 > [element官网](https://element.eleme.cn/#/zh-CN)
+>
+> Nuxt: 前台前端
+>
+> 第三方：阿里云视频点播、阿里云短信、微信登录、阿里云对象存储OSS（图片）、echart
 
 ---
 
@@ -5249,6 +5263,494 @@ P163后半段
 
 ## 9 前台系统
 
-### 搭建项目前台系统环境
 
-使用Nuxt框架搭建前台环境
+
+以前：
+
+![](images/image-20230302152226623.png)
+
+改变成 服务端渲染技术（一次性都在服务端把数据请求完成）：
+
+![](images/image-20230302153959910.png)
+
+Nuxt就是nodejs的框架，
+
+
+
+### 服务端渲染技术Nuxt
+
+==服务端渲染（SSR，Server Side Render）==是在服务端完成页面的内容，而不是在客户端通过AJAX获取数据。
+
+SSR的优势主要在于：**更好的SEO**，由于搜索引擎爬虫抓取工具可以直接查看完全渲染的页面。
+
+如果你的应用程序初始展示loading的菊花图，然后通过Ajax获取内容，抓取工具并不会等待异步完成后再进行页面内容的抓取。
+
+另外，使用服务器端渲染，我们可以获取更快的内容到达时间（time-to-conent），无需等待所有的JavaScript都完成下载并执行，产生更好的用户体验，对于那些**内容到达时间与转换率直接相关**的应用程序而言，服务端渲染至关重要。
+
+#### 什么是Nuxt
+
+Nuxt.js是一个基于Vue.js的轻量级应用框架，可用来创建服务端渲染应用，可可充当静态站点引擎生成静态站点应用，具有优雅的代码结构分层和热加载等特性。
+
+https://nuxtjs.org/
+
+https://www.nuxtjs.cn/
+
+
+
+### 使用Nuxt框架搭建前台环境
+
+- 通过下面命令安装：
+
+```shell
+$ npx create-nuxt-app <项目名>
+```
+
+或者直接拷贝。
+
+- 进入项目，`npm install`
+
+- 修改package.json
+
+- 修改nuxt.config.js
+
+- 运行 `npm run dev`
+
+
+
+#### Nuxt环境目录结构
+
+```
+.nuxt/  				# 编译后的文件，类似Java中class文件目录
+assets/					# 静态资源
+components/     # 项目使用的相关组件
+layouts/				# 定义网页布局方式
+	default.vue 
+middleware/
+pages/					# 项目页面
+	index.vue
+nuxt.config.js	# nuxt核心配置文件
+
+```
+
+![](images/image-20230302231415471.png)
+
+#### 整合项目页面
+
+1. 安装幻灯片插件
+
+```shell
+npm install vue-awesome-swiper
+```
+
+2. 配置幻灯片插件
+
+在plugins文件夹下新建文件`nuxt-swiper-plugin.js`：
+
+```js
+import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
+
+Vue.use(VueAwesomeSwiper)
+```
+
+在nuxt的配置文件nuxt.config.js中添加：
+
+```js
+  css: [
+    'swiper/dist/css/swiper.css'
+  ],
+
+  plugins: [
+    { src: '~/plugins/nuxt-swiper-plugin.js', ssr: false }
+  ],
+```
+
+3. 复制项目使用的静态资源到assets目录 
+
+
+
+4. 复制layouts/default.vue页面
+
+
+
+5. 复制pages/index.vue
+
+
+
+6. 在index.vue中整合幻灯片
+
+
+
+#### nuxt路由
+
+1. 固定路由
+
+```html
+<router-link to="/course" tag="li" active-class="current">
+  <a>课程</a>
+</router-link>
+```
+
+`/course`对应到`page/course/index.vue`
+
+2. 动态路由
+
+每次生成路由地址不一样，比如课程详情页面，每个课程id不一样。
+
+Nuxt的动态路由是以下划线开头的vue文件，参数名位下划线后边的文件名。
+
+
+
+### 首页数据banner显示
+
+1. 在service下创建子模块service_cms
+
+2. 创建配置文件
+
+```properties
+spring.application.name=service-cms
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/guli?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+spring.datasource.username=root
+spring.datasource.password=33824
+
+# 返回json的全局时间格式
+spring.jackson.data-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone=GMT+8
+
+# 配置mapper xml文件路径
+mybatis-plus.apper-locations=classpath:com/andyron/cmsservice/mapper/xml/*.xml
+# 
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+```
+
+3. 创建数据库表（crm_banner），用代码生成器生成代码
+
+   
+
+4. 后台对banner管理接口，crud操作
+
+
+
+🔖后台管理前端页面
+
+
+
+```mysql
+# 根据id进行降序排列，显示排列之后前8条记录
+Select * From edu_course Order By id DESC Limit 8;
+
+Select * From edu_teacher Order By id Limit 4;
+```
+
+
+
+5. 前台接口
+
+查询热门课程和名师接口
+
+
+
+### 前端页面准备工作
+
+1. 下载axios， `npm install axios`
+
+2. 创建`utils/request.js`，封装axios：
+
+```javascript
+import axios from 'axios'
+// 创建axios实例
+const service = axios.create({
+  baseURL: 'http://localhost:9001', // api的base_url（nginx的端口号）
+  timeout: 20000 // 请求超时时间
+})
+export default service
+```
+
+
+
+### 首页数据banner显示
+
+1. 创建api文件夹，接口文件banner.js:
+
+```javascript
+import request from '@/utils/request'
+
+export default {
+    //查询前两条banner数据
+  getListBanner() {
+    return request({
+      url: '/educms/bannerfront/getAllBanner',
+      method: 'get'
+    })
+  }
+}
+```
+
+2. 在页面index.vue调用接口得到数据进行显示
+
+
+
+3. nginx中进行访问配置
+
+
+
+### 首页课程和名师
+
+> 网站那个页面访问量最大？
+>
+> 首页
+
+一般来讲，把经常进行查询，不经常修改，不是特别重要的数据放到redis作为缓存。
+
+#### 首页进行redis缓存
+
+1. 在common模块中引入依赖
+
+```xml
+<!-- redis -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+<!-- spring2.X集成redis所需common-pool2 -->
+<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-pool2</artifactId>
+  <version>2.6.0</version>
+</dependency>
+```
+
+2. 在service_base模块中创建redis配置类
+
+```java
+```
+
+
+
+3. 在service-cms模块中添加中添加springboot缓存注解
+
+> SpringBoot缓存注解
+>
+> 1 `@Cacheable`，
+>
+> ![](images/image-20230406134134628.png)
+>
+> ![](images/image-20230406134037599.png)
+>
+> 2 `@CachePut`
+>
+> ![](images/image-20230406134237072.png)
+>
+> 3 `@CacheEvict`
+>
+> ![](images/image-20230406134339725.png)
+
+```java
+// 这里key和value组合成缓存中key，例如redis中位"banner::selectIndexList"
+@Cacheable(key = "'selectIndexList'", value = "banner")  
+@Override
+public List<CrmBanner> selectAllBanner() {
+  QueryWrapper<CrmBanner> wrapper = new QueryWrapper<>();
+  wrapper.orderByDesc("id");
+  wrapper.last("limit 2");
+  List<CrmBanner> list = baseMapper.selectList(wrapper);
+  return list;
+}
+```
+
+key组合对应源码：
+
+```java
+package org.springframework.data.redis.cache;
+
+@FunctionalInterface
+public interface CacheKeyPrefix {
+    String compute(String var1);
+
+    static CacheKeyPrefix simple() {
+        return (name) -> {
+            return name + "::";
+        };
+    }
+}
+```
+
+
+
+
+
+4. 在service-cms的配置文件中添加redis配置
+
+```properties
+# redis配置
+spring.redis.host=127.0.0.1
+spring.redis.port=6379
+spring.redis.database=0
+spring.redis.timeout=1800000
+spring.redis.lettuce.pool.max-active=20
+spring.redis.lettuce.pool.max-wait=-1
+spring.redis.lettuce.pool.max-idle=5
+spring.redis.lettuce.pool.min-idle=0
+```
+
+
+
+
+
+**启动redis服务**
+
+连接redis服务可能遇到的问题
+
+虚拟机中的redis访问，需要关闭防火墙；
+
+注释掉`bind 127.0.0.1`，它表示只允许本地访问；
+
+![](images/image-20230406135427240.png)
+
+
+
+> day 12
+>
+> 1 登录实现流程
+>
+> 2 注册接口
+>
+> ​	整合jwt
+>
+> ​	整合阿里云短信微服务
+>
+> 3 登录接口
+>
+> 4 注册和登录前端实现
+
+
+
+### 登录
+
+#### 单点登录
+
+单一服务器
+
+![](images/image-20230406202742386.png)
+
+
+
+单点登录三种常见方式：
+
+1. session广播机制实现（session复制）
+
+
+
+2. 使用cookie+redis实现
+
+
+
+3. 使用token（令牌）实现
+
+    
+
+![](images/image-20230406204355440.png)
+
+
+
+#### JWT令牌
+
+token这种包含用户信息的也叫做**自包含令牌**。不同公司这种字符串可能有不同的规则生成，而JWT就一种比较通用生成规则。
+
+![](images/image-20230406205059858.png)
+
+1. 在common_utils模块引入依赖
+
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+    </dependencies>
+```
+
+2. 工具类JwtUtils
+
+
+
+### 阿里云短信服务
+
+短信验证码
+
+1. 子模块service_msm
+
+2. 创建包结构、controller、service、配置文件、启动类等等
+3. 
+
+P183
+
+![](images/image-20230406222815556.png)
+
+申请模板管理
+
+申请签名
+
+#### **编写代码**
+
+1. 在子模块service_msm中引入依赖
+
+```xml
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+        </dependency>
+```
+
+2. 
+
+#### 短信验证码有效时间
+
+redis，生成验证码发送后把存入redis中，并设置有效时间。
+
+```java
+// 1 从redis获取验证码，如果有，就直接返回
+String code = redisTemplate.opsForValue().get(phone);
+        
+// 2 发送成功后，把验证码放到redis
+redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
+```
+
+
+
+### 登录注册
+
+1. 建立子模块service_ucenter
+
+
+
+2. 创建用户表ucenter_member，使用代码生成器生成代码
+
+
+
+3. 
+
+
+
+> 问题汇总：
+>
+> - exports 和 module.exports 的区别是什么？
+> - axios
+> - 出现类似问题：
+>
+> ```
+> require() of ES Module 
+>  from 
+>  not supported. Instead change the require of index.js in 
+>  to a dynamic import() which is available in all CommonJS modules.
+> ```
+>
+> 很可能是axios版本太高了
+>
+> 降级 `npm install axios@0.21.0 --save`
