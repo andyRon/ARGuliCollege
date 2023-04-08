@@ -25,7 +25,7 @@ public class JwtUtils {
     public static String getJwtToken(String id, String nickname) {
         String jwtToken = Jwts.builder()
                 // jwt头信息
-                .setHeaderParam("type", "JWT")
+                .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
                 .setSubject("guli-user")
                 .setIssuedAt(new Date())
@@ -36,7 +36,7 @@ public class JwtUtils {
                 .claim("nickname", nickname)
 
                 // 签名哈希
-                .signWith(SignatureAlgorithm.ES256, APP_SECRET)
+                .signWith(SignatureAlgorithm.HS256, APP_SECRET)
                 .compact();
         return jwtToken;
     }

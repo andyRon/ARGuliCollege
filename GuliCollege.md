@@ -5657,9 +5657,15 @@ spring.redis.lettuce.pool.min-idle=0
 
 #### JWT令牌
 
-token这种包含用户信息的也叫做**自包含令牌**。不同公司这种字符串可能有不同的规则生成，而JWT就一种比较通用生成规则。
+token这种包含用户信息的也叫做**自包含令牌**。不同公司这种字符串可能有不同的规则生成，而JWT（JSON Web Token）就一种比较通用生成规则。
 
 ![](images/image-20230406205059858.png)
+
+- Header
+- Payload
+- Signature
+
+
 
 1. 在common_utils模块引入依赖
 
@@ -5726,6 +5732,8 @@ redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
 
 ### 登录注册
 
+#### 后端
+
 1. 建立子模块service_ucenter
 
 
@@ -5734,7 +5742,285 @@ redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
 
 
 
-3. 
+3. 登录接口方法
+
+
+
+4. 创建用于注册的VO对象
+
+```java
+@Data
+@ApiModel(value = "注册对象", description = "注册对象")
+public class RegisterVo {
+    @ApiModelProperty(value = "昵称")
+    private String nickname;
+    @ApiModelProperty(value = "手机号")
+    private String mobile;
+    @ApiModelProperty(value = "密码")
+    private String password;
+    @ApiModelProperty(value = "验证码")
+    private String code;
+}
+```
+
+
+
+5. 注册接口方法
+
+
+
+
+
+6. 创建接口：根据token获取用户信息
+
+
+
+#### 前端：
+
+1. 首页登录和注册页面整合
+
+安装插件
+
+```shell
+npm install element-ui
+npm install vue-qriously  # 由于微信支付二维码
+```
+
+2. 在nuxt环境中使用插件，在插件配置文件nuxt-swiper-plugin.js配置
+
+```js
+import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
+import VueQriously from 'vue-qriously'
+import ElementUI  from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
+Vue.use(VueQriously)
+Vue.use(VueAwesomeSwiper)
+```
+
+3. 整合注册页面
+
+- 在layouts创建注册登录页面的额布局页面`sign.vue`：
+
+```vue
+<template>
+    <div class="sign">
+        <div class="logo">
+            <img src="~/assets/img/logo.png" alt="logo">
+        </div>
+
+        <nuxt/>
+    </div>
+</template>
+```
+
+- 修改首页登录和注册地址
+
+- 创建注册页面
+- 创建接口文件`register.js`
+- 在注册页面实现验证码发送后的倒计时效果
+
+```js
+setInterval()
+```
+
+
+
+> 🔖 前端框架的验证规则
+>
+> ```html
+> :rules="[{ required: true, message: '请输入你的昵称', trigger: 'blur' }]"
+> ```
+>
+> 
+
+
+
+4. 整合登录页面
+
+- 接口文件`login.js`
+- 下载插件`npm install js-cookie`
+- 页面调用
+
+> 登录和登录成功之后首页面显示数据实现过程分析：
+>
+> 一、调用接口登录返回token字符串
+>
+> 二、把token字符串放到cookie里面
+>
+> 三、创建前端拦截器，判断cookie里面是有token字符串，如果有，把token字符串放到header（请求头）
+>
+> 四、根据token值，调用接口，根据token获取用户信息，为了首页面显示；把返回的用户信息放到cookie里面
+>
+> 五、从首页面显示从cookie获取的用户信息
+
+```js
+submitLogin() {
+  //第一步 调用接口进行登录，返回token字符串
+  loginApi.submitLoginUser(this.user).then(response => {
+    //第二步 获取token字符串放到cookie里面
+    //第一个参数cookie名称，第二个参数值，第三个参数作用范围
+    cookie.set('guli_token',response.data.data.token,{domain: 'localhost'})
+
+    //第四步 调用接口 根据token获取用户信息，为了首页面显示
+    loginApi.getLoginUserInfo().then(response => {
+      this.loginInfo = response.data.data.userInfo
+      //获取返回用户信息，放到cookie里面
+      cookie.set('guli_ucenter',JSON.stringify(this.loginInfo),{domain: 'localhost'})
+
+      //跳转页面
+      window.location.href = "/";
+    })
+  })
+}
+```
+
+
+
+- 在request.js添加拦截器，用于传递token信息
+
+```js
+// 第四步 对每次请求使用拦截器
+service.interceptors.request.use(
+  config => {
+    if (cookie.get('guli_token')) {
+      config.headers['token'] = cookie.get('guli_token')
+    }
+    return config
+  },
+  err => {
+    return Promise.reject(err)
+  }
+)
+```
+
+- 在首页显示用户信息`default.vue`
+
+```
+showInfo() {
+  var userStr = cookie.get('guli_ucenter')
+  // 把json字符串转换为json对象（js对象）
+  if (userStr) {
+  this.loginInfo = JSON.parse(userStr)
+  }
+}
+```
+
+
+
+- 登出
+
+  
+
+
+
+> day13
+
+
+
+### 微信扫描登录🔖
+
+#### OAuth2
+
+OAuth2是针对特定问题一种解决方案。
+
+OAuth2主要可以解决两个问题：开发系统间授权；分布式访问问题。
+
+[OAuth 2.0 的四种方式](https://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html)
+
+##### 开发系统间授权
+
+![](images/image-20230407154645745.png)
+
+授权方式：
+
+- 密码用户名直接复制
+
+- 通用开发者key
+
+  适用于合作商或授信的不同业务部门之间
+
+- 颁发令牌
+
+  需要考虑如何管理令牌、颁发令牌、吊销令牌，需要统一的协议，因此就有了OAuth2协议
+
+##### 分布式访问问题(单点登录)
+
+![](images/image-20230407155406980.png)
+
+OAuth2仅仅是一个解决方案
+
+![](images/image-20230407155712392.png)
+
+
+
+#### 微信登录
+
+[微信开发平台](https://open.weixin.qq.com/)（注意与[微信公众平台](https://mp.weixin.qq.com/)的区别）
+
+文档https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html 
+
+准备p200 🔖
+
+![](images/image-20230407191018572.png)
+
+
+
+![](images/image-20230407190910675.png)
+
+1. 在service_ucenter模块的配置文件中写入微信开发平台需要的相关配置
+2. 创建配置类读取上面的配置信息
+
+3. 生成微信扫描二维码
+
+   直接请求微信提供的固定地址，在地址后面拼接参数即可
+
+扫码之后获取扫码人信息
+
+![](images/image-20230407220605086.png)
+
+![image-20230407221344613](images/image-20230407221344613.png)
+
+用的技术点：
+
+- httpclient：不要浏览器也模拟出浏览器请求
+- json转换工具：fastjson、gson、jackson
+
+```xml
+				<!--httpclient-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <!--commons-io-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <!--gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+```
+
+
+
+![](images/image-20230407224033667.png)
+
+
+
+首页显示微信扫描用户后的信息
+
+![](images/image-20230407224438173.png)
+
+
+
+> Day14
+
+
 
 
 
@@ -5754,3 +6040,13 @@ redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
 > 很可能是axios版本太高了
 >
 > 降级 `npm install axios@0.21.0 --save`
+>
+> - 前端跳转页面的种类和区别
+>
+> ```js
+> window.location.href = "/";
+> 
+> this.$router.push({path:'/login'})
+> ```
+>
+> 
