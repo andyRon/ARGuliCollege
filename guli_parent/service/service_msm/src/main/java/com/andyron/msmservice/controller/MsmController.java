@@ -5,6 +5,7 @@ import com.andyron.msmservice.service.MsmService;
 import com.andyron.msmservice.utils.RandomUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/edumsm/msm")
 @CrossOrigin
+@Slf4j
 public class MsmController {
     @Autowired
     private MsmService msmService;
@@ -40,7 +42,9 @@ public class MsmController {
         code = RandomUtil.getFourBitRandom();
         Map<String, Object> param = new HashMap<>();
         param.put("code", code);
-        boolean isSend = msmService.send(param, phone);
+//        boolean isSend = msmService.send(param, phone);
+        log.info(code);
+        boolean isSend = true;
         if (isSend) {
             // 2 发送成功后，把验证码放到redis
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
