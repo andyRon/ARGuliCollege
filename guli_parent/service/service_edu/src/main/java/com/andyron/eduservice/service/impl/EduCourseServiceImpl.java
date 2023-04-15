@@ -2,6 +2,9 @@ package com.andyron.eduservice.service.impl;
 
 import com.andyron.eduservice.entity.EduCourse;
 import com.andyron.eduservice.entity.EduCourseDescription;
+import com.andyron.eduservice.entity.EduTeacher;
+import com.andyron.eduservice.entity.frontvo.CourseFrontVo;
+import com.andyron.eduservice.entity.frontvo.CourseWebVo;
 import com.andyron.eduservice.entity.vo.CourseInfoVo;
 import com.andyron.eduservice.entity.vo.CoursePublishVo;
 import com.andyron.eduservice.mapper.EduCourseMapper;
@@ -10,10 +13,18 @@ import com.andyron.eduservice.service.EduCourseDescriptionService;
 import com.andyron.eduservice.service.EduCourseService;
 import com.andyron.eduservice.service.EduVideoService;
 import com.andyron.servicebase.exceptionhandler.GuliException;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -102,5 +113,42 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (i == 0) {
             throw new GuliException(20001, "删除失败");
         }
+    }
+
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> pageParam, CourseFrontVo cfVo) {
+        LambdaQueryWrapper<EduCourse> wrapper = new LambdaQueryWrapper<>();
+
+        if (cfVo != null) {
+            wrapper.eq(!StringUtils.isEmpty(cfVo.getSubjectParentId()), EduCourse::getSubjectParentId, cfVo.getSubjectParentId())
+                    .eq(!StringUtils.isEmpty(cfVo.getSubjectId()), EduCourse::getSubjectId, cfVo.getSubjectId())
+                    .orderByDesc(!StringUtils.isEmpty(cfVo.getBuyCountSort()), EduCourse::getBuyCount)
+                    .orderByDesc(!StringUtils.isEmpty(cfVo.getGmtCreateSort()), EduCourse::getGmtCreate)
+                    .orderByDesc(!StringUtils.isEmpty(cfVo.getPriceSort()), EduCourse::getPrice);
+        }
+        baseMapper.selectPage(pageParam, wrapper);
+
+        List<EduCourse> records = pageParam.getRecords();
+        long current = pageParam.getCurrent();
+        long pages = pageParam.getPages();
+        long size = pageParam.getSize();
+        long total = pageParam.getTotal();
+        boolean hasNext = pageParam.hasNext();
+        boolean hasPrevious = pageParam.hasPrevious();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+        return map;
+    }
+
+    @Override
+    public CourseWebVo getBaseCourseInfo(String courseId) {
+        return baseMapper.getBaseCourseInfo(courseId);
     }
 }

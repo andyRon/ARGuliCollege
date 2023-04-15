@@ -25,8 +25,8 @@ public class TestVod {
 
 //        testUploadVideo("video_test", "/Users/andyron/Downloads/video_test.mp4");
 
-        getPlayURLByid("922a13f0b63071edbffb6732b68f0102");
-        getPlayAuthByid("922a13f0b63071edbffb6732b68f0102");
+//        getPlayURLByid("922a13f0b63071edbffb6732b68f0102");
+        getPlayAuthByid("3724b3e0b89a71edaa746733a68f0102");
 
 
     }
