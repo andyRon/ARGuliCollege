@@ -4781,9 +4781,8 @@ chapter.vue
 
 - 微服务每个模块都可以使用不同的存储方式（比如有的用redis，有的用mysql等）
 
-- 微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活
+- 微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活项目外包
 
-  项目外包
 
 
 
@@ -4834,13 +4833,13 @@ Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮�
 
 spring Cloud 小版本分为：
 
-- SNAPSHOT：快照版本，随时可能修改，临时版本，一般不使用；
+- `SNAPSHOT`：快照版本，随时可能修改，临时版本，一般不使用；
 
-- M:Milestone，M1表示第公个里程碑版本 ，一般同时标注PRE ，表示预览版版。
+- `M:Milestone`，M1表示第公个里程碑版本 ，一般同时标注PRE ，表示预览版版。
 
-- SR : Service Release，SR1表示第1个正式版本，一般同时标注GA：(GenerallyAvailable),表示稳定版本。
+- `SR` : Service Release，SR1表示第1个正式版本，一般同时标注`GA`：(Generally Available),表示稳定版本。
 
-选择顺序：GA -> SR -> M
+选择顺序：`GA -> SR -> M`
 
 
 
@@ -5158,7 +5157,7 @@ public void removeVideoByCourseId(String courseId) {
 
 - Ribbon（负载均衡器）：挑选合适的服务提供端。
 
-### Hystrix
+### Hystrix（熔断器）
 
 Hystrix是一个供分布式系统使用，提供==延迟==和==容错==功能，保证复杂的分布式系统在面临不可避免的失败时，仍能有其弹性。
 
@@ -6019,6 +6018,354 @@ OAuth2仅仅是一个解决方案
 
 
 > Day14
+>
+> 名师列表
+>
+> 名师详情
+>
+> 课程列表
+>
+> 课程详情
+>
+> 整合阿里云播放器视频播放
+>
+> 课程评论
+
+
+
+### 名师
+
+#### 名师列表
+
+1. 分页查询接口
+2. 前端页面
+
+> 🔖🐞 connect ECONNREFUSED ::1:9001
+>
+> 前端 *asyncData* p209
+
+
+
+#### 名师详情
+
+
+
+#### 课程列表
+
+课程条件查询带分页
+
+1. 创建CourseFrontVo对象
+2. controller、service
+
+前端
+
+1. 在api目录创建接口文件course.js
+
+   查询课程列表的方法
+
+   查询所有分类
+
+2. 页面调用
+
+🔖🐞 p214
+
+```
+Access to XMLHttpRequest at 'http://localhost:9001/eduservice/coursefront/getFrontCourseList/1/8' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+
+Access to XMLHttpRequest at  from origin  has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+#### 课程详情
+
+1. 编写sql语句，根据课程id查询课程信息
+
+   课程基本信息
+
+   课程分类
+
+   课程描述
+
+   所属描述
+
+   所属讲师
+
+#### 整合阿里云视频播放器
+
+播放地址播放
+
+播放凭证播放
+
+https://help.aliyun.com/document_detail/125570.html?spm=a2c4g.29932.0.0.196f7f48jkFSjQ
+
+1. 创建接口，根据视频id获取视频播放凭证
+2. 点击小节，打开新的页面进行视频播放
+
+```html
+<a :href="'/player/' + video.videoSourceId" target="_blank">
+```
+
+创建页面`player/_vid.vue`，动态路由
+
+```java
+@Data
+public class VideoVo {
+    private String id;
+    private String title;
+    private String videoSourceId;
+}
+```
+
+🐞 同样的 connect ECONNREFUSED 问题
+
+
+
+> 阿里播发器组件
+>
+> https://player.alicdn.com/aliplayer/presentation/index.html?spm=a2c4g.417353.0.0.2ec2147epOHSnP&type=cover
+
+
+
+> day15
+>
+> 1 课程评论功能
+>
+> 2 课程支付功能
+>
+> ​	微信扫码支付
+>
+> 
+
+🔖
+
+
+
+> Day16
+>
+> 1 支付之后执行过程总结
+>
+> 2 课程详情页面立即观看和立即购买完善
+>
+> 3 系统后台-统计分析模块
+>
+> ​	统计分析模块需求
+>
+> ​	生成统计数据
+>
+> ​	使用秃瓢显示统计数据
+
+
+
+## 后台-统计分析
+
+### 需求分析
+
+1. 统计在线教育项目找中，每一天有多少注册人数和其他数据
+2. 把统计出来的注册人数，使用图表显示出来
+
+![](images/image-20230413061647707.png)
+
+### 具体
+
+统计分析数据表
+
+```
+Date(gmt_create)='2020-03-10'
+```
+
+![](images/image-20230413061800526.png)
+
+
+
+### 测试
+
+启动nacos
+
+启动service-ucenter
+
+启动service-statistics
+
+> 为什么要分层service-statistics和service-ucenter模块，调用查数据，这么麻烦？
+>
+> 分层不同团队开，可能是不同的数据库，不同的服务器
+
+
+
+### 后台前端
+
+生成数据
+
+1. 配置nginx
+
+2. 添加路由
+3. 创建页面
+4. 创建api
+5. 页面中处理数据
+
+### 添加定时任务
+
+1. 启动类添加注解 `@EnableScheduling`
+2. 创建定时任务类，使用cron表达式，设置执行规则
+
+```java
+@Component
+public class ScheduledTask {
+
+    @Autowired
+    private StatisticsDailyService staService;
+
+    
+    /**
+     * 在每天凌晨1点，把前一天数据进行查询添加统计
+     */
+    @Scheduled(cron = "0 0 1 * * ?")
+    public void task() {
+        staService.registerCount(DateUtil.formatDate(DateUtil.addDays(new Date(), -1)));
+    }
+}
+```
+
+> 在生成cron表达式（七域表达式）：https://www.pppet.net/
+
+
+
+### 图表显示
+
+#### echarts
+
+1. 下载
+
+```shell
+npm install --save echarts 
+```
+
+2. 整合页面
+
+> day17
+>
+> 1 数据同步工具canal
+>
+> 2 springcloud组件 - Gateway网关
+>
+> 3 权限管理模块
+
+## 数据同步工具canal
+
+### 应用场景
+
+在前面的统计分析功能中，我们采取了服务调用获取统计数据，这样耦合度高，效率相对较低，目前我采取另一种实现方式，通过**实时同步数据库表**的方式实现，例如我们要统计每天注册与登录人数，我们只需把会员表同步到统计库中，实现本地统计就可以了，这样效率更高，耦合度更低，Canal就是一个很好的数据库同步工具。[canal](https://github.com/alibaba/canal)是阿里巴巴旗下的一款开源项目，纯Java开发。基于数据库增量日志解析，提供增量数据订阅及消费，目前主要支持了MySQL。
+
+![](images/image-20230413172148365.png)
+
+把远程数据库里面内容同步到本地库。
+
+
+
+### 准备工作
+
+![](images/image-20230413172913286.png)
+
+1. 开启Linux中mysql的binlong功能（写入功能）
+
+```mysql
+# 查看开启状态
+SHOW VARIABLES LIKE 'log_bin';
+```
+
+开启binlong功能， 在配置文件`/etc/my.cnf`中追加：
+
+![](images/image-20230413181045328.png)
+
+```
+service mysqld  start
+service mysqld restart
+```
+
+注意远程访问的权限
+
+2. 安装canal
+
+[canal.deployer-1.1.4.tar.gz](https://github.com/alibaba/canal/releases/download/canal-1.1.4/canal.deployer-1.1.4.tar.gz)
+
+下载、解压，修改配置文件
+
+![](images/image-20230413182442686.png)
+
+```
+# 当前Linux系统的ip
+canal.instance.master.address=10.211.55.5:3306
+
+# 
+canal.instance.dbUsername=root
+canal.instance.dbPassword=33824
+
+# 匹配规则,这里表示所有库所有表
+canal.instance.filter.regex=.*\\..*
+```
+
+![](images/image-20230415220643904.png)
+
+启动
+
+```
+sh bin/startup.sh 
+```
+
+
+
+### 代码
+
+1. 新建模块canal_clientedu
+
+2. 引入依赖
+3. 创建配置文件
+4. 创建CanalClient
+5. 修改启动类，让其启动后一直监控远程Linux系统数据库的变化
+
+
+
+🔖🐞
+
+```
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114) ~[na:1.8.0_352]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:405) [na:1.8.0_352]
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:377) [na:1.8.0_352]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_352]
+
+2023-04-15 23:25:55.199  INFO 71021 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-15 23:25:55.207 ERROR 71021 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:768) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	at com.andyron.canal.CanalApplication.main(CanalApplication.java:19) [classes/:na]
+Caused by: java.nio.channels.UnresolvedAddressException: null
+	at sun.nio.ch.Net.checkAddress(Net.java:104) ~[na:1.8.0_352]
+	at sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:621) ~[na:1.8.0_352]
+	at com.alibaba.otter.canal.client.impl.SimpleCanalConnector.doConnect(SimpleCanalConnector.java:149) ~[canal.client-1.1.0.jar:na]
+	at com.alibaba.otter.canal.client.impl.SimpleCanalConnector.connect(SimpleCanalConnector.java:114) ~[canal.client-1.1.0.jar:na]
+	at com.andyron.canal.client.CanalClient.run(CanalClient.java:40) ~[classes/:na]
+	at com.andyron.canal.CanalApplication.run(CanalApplication.java:24) [classes/:na]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:784) [spring-boot-2.2.1.RELEASE.jar:2.2.1.RELEASE]
+	... 5 common frames omitted
+
+2023-04-15 23:25:55.210  INFO 71021 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+Disconnected from the target VM, address: '127.0.0.1:59776', transport: 'socket'
+```
+
+
+
+> canal_clientedu模块暂时不影响主模块开发
+
+## 网关
+
+
 
 
 
@@ -6047,6 +6394,14 @@ OAuth2仅仅是一个解决方案
 > window.location.href = "/";
 > 
 > this.$router.push({path:'/login'})
+> ```
+>
+> - spring Restful API 接口版本
+> - 🐞 nuxt asyncData
+>
+> ```
+> connect ECONNREFUSED ::1:9001
+> node:net:1494:16   TCPConnectWrap.afterConnect [as oncomplete]
 > ```
 >
 > 
