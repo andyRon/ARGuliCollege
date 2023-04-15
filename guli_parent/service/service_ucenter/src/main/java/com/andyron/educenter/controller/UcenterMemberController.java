@@ -51,5 +51,11 @@ public class UcenterMemberController {
         return R.ok().data("userInfo", member);
     }
 
+    @ApiOperation("查询某一天注册人数")
+    @GetMapping("countRegister/{day}")
+    public R countRegister(@PathVariable String day) {
+        Integer count = memberService.countRegisterDay(day);
+        return R.ok().data("countRegister", count);
+    }
 }
 

@@ -2,6 +2,8 @@ package com.andyron.vod.controller;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.andyron.common.utils.R;
 import com.andyron.servicebase.exceptionhandler.GuliException;
 import com.andyron.vod.service.VodService;
@@ -53,6 +55,20 @@ public class VodController {
     public R deleteBatch(@RequestParam("videoIdList") List<String> videoIdList) {
         vodService.removeMoreAliVideo(videoIdList);
         return R.ok();
+    }
+
+    @ApiOperation("根据视频id获取视频播放凭证")
+    @GetMapping("getPlayAuth/{id}")
+    public R getPlayAuth(@PathVariable String id) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.KEY_ID, ConstantVodUtils.KEY_SECRET);
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(id);
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+            return R.ok().data("playAuth", response.getPlayAuth());
+        } catch (Exception e) {
+            throw new GuliException(20001, "获取视频凭证失败");
+        }
     }
 
 }
