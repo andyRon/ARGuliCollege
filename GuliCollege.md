@@ -6365,6 +6365,213 @@ Disconnected from the target VM, address: '127.0.0.1:59776', transport: 'socket'
 
 ## 网关
 
+### 1 API网关介绍
+
+API网关出现的原因是微服务架构的出现，不同的微服务一般会有不同的网络地址，而外部客户端可能需要调用多个服务的接口才能完成一个业务需求，如果让客户端直接与各个微服务通信，会有以下的问题：
+
+1. 客户端会多次请求不同的微服务，增加了客户端的复染性。
+2. 存在跨域请求，在一定场景下处理相对复杂。
+3. 认证复染，每个服务都需要独立认证。
+4. 难以重构，随者项目的选代，可能需要重新划分微服务成 例如，可能将多个服务合并成一个或者将一个服务拆分成多个。如果客户端直接与微服务通信，那么重构将会很难实施。
+5. 某些微服务可能使用了防火墙 ，浏览器不友好的协议，直接访问会有一定的困难。
+
+以上这些问题可以借助 API 网关解決。API 网关是介于客户端和服务器端之问的中间层，所有的外部请求都会先经过 API 网关这一层。也就是说，API 的实现方面更多的考虑业务運辑，而安全、性能、监控可以交由 API 网关来做，这样既提高业务灵活性又不缺安全性。
+
+![](images/image-20230416110554920.png)
+
+### 2 Spring Cloud Gateway
+
+Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project Reactor等技术开发的网关，Spring cloud Gateway旨在**为微服务架构提供简单、有效和统一的API路由管理方式**，Spring Cloud Gateway作为Spring cloud生态系统中的网关，目标是替代Netflix Zuul，其不仅提供统一的==路由==方式，并且还基于Filer链的方式提供了网关基本的功能，例如：==安全、监控/埋点、限流==等。
+
+![](images/image-20230416110926380.png)
+
+#### Spring Cloud Gateway核心概念
+
+网关提供API全托管服务，丰富的API管理功能，辅助企业管理大规模的API，以降低管理成本和安全风险，包括==协议适配、协议转发、交全策略、防刷、流量、监控日志==等。一般来说网关对外暴露的URL或者接口信息，我们统称为==路由信息==。如果研发过网关中间件或者使用过zuul的人，会知道网关的核心是==Filter以及Filter Chain (Filter责任链〉==。
+
+Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring Cloud Gateway中几个重要的概念。
+
+1. 路由。 路由是网关最基础的部分，路由信息有一个ID、一个目的URL、一组断言和一组Filter组成。如果断言路由为真，则说明请求的URL和配置匹配。
+
+2. 断言。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的`ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
+
+3. 过滤器。一个标准的Spring Web Filter。 Soring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。
+
+![](images/image-20230416115534168.png)
+
+上图，Spring Cloud Gateway发出求。然后再由Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web handler。Handler再通过指定的过滤器链将请求发送到我们实际的服务执行业务逻辑，然后返回。
+
+
+
+### 3 Gateway具体使用
+
+1. 创建微服务模块
+
+  infrastructure：基础服务模块父节点
+    api-gateway： api网关服务
+
+2. 在api-gateway中引入依赖
+
+```xml
+				<dependency>
+            <groupId>com.andyron</groupId>
+            <artifactId>common_utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <!-- 服务调用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+```
+
+
+
+3. 编写配置文件
+
+编写具体的路由规则
+
+```properties
+server.port=8222
+spring.application.name=service-gateway
+
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
+
+# 开启，让Gateway网关能在nacos注册中心中找到服务 （使服务发现nacos找到服务）
+spring.cloud.gateway.discovery.locator.enabled=true
+
+
+# [n]表示第不同的匹配
+# 设置路由id。理论上随便写，建议写服务的名字
+spring.cloud.gateway.routes[0].id=service-acl
+# 设置路由的uri。 lb://在nacos中注册的服务名
+spring.cloud.gateway.routes[0].uri=lb://service-acl
+# 设置路由断言（匹配规则），
+spring.cloud.gateway.routes[0].predicates=Path=/*/acl/**
+
+# 配置service-edu服务
+spring.cloud.gateway.routes[1].id=service-edu
+spring.cloud.gateway.routes[1].uri=lb://service-edu
+spring.cloud.gateway.routes[1].predicates=Path=/eduservice/**
+
+# 配置service-msm服务
+spring.cloud.gateway.routes[2].id=service-msm
+spring.cloud.gateway.routes[2].uri=lb://service-msm
+spring.cloud.gateway.routes[2].predicates=Path=/edumsm/**
+```
+
+
+
+4. 启动类
+
+
+
+5. 测试，启动nacos、网关服务api-gateway，其它服务
+
+访问： http://localhost:8848/nacos
+
+用户名密码： nacos/nacos
+
+![](images/image-20230416120832211.png)
+
+http://localhost:8001/eduservice/teacher/findAll
+
+http://localhost:8222/eduservice/teacher/findAll
+
+通过原本的端口和网关都可以访问
+
+
+
+
+
+Gateway网关会自动做负载均衡，而不需要做额外配置（多态服务器是通用服务名时，就会把请求平均分配）（nginx中需要额外的配置）
+
+> 负载均衡的几种方式：轮询、权重、最少请求时间
+
+![](images/image-20230416121409765.png)
+
+
+
+> 之前在控制器上加`@CrossOrigin`为了跨域，现在跨域可以统一交给网关处理。
+>
+> ```java
+> /**
+>  * 统一处理跨域问题
+>  * 让所有请求都没有跨域
+>  * @author andyron
+>  **/
+> @Configuration
+> public class CorsConfig {
+>     @Bean
+>     public CorsWebFilter corsWebFilter() {
+>         CorsConfiguration config = new CorsConfiguration();
+>         config.addAllowedMethod("*");
+>         config.addAllowedOrigin("*");
+>         config.addAllowedHeader("*");
+> 
+>         // UrlBasedCorsConfigurationSource
+>         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+>         source.registerCorsConfiguration("/**", config);
+> 
+>         return new CorsWebFilter(source);
+>     }
+> }
+> ```
+>
+> 如果不删除出现类似错误：
+>
+> ![](images/image-20230416130516714.png)
+>
+> ![](images/image-20230416130535886.png)
+
+
+
+
+
+把前端的访问端口，从之前的nginx改为网关的(`.env.development`文件)：
+
+```js
+# Nginx注释（注释不要写在一行的后面，要不然访问出问题，配置行后面空格字符都不要有）
+# VUE_APP_BASE_API = 'http://localhost:9001/'
+
+VUE_APP_BASE_API = 'http://localhost:8222/'
+```
+
+
+
+🔖网关模块其他内容的作用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
