@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .apiInfo(webApiInfo())
                 .select()
 //                .apis(RequestHandlerSelectors.basePackage("com.andyron"))
-                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))  // 路径中包括admin、error的不显示
+//                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))  // 路径中包括admin、error的不显示 // TODO 为了测试暂时注释掉
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
     }
