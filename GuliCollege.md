@@ -6556,6 +6556,98 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 
 
+## 权限管理
+
+### 权限管理需求
+
+![](images/image-20230416152757057.png)
+
+1. 菜单管理
+
+菜单列表 从数据库读取
+
+菜单添加、修改
+
+菜单删除功能
+
+
+
+2. 角色管理
+
+添加、修改、删除、查询
+
+为角色分配菜单
+
+
+
+3. 用户管理
+
+添加、修改、删除、查询
+
+为用户分配角色
+
+
+
+### 权限管理相关表和之间的关系
+
+至少五张表
+
+acl_permission 菜单表  相关权限
+
+acl_role  角色表
+
+acl_user  用户表
+
+acl_role_permission  角色和菜单的关系表
+
+acl_user_role  用户和角色的关系表
+
+![](images/image-20230416154407430.png)
+
+> 多对多时，需要建关系表。
+>
+> ACL，是 Access Control List（访问控制列表），在 Linux中，访问权限控制
+
+```sql
+CREATE TABLE `acl_permission` (
+  `id` char(19) NOT NULL DEFAULT '' COMMENT '编号',
+  `pid` char(19) NOT NULL DEFAULT '' COMMENT '所属上级',
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '名称',
+  `type` tinyint NOT NULL DEFAULT '0' COMMENT '类型(1:菜单,2:按钮)',
+  `permission_value` varchar(50) DEFAULT NULL COMMENT '权限值',
+  `path` varchar(100) DEFAULT NULL COMMENT '访问路径',
+  `component` varchar(100) DEFAULT NULL COMMENT '组件路径',
+  `icon` varchar(50) DEFAULT NULL COMMENT '图标',
+  `status` tinyint DEFAULT NULL COMMENT '状态(0:禁止,1:正常)',
+  `is_deleted` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
+  `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
+  `gmt_modified` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_pid` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='权限';
+```
+
+
+
+### 整合权限管理模块
+
+1. 创建子模块service_acl
+
+
+
+2. 引入依赖
+
+
+
+3. 编写配置文件
+
+
+
+4. 编写启动类
+
+
+
+5. 生成相关代码
 
 
 
@@ -6563,14 +6655,40 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 
 
+6. 在common模块下创建spring_security子模块
 
 
 
+7. 编写接口
+
+查询所有菜单：
+
+![](images/image-20230416194639501.png)
+
+递归删除菜单
 
 
 
+给角色分配菜单
 
 
+
+🔖// TODO 给acl模块表做逻辑删除
+
+
+
+> swagger测试时，需要临时关闭spring security
+
+
+
+> day18 
+>
+> 1. 整合Spring Security权限框架
+>
+> 2. 整合权限管理前端页面
+>
+> 3. Nacos配置中心（用Nacos替换Spring Cloud config）
+> 4. 提交git
 
 
 
@@ -6610,5 +6728,7 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 > connect ECONNREFUSED ::1:9001
 > node:net:1494:16   TCPConnectWrap.afterConnect [as oncomplete]
 > ```
+>
+> - 为mp的自动生成代码编写独立模块？加上gmtCreate、gmtModified字段相应注解
 >
 > 
