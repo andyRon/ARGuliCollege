@@ -23,7 +23,7 @@ import java.util.List;
 @Api(tags = "课程章节和小节")
 @RestController
 @RequestMapping("/eduservice/chapter")
-@CrossOrigin
+//@CrossOrigin
 public class EduChapterController {
 
     @Autowired
