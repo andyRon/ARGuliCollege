@@ -11,7 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author andyron
  **/
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // TODO 临时关闭Spring Security
+//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // TODO 临时关闭Spring Security
+@SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan("com.andyron")
 @MapperScan("com.andyron.aclservice.mapper")

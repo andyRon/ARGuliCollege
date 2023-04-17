@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 登出业务逻辑类
+ * 登出处理器
  * @author andyron
  **/
 public class TokenLogoutHandler implements LogoutHandler {

@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * 访问过滤器
+ * 授权过滤器 // TODO
  * @author andyron
  **/
 public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
