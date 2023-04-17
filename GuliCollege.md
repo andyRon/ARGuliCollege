@@ -6692,6 +6692,86 @@ CREATE TABLE `acl_permission` (
 
 
 
+### Spring Security
+
+#### 1 框架介绍
+
+Spring Security 基于 Spring 框架，提供了一套==web应用安全性==的完整解决方案。一般来说，wveb 应用的安全性包括==用户认证==(Authentication〉和==用户授权==( Authorization〉两个部分。
+
+- 用户认证：验证某个用户是否为系统中的合法主体，也就是说**用户能否访问该系统**。用户认证一般要求用户提供用户名和密码。系统通过校验用户名和密码来完成认证过程。
+
+- 用户授权：验证某个用户是否有权限执行某个操作。在一个系统中，不同用户所具有的权限是不同的。比如对一个文件来说，有的用户只能进行读取，而有的用户可以进行修改。一般来说，系统会为不同的用户分配不同的角色，而每个角色则对应一系列的权限。
+
+**==Spring Security本质就是filter==，对请求的路径进行过滤。**
+
+- 如果是基于Session，那么Spring-security会对cookie 里的sessionid进行解析，找到服务器存储的sesion信息，然后判断当前用户是否符合请求的要求。
+
+- 如果是token，则是解析出token，然后将当前请求加入到Spring-Security管理的权限信息中去。
+
+#### 2 认证与授权实现思路
+
+如果系统的模块众多，每个模块都需要就行授权与认证，所以我们选择基于token的形式进行授权与认证，1. 用户根据用户名密码认证成功，
+
+2. 然后获取当前用户角色的一系列权限值，并以用户名为key，权限列表为value的形式存入redis缓存中，
+3. 根据用户名相关信息生成token返回，
+4. 浏览器将token记录到cookie中，每次调用api接口都默认将token携带到header消求头中，
+5. Spring-security解析header头获取token信息，解析token获取当前用户名，
+6. 根据用户名就可以从redis中获取权限列表，这样Spring-security就能够判断当前请求是否有权限访问。
+
+![](images/image-20230417005852858.png)
+
+
+
+#### 整合Spring Security权限框架
+
+1. 子模块spring_security
+
+2. 依赖
+3. 代码结构
+
+![](images/image-20230417010432349.png)
+
+
+
+- 在service_acl模块中引入spring_security模块
+
+```xml
+<dependency>
+  <groupId>com.andyron</groupId>
+  <artifactId>spring_security</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
+
+
+- 创建查询登录和用户权限的类`UserDetailsServiceImpl`
+
+P274
+
+### 权限管理前端整合
+
+P275 
+
+```
+npm install --save vuex-persistedstate
+```
+
+
+
+
+
+## Nacos配置中心
+
+配置中心对比
+
+Spring Cloud Config作为官方提供的配置中心，适合学习和刚开始使用分布式框架的项目使用
+
+Nacos作为阿里2018年开源的产品，有阿里背书，且服务发现和配置集与一体。但是从目前的发展来看，阿里开发重心在于服务发现端，配置中心相关功能开发相对滞后，适合中小型企业使用
+
+Apollo是携程2016年开源的配置中心，经历了5年的迭代，现在已经是一个很完善的产品，能满足大型互联网的大多数需要
+
+
 
 
 
@@ -6732,3 +6812,5 @@ CREATE TABLE `acl_permission` (
 > - 为mp的自动生成代码编写独立模块？加上gmtCreate、gmtModified字段相应注解
 >
 > 
+
+### 

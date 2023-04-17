@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * Token管理
+ * Token操作工具类
  * @author andyron
  **/
 @Component

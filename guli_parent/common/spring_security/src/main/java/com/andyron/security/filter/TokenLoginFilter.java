@@ -31,14 +31,19 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private RedisTemplate redisTemplate;
     private AuthenticationManager authenticationManager;
 
-    public TokenLoginFilter(TokenManager tokenManager, RedisTemplate redisTemplate, AuthenticationManager authenticationManager) {
+    public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) {
         this.tokenManager = tokenManager;
         this.redisTemplate = redisTemplate;
         this.authenticationManager = authenticationManager;
         this.setPostOnly(false);
+        // 这个地址是设置给SpringSecurity登录的地址，理论上是随便写的 // TODO
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/admin/acl/login", "POST"));
     }
 
+    /**
+     * 等到输入的用户名和密码
+     * // TODO
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {

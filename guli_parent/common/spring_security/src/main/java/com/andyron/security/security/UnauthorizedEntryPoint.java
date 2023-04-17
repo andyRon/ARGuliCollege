@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 未授权的统一处理方式
+ * 未授权统一处理类
  * @author andyron
  **/
 public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {

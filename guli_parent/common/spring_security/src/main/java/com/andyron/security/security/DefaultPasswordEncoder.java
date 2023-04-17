@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * 密码的处理方法类型
+ * 密码的处理
  * @author andyron
  **/
 @Component
