@@ -246,9 +246,9 @@ lynda https://www.lynda.com/
 
 
 
-两个角色：管理员（添加、修改、删除）和普通用户（查询）
+B2C的两个角色：管理员（添加、修改、删除）和普通用户（查询）
 
-在线教育的核心模块：**课程模块**
+**在线教育**使用这种模式，它的核心模块：**课程模块**
 
 
 
@@ -261,7 +261,7 @@ lynda https://www.lynda.com/
 
 电商平台**常用**模式
 
-京东：自营 - 普通商家 - 普通用户
+京东：普通用户 可以买自营  可以买普通商家  
 
 ##### 4、垂直领域
 
@@ -301,13 +301,11 @@ Freemium最早由AVC的Fred Wilson在2006年提出, 指的是用免费服务吸�
 
 ### 1.3 项目实现的功能模块
 
-**B2C模式**
+谷粒学院，是一个**B2C模式**的职业技能在线教育系统，分为前台用户系统和后台运营平台。
 
-谷粒学院，是一个B2C模式的职业技能在线教育系统，分为前台用户系统和后台运营平台。
 
-#### 系统模块
 
-**系统后台：管理员使用**：
+**系统后台（管理员使用）**：
 
 1. 讲师管理模块
 
@@ -329,7 +327,7 @@ Freemium最早由AVC的Fred Wilson在2006年提出, 指的是用免费服务吸�
 
 7. 权限管理
 
-**系统前台：普通用户使用**：
+**系统前台（普通用户使用）**：
 
 1. 首页数据显示
 
@@ -392,6 +390,39 @@ Freemium最早由AVC的Fred Wilson在2006年提出, 指的是用免费服务吸�
 https://baomidou.com/
 
 MyBatis-Plus (opens new window)（简称 MP）是一个 MyBatis (opens new window)的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+
+`mybatis_plus`
+
+```sql
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user
+(
+    id BIGINT(20) NOT NULL COMMENT '主键ID',
+    name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
+    age INT(11) NULL DEFAULT NULL COMMENT '年龄',
+    email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
+    PRIMARY KEY (id)
+);
+
+
+DELETE FROM user;
+
+INSERT INTO user (id, name, age, email) VALUES
+(1, 'Jone', 18, 'test1@baomidou.com'),
+(2, 'Jack', 20, 'test2@baomidou.com'),
+(3, 'Tom', 28, 'test3@baomidou.com'),
+(4, 'Sandy', 21, 'test4@baomidou.com'),
+(5, 'Billie', 24, 'test5@baomidou.com');
+```
+
+
+
+```sql
+ALTER TABLE `user` ADD COLUMN `version` INT;
+```
+
+
 
 ### 基本使用
 
@@ -524,7 +555,7 @@ MP自动生成19位的ID
 
 每次随机生成一个唯一值。
 
-排序不方便
+**排序不方便**
 
 #### 3 Redis  
 
@@ -574,7 +605,7 @@ public enum IdType {
    private Date gmtModified;
    ```
 
-4. 实现接口MetaObjectHandler
+4. 实现接口`MetaObjectHandler`
 
 ### 乐观锁
 
@@ -654,6 +685,12 @@ MP中乐观锁具体实现：
 ### 逻辑删除
 
 物理删除，逻辑删除
+
+```sql
+ALTER TABLE `user` ADD COLUMN `deleted` boolean
+```
+
+
 
 1. 表中添加字段deleted，实体类中添加对应属性。(默认值可以在数据库表设置，也可以通过MP中自动填充接口MetaObjectHandler实现)。
 
@@ -770,6 +807,24 @@ QueryWrapper<User> wrapper = new QueryWrapper<>();
 
 
 
+Wrapper ： 条件构造抽象类，最顶端父类
+
+  AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件
+
+​    QueryWrapper ： Entity 对象封装操作类，不是用lambda语法
+
+​    UpdateWrapper ： Update 条件封装，用于Entity对象更新操作
+
+  AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。
+
+​    LambdaQueryWrapper ：看名称也能明白就是用于Lambda语法使用的查询Wrapper
+
+​    LambdaUpdateWrapper ： Lambda 更新封装Wrapper
+
+
+
+
+
 > 第二天
 
 
@@ -797,6 +852,46 @@ crud
 - 表必备三字段：**id、gmt_create、gmt_modified**
 
 G.M.T.(Greenwich Mean Time)格林威治标准时间
+
+> 1、库名与应用名称尽量一致
+>
+> 2、表名、字段名必须使用小写字母或数字，禁止出现数字开头，
+>
+> 3、表名不使用复数名词
+>
+> 4、表的命名最好是加上“业务名称_表的作用”。如，edu_teacher
+>
+> 5、表必备三字段：id, gmt_create, gmt_modified
+>
+> 说明：
+>
+> 其中 id 必为主键，类型为 bigint unsigned、单表时自增、步长为 1。
+>
+> （如果使用分库分表集群部署，则id类型为verchar，非自增，业务中使用分布式id生成器）🔖
+>
+> gmt_create, gmt_modified 的类型均为 datetime 类型，前者现在时表示主动创建，后者过去分词表示被动更新。
+>
+> 6、单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。 说明：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。 
+>
+> 7、表达是与否概念的字段，必须使用 is_xxx 的方式命名，数据类型是 unsigned tinyint （1 表示是，0 表示否）。 
+>
+> 说明：任何字段如果为非负数，必须是 unsigned。 
+>
+> 注意：POJO 类中的任何布尔类型的变量，都不要加 is 前缀。数据库表示是与否的值，使用 tinyint 类型，坚持 is_xxx 的 命名方式是为了明确其取值含义与取值范围。 
+>
+> 正例：表达逻辑删除的字段名 is_deleted，1 表示删除，0 表示未删除。 
+>
+> 8、小数类型为 decimal，禁止使用 float 和 double。 说明：float 和 double 在存储的时候，存在精度损失的问题，很可能在值的比较时，得到不 正确的结果。如果存储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数分开存储。
+>
+> 9、如果存储的字符串长度几乎相等，使用 char 定长字符串类型。 
+>
+> 10、varchar 是可变长字符串，不预先分配存储空间，长度不要超过 5000，如果存储长度大于此值，定义字段类型为 text，独立出来一张表，用主键来对应，避免影响其它字段索 引效率。
+>
+> 11、唯一索引名为 uk_字段名；普通索引名则为 idx_字段名。
+>
+> 说明：uk_ 即 unique key；idx_ 即 index 的简称
+>
+> 12、不得使用外键与级联，一切外键概念必须在应用层解决。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。 
 
 ### 创建项目结构
 
@@ -1051,6 +1146,8 @@ Unable to infer base url. This is common when using dynamic servlet registration
 
 
 
+
+
 ### 4 统一返回数据格式
 
 JSON数据格式的两种形式：**对象，数组**。一般混合使用。
@@ -1132,14 +1229,14 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 
 
-### 讲师分页功能
+### 5 讲师分页功能
 
 1. 配置mp分页插件
 2. 编写讲师分页查询
 
 
 
-### 条件查询
+### 6 条件查询
 
 **多条件组合**查询带分页
 
@@ -1165,7 +1262,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 > 实际开发中会把这些条件构建部分等都放到service（业务逻辑层），而不是controller。
 
-### 添加讲师
+### 7 添加讲师
 
 自动填充：
 
@@ -1210,14 +1307,12 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 
 
-### 讲师修改
+### 8 讲师修改
 
 1. 根据讲师id查询
 2. 讲师修改， 测试是JSON中需要有id
 
-
-
-### 统一异常处理
+### 9 统一异常处理
 
 没有统一处理异常处理的情况：
 
@@ -1324,11 +1419,11 @@ public class GlobalExceptionHandler {
 
 > 第三天
 
-### 统一日志处理
+### 10 统一日志处理
 
 #### 配置日志级别
 
-日志记录器（Logger）的行为是分等级的：OFF, FATAL, <u>ERROR, WARN, INFO, DEBUG</u>, ALL。低级别的会记录高级别的信息。
+日志记录器（Logger）的行为是分等级的，优先级从高到低依次为：OFF, FATAL, <u>ERROR, WARN, INFO, DEBUG</u>, ALL。低级别的会记录高级别的信息。
 
 ```yaml
 logging:
@@ -1340,9 +1435,15 @@ logging:
 
 默认只能把日志输出到控制台，如果既想把日志输出到控制台又想输出到文件中，就需要日志工具（log4j、Logback等）。
 
+默认情况下，spring boot从控制台打印出来的日志级别只有INFO及以上级别。
+
 #### Logback
 
 [Logback manual](https://logback.qos.ch/manual/index.html)
+
+spring boot内部使用Logback作为日志实现的框架。
+
+Logback和log4j非常相似，logback相对于log4j的一些优点：https://blog.csdn.net/caisini_vc/article/details/48551287
 
 1. 先把之前的日志配置删掉
 
@@ -1432,8 +1533,6 @@ logging:
 
 
 
-
-
 ## 5 前端知识
 
 前端工程师
@@ -1442,7 +1541,7 @@ logging:
 
 PRD（产品原型-产品经理）-PSD（视觉设计-UI工程师）-HTML/CSS/JavaScript（PC/移动端网页，实现网页端的视觉展示和交互-前端工程师）
 
-### Vscode的安装和使用
+### 1 Vscode的安装和使用
 
 vs插件：
 
@@ -1458,9 +1557,9 @@ Vetur  vue工具
 
 ![](images/image-20220711082538744.png)
 
-> 实际，就是在对应目录中创建一个***.code-workspace文件。
+> 实际，就是在对应目录中创建一个`***.code-workspace`文件。
 
-### ES6
+### 2 ES6
 
 ECMAScript6，2015-6发布
 
@@ -1480,62 +1579,80 @@ ECMAScript是一套标准，一套规范，JavaScript很好遵循了这套规范
 
 #### ES6基本语法
 
-1. var 定义的变量没有范围限制， let 有作用范围
+ES标准中不包含DOM和BOM的定义，只涵盖基本数据类型、关键字、语句、运算符、内建对象、内建函数等通用语法。
 
-   ```js
-   {
-     var a = 10
-     let b = 20
-   }
-   console.log(a)
-   console.log(b)  // Uncaught ReferenceError: b is not defined
-   ```
+本部分只学习前端开发中ES6的最少必要知识，方便后面项目开发中对代码的理解。
 
-2. let 不能重复定义
+##### let声明变量
 
-   ```javascript
-   var a = 1
-   var a = 2
-   
-   let m = 10
-   let m = 20 //  Uncaught SyntaxError: Identifier 'm' has already been declared
-   ```
+var 定义的变量没有范围限制， let 有作用范围
 
-3. const 常量一旦定义，不能改变；定义必须初始化。
+```js
+{
+  var a = 10
+  let b = 20
+}
+console.log(a)
+console.log(b)  // Uncaught ReferenceError: b is not defined
+```
 
-   ```javascript
-   const PI = "3.1415"
-   PI = 3          // Uncaught TypeError: Assignment to constant variable.
-   
-   const E  // Uncaught SyntaxError: Missing initializer in const declaration
-   ```
+let 不能重复定义
 
-4. 数组解构（解构赋值）
+```javascript
+var a = 1
+var a = 2
 
-   ```js
-   // 传统写法
-   let a=1, b=2, c=3
-   
-   // es6写法
-   let [x, y, z] = [10, 20, 30]
-   console.log(x, y, z)
-   
-   ```
+let m = 10
+let m = 20 //  Uncaught SyntaxError: Identifier 'm' has already been declared
+```
 
-5. 对象解构（解构赋值）
+##### const声明常量（只读变量）
 
-   ```js
-   let user = {name: "andy", age: 18}
-   // 传统写法
-   let name1 = user.name
-   let age1 = user.age
-   
-   // es6写法
-   let {name, age} = user // 注意：结构的变量必须是user中的属性
-   console.log(name, age)
-   ```
+const 常量一旦定义，不能改变；定义必须初始化。
 
-#### 模板字符串`
+```javascript
+const PI = "3.1415"
+PI = 3          // Uncaught TypeError: Assignment to constant variable.
+
+const E  // Uncaught SyntaxError: Missing initializer in const declaration
+```
+
+##### 解构赋值
+
+解构赋值是对赋值运算符的扩展。
+
+他是一种针对数组或者对象进行模式匹配，然后对其中的变量进行赋值。
+
+在代码书写上简洁且易读，语义更加清晰明了；也方便了复杂对象中数据字段获取。
+
+数组解构（解构赋值）：
+
+```js
+// 传统写法
+let a=1, b=2, c=3
+
+// es6写法
+let [x, y, z] = [10, 20, 30]
+console.log(x, y, z)
+
+```
+
+对象解构（解构赋值）：
+
+```js
+let user = {name: "andy", age: 18}
+// 传统写法
+let name1 = user.name
+let age1 = user.age
+
+// es6写法
+let {name, age} = user // 注意：结构的变量必须是user中的属性
+console.log(name, age)
+```
+
+##### 模板字符串
+
+模板字符串相当于加强版的字符串，用反引号 `,除了作为普通字符串，还可以用来定义多行字符串，还可以在字符串中加入变量和表达式。
 
 ```js
 // 1 `实现多行字符串
@@ -1556,7 +1673,7 @@ console.log(str3)
 
 ```
 
-#### 声明对象的简写
+##### 声明对象的简写
 
 ```js
 const age = 12
@@ -1570,7 +1687,7 @@ const p2 = {age, name}
 console.log(p2)
 ```
 
-#### 定义方法简写
+##### 定义方法简写
 
 ```js
 // 传统方式
@@ -1589,7 +1706,7 @@ const p2 = {
 p2.sayHi()
 ```
 
-#### 对象拓展运算符
+##### 对象拓展运算符
 
 拓展运算符（`...`）用于取出参数对象所有可遍历属性然后拷贝到当前对象。
 
@@ -1606,7 +1723,7 @@ p2.sayHi()
  console.log(p)
 ```
 
-#### 箭头函数
+##### 箭头函数
 
 箭头函数提供了一个更加简洁的函数书写方式：**参数 => 函数体**。（有点类似Java中的lambta表达式）
 
@@ -1630,11 +1747,17 @@ console.log(f3(2, 3))
 console.log(f4(2, 3))
 ```
 
+当箭头函数没有参数或者有多个参数，要用 () 括起来。
+当箭头函数函数体有多行语句，用 {} 包裹起来，表示代码块，
+当只有一行语句，并且需要返回结果时，可以省略 {} , 结果会自动返回。
+
+
+
 多用于匿名函数定义是使用
 
 
 
-### Vue
+### 3 Vue
 
 #### Vue.js是什么
 
@@ -1643,7 +1766,7 @@ Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方�
 
 #### 初始化Vue.js
 
-> vscode快速生成html模板文件方法： !+tab；直接打html:5。
+> vscode快速生成html模板文件方法： `!+tab`；直接打html:5。
 
 1. 创建html
 
@@ -1669,31 +1792,35 @@ Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方�
 Vue的完整固定写法：
 
 ```html
-    <div id="app">
-        <!-- {{}} 插值表达式，绑定vue中的data数据 -->
-        {{message}}
-    </div>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script>
-        // 创建一个Vue对象
-        new Vue({
-            el: '#app', // 绑定vue作用的范围
-            data: { // 在data定义变量和初始值
-                message: "Hello。。。Vue！"
-            },
-          	created() { // 页面渲染之前执行
-              	// 调用定义的方法
-              
-            },
-          	methods: { // 编写具体的方法
-            }
-        })
-    </script>
+<div id="app">
+  <!-- {{}} 插值表达式，绑定vue中的data数据 -->
+  {{message}}
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+  // 创建一个Vue对象
+  new Vue({
+    el: '#app', // 绑定vue作用的范围
+    data: { // 在data定义变量和初始值
+      message: "Hello。。。Vue！"
+    },
+    created() { // 页面渲染之前执行
+      // 调用定义的方法
+
+    },
+    methods: { // 编写具体的方法
+    }
+  })
+</script>
 ```
 
 **==插值表达式==**
 
-#### 抽取Vue的代码片段
+这就是**声明式渲染**：Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统
+
+这里的核心思想就是没有繁琐的DOM操作，例如jQuery中，我们需要先找到div节点，获取到DOM对象，然后进行一系列的节点操作
+
+##### 抽取Vue的代码片段
 
 VSCode中代码简化的快捷方式
 
@@ -1740,35 +1867,39 @@ VSCode中代码简化的快捷方式
 
 单向数据绑定
 
-v-bind指令(指令带有前缀`v-`)
+`v-bind`指令(指令带有前缀`v-`)
 
 一般用在标签属性里面，获取值。写在属性前面
 
+除了使用插值表达式`{{}}`进行数据渲染，也可以使用 v-bind指令，它的简写的形式就是一个冒号（`:`）。
+
 ```html
-		<div id="app">
-        <h1 v-bind:title="message">
-            {{content}}
-        </h1>
-        <!-- 简写 -->
-        <h2 :title="message">
-            {{content}}
-        </h2>
-    </div>
-    <script src="vue.min.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            data: { 
-                content: '我是标题',
-                message: '页面加载于' + new Date().toLocaleString()
-            }
-        })
-    </script>
+<div id="app">
+  <h1 v-bind:title="message">
+    {{content}}
+  </h1>
+  <!-- 简写 -->
+  <h2 :title="message">
+    {{content}}
+  </h2>
+</div>
+<script src="vue.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: { 
+      content: '我是标题',
+      message: '页面加载于' + new Date().toLocaleString()
+    }
+  })
+</script>
 ```
+
+
 
 ##### 2 双向数据绑定
 
-v-model
+`v-model`
 
 发生变化其它地方也跟着发生变化。
 
@@ -1795,7 +1926,7 @@ v-model
 
 ##### 3 事件
 
-v-on
+`v-on`
 
 ```html
 		<div id="app">
@@ -1825,7 +1956,7 @@ v-on
     </script>
 ```
 
-##### 4 修饰符
+##### 4 修饰符 🔖
 
 阻止事件原本的默认行为，使用自己定义行为。
 
@@ -1860,32 +1991,37 @@ v-on
 
 ##### 5 条件渲染
 
-v-if
+`v-if`
 
-v-else
+`v-else`
 
-> v-show 类似v-if，但v-if是惰性加载，v-show不是效率差，一般不用
+> `v-show` 类似v-if，但v-if是惰性加载，v-show不是效率差，一般不用
 
 ```html
-		<div id="app">
-        <input type="checkbox" v-model="ok">是否选中</input>
-        <h1 v-if="ok">AndyRon</h1>
-        <h1 v-else>andyron</h1>
-    </div>
-    <script src="vue.min.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            data: { 
-                ok: false
-            }
-        })
-    </script>
+<div id="app">
+  <input type="checkbox" v-model="ok">是否选中</input>
+<h1 v-if="ok">AndyRon</h1>
+<h1 v-else>andyron</h1>
+</div>
+<script src="vue.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: { 
+      ok: false
+    }
+  })
+</script>
 ```
+
+- `v-if` 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
+- `v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+- 相比之下，`v-show` 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+- 一般来说，`v-if` 有更高的切换开销，而 `v-show` 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 `v-show` 较好；如果在运行时条件很少改变，则使用 `v-if` 较好。
 
 ##### 6 列表渲染
 
-v-for
+`v-for`
 
 简单列表渲染：
 
@@ -1942,21 +2078,21 @@ v-for
 只能在当前文件中有效。Navbar可看着是自定义HTML元素（扩展）。
 
 ```html
-		<div id="app">
-        <Navbar></Navbar>
-    </div>
-    <script src="vue.min.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            // 定义vue使用的组件
-            components: { 
-                'Navbar': {
-                    template: '<ur><li>首页</li><li>学员管理</li></ur>'
-                }
-            }
-        })
-    </script>
+<div id="app">
+  <Navbar></Navbar>
+</div>
+<script src="vue.min.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    // 定义vue使用的组件
+    components: { 
+      'Navbar': {
+        template: '<ur><li>首页</li><li>学员管理</li></ur>'
+      }
+    }
+  })
+</script>
 ```
 
 ##### 全局组件
@@ -2022,7 +2158,80 @@ vue对象销毁之前执行：beforeDestroy
 
 ![](images/image-20220712081812659.png)
 
+例子2：
+
+```html
+<body>
+    <div id="app">
+        <button @click="update">update</button>
+        <h3 id="h3">{{ message }}</h3>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: { 
+                message: '床前明月光'
+            },
+            methods: {
+                show() {
+                    console.log('执行show方法')
+                },
+                update() {
+                    this.message = '玻璃好上霜'
+                }
+            },
+
+            //===创建时的四个事件
+            beforeCreate() { // 第一个被执行的钩子方法：实例被创建出来之前执行
+                console.log(this.message) //undefined
+                this.show() //TypeError: this.show is not a function
+                // beforeCreate执行时，data 和 methods 中的 数据都还没有没初始化
+            },
+            created() { // 第二个被执行的钩子方法
+                console.log(this.message) //床前明月光
+                this.show() //执行show方法
+                // created执行时，data 和 methods 都已经被初始化好了！
+                // 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作
+            },
+            beforeMount() { // 第三个被执行的钩子方法
+                console.log(document.getElementById('h3').innerText) //{{ message }}
+                // beforeMount执行时，模板已经在内存中编辑完成了，尚未被渲染到页面中
+            },
+            mounted() { // 第四个被执行的钩子方法
+                console.log(document.getElementById('h3').innerText) //床前明月光
+                // 内存中的模板已经渲染到页面，用户已经可以看见内容
+            },
+
+            //===运行中的两个事件
+            beforeUpdate() { // 数据更新的前一刻
+                console.log('界面显示的内容：' + document.getElementById('h3').innerText)
+                console.log('data 中的 message 数据是：' + this.message)
+                // beforeUpdate执行时，内存中的数据已更新，但是页面尚未被渲染
+            },
+            updated() {
+                console.log('界面显示的内容：' + document.getElementById('h3').innerText)
+                console.log('data 中的 message 数据是：' + this.message)
+                // updated执行时，内存中的数据已更新，并且页面已经被渲染
+            }
+        })
+    </script>
+</body>
+```
+
+
+
+
+
+
+
 #### 路由
+
+Vue.js 路由允许我们通过不同的 URL 访问不同的内容。
+
+通过 Vue.js 可以实现多视图的单页Web应用（single page web application，SPA）。
+
+Vue.js 路由需要载入 `vue-router` 库。
 
 `vue-router.min.js`要在vue之后引入
 
@@ -2082,7 +2291,7 @@ router-view
 
 > 第四天
 
-### axios
+### 4 axios
 
 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
 
@@ -2145,26 +2354,34 @@ axios请求的一般形式：
 axios.提交方式("请求接口路径").then(箭头函数).catch(箭头函数)
 ```
 
-### element-ui
+### 5 element-ui
 
 [element官网](https://element.eleme.cn/#/zh-CN)
 
-基于Vue，面向设计师和开发者组件库。饿了么前端出品。
+element-ui 是饿了么前端出品的基于 Vue.js的 **后台组件库**，方便程序员进行页面快速布局和构建
+
+基于Vue，面向设计师和开发者组件库。
 
 通过文档会使用即可。
 
 
 
-### nodejs
+### 6 nodejs
 
 #### nodejs是什么？
 
 1. nodejs是javascript的运行环境（类似java中的JDK），不要浏览器直接运行js代码。
 2. 可以模拟服务器效果，类似Tomcat
 
+简单的说 Node.js 就是运行在服务端的 JavaScript。
+
+Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+
 #### 安装
 
+官网：https://nodejs.org/en/
 
+中文网：http://nodejs.cn/
 
 #### 使用nodejs运行js
 
@@ -2193,7 +2410,7 @@ console.log('Server running at http://127.0.0.1:8888/')
 
 右击相应文件或目录，【在集成终端打开】；菜单栏中打开。
 
-### npm
+### 7 npm
 
 NPM（Node Package Manager），Node.js包管理工具。
 
@@ -2268,7 +2485,7 @@ npm list -g
 
 
 
-### babel
+### 8 babel
 
 babel是转码器，把es6代码转换为es5代码（因为es6兼容性很差）。
 
@@ -2330,7 +2547,7 @@ babel --version
    
    
 
-### 模块化
+### 9 模块化
 
 #### 模块化是什么
 
@@ -2473,7 +2690,7 @@ $ node modulees6-2-dist/02.js
 
 
 
-### webpack
+### 10 webpack
 
 webpack是打包工具，把多种静态资源（如js、css、less）打包一个静态文件，减少页面请求次数。一般在项目开发完成，部署之前操作。
 
@@ -2619,13 +2836,66 @@ $ webpack -v
 >
 > 
 
-### 搭建项目前端页面环境
+### 11 vue-element-admin和vue-admin-template
+
+vue-element-admin是基于element-ui 的一套后台管理系统集成方案。
+
+功能：https://panjiachen.github.io/vue-element-admin-site/zh/guide/#功能
+
+GitHub地址：https://github.com/PanJiaChen/vue-element-admin
+
+项目在线预览：https://panjiachen.gitee.io/vue-element-admin
+
+安装：
+
+```shell
+# 解压压缩包
+# 进入目录
+cd vue-element-admin-master
+
+# 安装依赖
+npm install
+
+# 启动。执行后，浏览器自动弹出并访问http://localhost:9527/
+npm run dev
+```
+
+
+
+
+vueAdmin-template是基于vue-element-admin的一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。
+
+GitHub地址：https://github.com/PanJiaChen/vue-admin-template
+
+建议：你可以在 vue-admin-template 的基础上进行二次开发，把 vue-element-admin当做工具箱，想要什么功能或者组件就去 vue-element-admin 那里复制过来。
+
+安装：
+
+```shell
+# 解压压缩包
+# 进入目录
+cd vue-admin-template-master
+
+# 安装依赖
+npm install
+
+# 启动。执行后，浏览器自动弹出并访问http://localhost:9528/
+npm run dev
+```
+
+
+
+
+
+
+
+### 12 搭建项目前端页面环境 🔖
 
 ![](images/image-20220712181503198.png)
 
 
 
-选取一个模板（框架）进行环境搭建 [vue-admin-template](https://gitee.com/panjiachen/vue-admin-template#http://panjiachen.github.io/vue-admin-template)  4.4
+选取一个模板（框架）进行环境搭建 [vue-admin-template](https://gitee.com/panjiachen/vue-admin-template#http://panjiachen.github.io/vue-admin-template)  4.4    -> guli-admin
 
 > 完整版的https://github.com/PanJiaChen/vue-element-admin，`src/components`中含有很可用插件或组件。
 
@@ -2652,11 +2922,22 @@ $ webpack -v
      - Network: http://192.168.0.104:9528/
    ```
 
-   
 
 
 
 #### 前端项目环境说明
+
+```
+. 
+├── build // 构建脚本
+├── config // 全局配置 
+├── node_modules // 项目依赖模块
+├── src //项目源代码
+├── static // 静态资源
+└── package.jspon // 项目信息和依赖配置
+```
+
+
 
 1. 前端框架入口
 
@@ -2665,6 +2946,7 @@ $ webpack -v
    `src/main.js`
 
 2. 前端项目环境使用的模板**vue-admin-template**主要使用了vue + element-ui
+
 3. `build/`目录放项目构建的脚本文件（类似java中的class文件）
 
 4. `config/`目录。旧版本
@@ -2682,9 +2964,16 @@ $ webpack -v
    	styles
    	utils
    	views				项目中具体页面（***.vue）
+   	App.vue //***项目顶层组件*** 
+   	main.js //***项目入口文件***
+   	permission.js //认证入口
    ```
-
+   
    重点：api、router、views，这是之后开发经常修改的地方。
+
+```
+npm run dev
+```
 
 > 模板**vue-admin-template**，封装了开发中需要的es6通过babel转es5等很多功能
 
@@ -2708,6 +2997,92 @@ $ webpack -v
 > - "off" or 0 - 关闭规则
 > - "warn" or 1 - 将规则视为一个警告
 > - "error" or 2 - 将规则视为一个错误
+
+#### 一些修改
+
+##### 登录页修改
+
+src/views/login/index.vue
+
+```vue
+<h3 class="title">谷粒学院后台管理系统</h3>
+
+
+<el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
+
+```
+
+setting.js
+
+```js
+  title: '谷粒学院后台管理系统',
+```
+
+##### 导航栏文字
+
+src/views/layout/components（当前项目的布局组件）
+
+src/views/layout/components/Navbar.vue
+
+##### favicon.ico
+
+
+
+##### 面包屑文字
+
+src/components（可以在很多项目中复用的通用组件）
+
+src/components/Breadcrumb/index.vue
+
+```
+meta: { title: '首页' }
+```
+
+
+
+#### Eslint语法规范型检查
+
+
+JavaScript 是一个动态的弱类型语言，在开发中比较容易出错。因为没有编译程序，为了寻找 JavaScript 代码错误通常需要在执行过程中不断调适。
+ESLint 是一个**语法规则和代码风格的检查工具**，可以用来保证写出语法正确、风格统一的代码。让程序员在编码的过程中发现问题而不是在执行的过程中。
+
+##### 语法规则
+
+ESLint 内置了一些规则，也可以在使用过程中自定义规则。
+本项目的语法规则包括：两个字符缩进，必须使用单引号，不能使用双引号，语句后不可以写分号，代码段之间必须有一个空行等。
+
+##### 确认开启语法检查
+
+打开 config/index.js 🔖，配置是否开启语法检查
+
+```
+useEslint: true,
+```
+
+可以关闭语法检查，建议开启，养成良好的编程习惯。
+
+##### ESLint插件安装、配置
+
+vs code的ESLint插件，能帮助我们自动整理代码格式 
+
+
+
+```json
+"files.autoSave": "off",
+"eslint.validate": [
+  "javascript",
+  "javascriptreact",
+  "vue-html",
+  {
+    "language": "vue",
+    "autoFix": true
+  }
+],
+"eslint.run": "onSave",
+"eslint.autoFixOnSave": true
+```
+
+
 
 
 
@@ -2824,8 +3199,6 @@ Access to XMLHttpRequest at 'http://localhost:8001/eudservice/user/login' from o
 
 1. 在后端controller上加上注解`@CrossOrigin`（常用）
 2. 使用网关解决
-
-
 
 > ![](images/image-20220714074445163.png)
 >
@@ -6902,6 +7275,14 @@ npm install --save vuex-persistedstate
 ## Nacos配置中心
 
 https://nacos.io/
+
+启动：
+
+```
+./startup.sh -m standalone
+```
+
+http://localhost:8848/nacos/index.html  用户密码都是nacos
 
 ### 一、配置中心介绍
 

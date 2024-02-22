@@ -26,7 +26,7 @@ class MpdemoApplicationTests {
     @Test
     void addUser() {
         User user = new User();
-        user.setAge(71);
+        user.setAge(61);
         user.setName("laozhang");
         user.setEmail("laozhangs@gmail.com");
         System.out.println(userMapper.insert(user));
