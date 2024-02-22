@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/**
+ * 把更多信息（堆栈信息）输出到文件中
+ * // TODO
+ */
 public class ExceptionUtil {
     public static String getMessage(Exception e) {
         StringWriter sw = null;
