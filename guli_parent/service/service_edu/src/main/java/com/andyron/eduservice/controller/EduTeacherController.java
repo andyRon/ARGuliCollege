@@ -23,7 +23,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2021-11-07
  */
 @Api(tags = "讲师管理")
 @RestController

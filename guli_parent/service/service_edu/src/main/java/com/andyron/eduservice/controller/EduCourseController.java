@@ -23,7 +23,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Api(tags = "课程管理")
 @RestController
@@ -95,9 +94,6 @@ public class EduCourseController {
         return R.ok();
     }
 
-    /**
-     *
-     */
     @ApiOperation(value = "删除课程")
     @DeleteMapping("deleteCourse/{courseId}")
     public R deleteCourse(@PathVariable String courseId) {

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Service
 public class EduCourseDescriptionServiceImpl extends ServiceImpl<EduCourseDescriptionMapper, EduCourseDescription> implements EduCourseDescriptionService {

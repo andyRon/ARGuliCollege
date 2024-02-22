@@ -14,7 +14,6 @@ import java.util.Map;
  * </p>
  *
  * @author andyron
- * @since 2021-11-07
  */
 public interface EduTeacherService extends IService<EduTeacher> {
 

@@ -24,7 +24,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2021-11-19
  */
 @Service
 public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubject> implements EduSubjectService {

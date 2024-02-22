@@ -11,7 +11,6 @@ import java.util.Map;
  * </p>
  *
  * @author andyron
- * @since 2023-04-13
  */
 public interface StatisticsDailyService extends IService<StatisticsDaily> {
 

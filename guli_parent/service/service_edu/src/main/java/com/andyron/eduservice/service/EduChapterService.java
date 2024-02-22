@@ -12,7 +12,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 public interface EduChapterService extends IService<EduChapter> {
 
