@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Api(tags = "小节管理")
 @RestController

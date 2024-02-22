@@ -19,7 +19,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2021-11-19
  */
 @Api(tags = "课程分类管理")
 @RestController

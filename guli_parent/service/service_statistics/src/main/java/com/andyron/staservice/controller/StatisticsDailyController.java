@@ -16,7 +16,6 @@ import java.util.Map;
  * </p>
  *
  * @author andyron
- * @since 2023-04-13
  */
 @Api(tags = "统计分析")
 @RestController

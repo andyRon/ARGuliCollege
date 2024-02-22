@@ -21,7 +21,6 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

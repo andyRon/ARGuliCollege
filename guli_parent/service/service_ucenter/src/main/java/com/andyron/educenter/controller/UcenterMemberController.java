@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
  * </p>
  *
  * @author andyron
- * @since 2023-04-06
  */
 @Api(tags = "会员前端控制器")
 @RestController

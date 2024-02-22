@@ -32,7 +32,6 @@ import java.util.Map;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Service
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {

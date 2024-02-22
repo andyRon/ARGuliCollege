@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author andyron
- * @since 2023-04-06
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 

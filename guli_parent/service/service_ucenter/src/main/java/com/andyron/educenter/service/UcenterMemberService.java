@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author andyron
- * @since 2023-04-06
  */
 public interface UcenterMemberService extends IService<UcenterMember> {
 

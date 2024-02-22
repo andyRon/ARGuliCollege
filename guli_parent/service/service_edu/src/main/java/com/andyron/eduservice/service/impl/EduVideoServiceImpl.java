@@ -19,7 +19,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2022-07-21
  */
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {

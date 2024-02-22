@@ -19,7 +19,6 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author andyron
- * @since 2021-11-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

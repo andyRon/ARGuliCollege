@@ -16,7 +16,6 @@ import java.util.List;
  * </p>
  *
  * @author andyron
- * @since 2023-03-04
  */
 @Service
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
