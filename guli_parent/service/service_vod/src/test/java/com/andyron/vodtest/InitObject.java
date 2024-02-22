@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class InitObject {
 
-    public  static String ACCESSKEYID = "LTAI5tRoxuo2uivocfjvVPS3";
-    public final static String ACCESSKEYSECRET = "r6L8Rc902u8Z9STywhxvUOwEKF1wOY";
+    public  static String ACCESSKEYID = "";
+    public final static String ACCESSKEYSECRET = "";
 
 
 
