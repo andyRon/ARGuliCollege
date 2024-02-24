@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 课程视频
+ * 课程章节的小节
  * </p>
  *
  * @author andyron
@@ -23,12 +23,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduVideo对象", description="课程视频")
+@ApiModel(value="EduVideo对象", description="课程章节的小节")
 public class EduVideo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "视频ID")
+    @ApiModelProperty(value = "小节ID")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 

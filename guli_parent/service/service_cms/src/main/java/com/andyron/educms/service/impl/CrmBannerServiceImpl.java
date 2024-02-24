@@ -21,7 +21,7 @@ import java.util.List;
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
 
 
-
+    // TODO  CacheKeyPrefix，怎么知道Spring是怎么处理缓存注解
     @Cacheable(key = "'selectIndexList'", value = "banner")  // 这里key和value组合成缓存中key，例如redis中位"banner::selectIndexList"
     @Override
     public List<CrmBanner> selectAllBanner() {
@@ -31,4 +31,6 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
         List<CrmBanner> list = baseMapper.selectList(wrapper);
         return list;
     }
+
+
 }

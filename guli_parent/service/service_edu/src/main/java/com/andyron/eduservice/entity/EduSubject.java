@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 课程科目
+ * 课程类别
  * </p>
  *
  * @author andyron
@@ -23,7 +23,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduSubject对象", description="课程科目")
+@ApiModel(value="EduSubject对象", description="课程类别")
 public class EduSubject implements Serializable {
 
     private static final long serialVersionUID = 1L;
