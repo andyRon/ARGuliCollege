@@ -1,4 +1,4 @@
-谷粒学苑
+谷粒学院
 ------
 
 [尚硅谷_谷粒学苑-微服务+全栈在线教育实战项目](https://www.bilibili.com/video/BV1dQ4y1A75e)
@@ -3860,8 +3860,9 @@ public class ConstantPropertiesUtils implements InitializingBean {
 `MultipartFile`
 
 3. 在service中实现上传文件到oss
+3. 重启oss服务
 
-使用swagger测试http://localhost:8002/swagger-ui.html
+5. 使用swagger测试http://localhost:8002/swagger-ui.html
 
 
 
@@ -4046,12 +4047,6 @@ export default {
 
 ![](./images/image-20211115120219976.png)
 
-
-
-
-
-
-
 ## 7 课程分类管理
 
 表`edu_subject`
@@ -4080,9 +4075,9 @@ Excel导入导出的应用场景：
 2. 数据导出：统计信息归档
 3. 数据传输：不同系统之间的数据传输
 
-[EasyExcel](https://github.com/alibaba/easyexcel)，阿里，比以前Apache poi、jxl更高效，高效的原因是一行一行地解析模式，并将一行的解析结果以观察者的模式通知处理（AnalysisEventListener）。
+[EasyExcel](https://github.com/alibaba/easyexcel)，阿里，比以前Apache poi、jxl更高效，高效的原因是**一行一行**地解析模式，并将一行的解析结果**以观察者的模式通知处理**（`AnalysisEventListener`）。
 
-
+EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将文件数据一次性全部加载到内存中，而是从磁盘上一行行读取数据，逐个解析。
 
 1. 引入依赖
 
@@ -4718,13 +4713,15 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
 
 
 
-#### 课程简介 整合文本编辑器
+#### 课程简介-整合文本编辑器
 
 复制组件
 
 🔖  p115 框架版本不同，富文本组件有变化
 
+https://github.com/tinymce/tinymce
 
+1. 把tinymce相关文件复制到项目`src/components`和`static/`中
 
 #### 课程大纲列表功能
 
@@ -5025,13 +5022,15 @@ Where ec.id=?
 
 
 
-## 阿里视频点播
+## 9 阿里视频点播
 
 [阿里视频点播](https://www.aliyun.com/product/vod)
 
 开通-按流量计费。量少基本不需要花钱
 
 视频点播（ApsaraVideo VoD，简称VoD）是集视频采集、编辑、上传、媒体资源管理、自动化转码处理（窄带高清™）、视频审核分析、分发加速于一体的一站式音视频点播解决方案。
+
+![](images/030a7226-1f25-4c7d-9d52-91160bf35c89.png)
 
 ### 应用场景
 
@@ -5041,6 +5040,10 @@ Where ec.id=?
 - 在线教育：为在线教育客户提供简单易用、安全可靠的视频点播服务。可通过控制台/API等多种方式上传教学视频，强大的转码能力保证视频可以快速发布，覆盖全网的加速节点保证学生观看的流畅度。防盗链、视频加密等版权保护方案保护教学内容不被窃取。
 - 视频生产制作：提供在线可视化剪辑平台及丰富的OpenAPI，帮助客户高效处理、制作视频内容。除基础的剪切拼接、混音、遮标 特效 合成等一系列功能外 ，依托云剪輯及点播一体化服务还可实现标准化、智能化剪辑生产，大大降低视频制作的槛，缩短制作时间，提升内容生产效率。
 - 内容审核：应用于短视频平台、传媒行业审校等场景，帮助客户从从语音、文字、视觉等多維度精准识别视频、封面、标题或评论的违禁内容进行A智能审校与人工审核。
+
+### 功能介绍
+
+![](images/image-20240223103317335.png)
 
 ### 管理控制台
 
@@ -5283,7 +5286,7 @@ chapter.vue
         }
 ```
 
-## 微服务、springcloud
+## 10 微服务、springcloud
 
 ### 微服务是什么
 
@@ -5294,35 +5297,52 @@ chapter.vue
 - 把一个项目拆分成独立的多个服务，每个服务独立运行，每个服务占用独立进程
 
 
-### 微服务与单体架构区别
+微服务最早由Martin Fowler与James Lewis于2014年共同提出，微服务架构风格是一种使用一套小服务来开发单个应用的方式途径，每个服务运行在自己的进程中，并使用轻量级机制通信，通常是HTTP API，这些服务基于业务能力构建，并能够通过自动化部署机制来独立部署，这些服务使用不同的编程语言实现，以及不同数据存储技术，并保持最低限度的集中式管理。 
 
-- 微服务每个模块就相当于一个单独的项目，代码量明显减少，遇到问题也相对来说比较好解决
+#### 为什么需要微服务
 
-- 微服务每个模块都可以使用不同的存储方式（比如有的用redis，有的用mysql等）
+在传统的IT行业软件大多都是各种独立系统的堆砌，这些系统的问题总结来说就是扩展性差，可靠性不高，维护成本高。到后面引入了SOA服务化，但是，由于 SOA 早期均使用了总线模式，这种总线模式是与某种技术栈强绑定的，比如：J2EE。这导致很多企业的遗留系统很难对接，切换时间太长，成本太高，新系统稳定性的收敛也需要一些时间。 
 
-- 微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活项目外包
+#### 微服务与单体架构区别
 
+- 单体架构所有的模块全都耦合在一块，代码量大，维护困难。
 
-### 什么样的项目适合微服务
+  微服务每个模块就相当于一个单独的项目，代码量明显减少，遇到问题也相对来说比较好解决
+
+- 单体架构所有的模块都共用一个数据库，存储方式比较单一。
+
+  微服务每个模块都可以使用不同的存储方式（比如有的用redis，有的用mysql等）
+
+- 单体架构所有的模块开发所使用的技术一样。
+
+  微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活项目外包
+
+#### 微服务本质
+
+- 微服务，关键其实不仅仅是微服务本身，而是系统要提供一套基础的架构，这种架构使得微服务可以独立的部署、运行、升级，不仅如此，这个系统架构还让微服务与微服务之间在结构上“松耦合”，而在功能上则表现为一个统一的整体。这种所谓的“统一的整体”表现出来的是统一风格的界面，统一的权限管理，统一的安全策略，统一的上线过程，统一的日志和审计方法，统一的调度方式，统一的访问入口等等。
+- 微服务的目的是有效的拆分应用，实现敏捷开发和部署 。
+- 微服务提倡的理念团队间应该是 inter-operate, not integrate 。inter-operate是定义好系统的边界和接口，在一个团队内全栈，让团队自治，原因就是因为如果团队按照这样的方式组建，将沟通的成本维持在系统内部，每个子系统就会更加内聚，彼此的依赖耦合能变弱，跨系统的沟通成本也就能降低。
+
+#### 什么样的项目适合微服务
 
 微服务可以按照业务功能本身的独立性来划分，如果系统提供的业务是非常**底层**的，如：<u>操作系统内核、存储系统、网络系统、数据库系统等等</u>，这类系统都偏底层，功能和功能之同有着紧密的配合关系，如果强制拆分为较小的服务单元，会让集成工作量急剧上升，并且这种人为的切割无法带来业务上的真正的隔离，所以无法做到独立部署和运行，也就不适合做成微服务了。
 
 
 
-### 微服务开发框架
+#### 微服务开发框架
 
 - spring cloud
 - Dubbo
 
 ### springcloud
 
-- springcloud并不是一种技术，是很多技术总称，很多技术集合
+- springcloud并不是一种技术，是很多技术总称，**很多技术集合**
 - springcloud里面有很多框架（技术），使用springcloud里面这些框架实现微服务操作
 - 要使用springcloud，需要依赖springboot
 
 
 
-### springcloud和springboot是什么关系
+#### springcloud和springboot是什么关系
 
 spring Boot 是spring 的一套快速配置脚手架，可以基于spring Boot快速开发单个微服务，spring Cloud是一个基于Spring Boot实现的开发工具；
 
@@ -5334,17 +5354,25 @@ Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮�
 
 
 
-### Spring Cloud相关基础服务组件
+#### Spring Cloud相关基础服务组件
 
-![](images/image-20230228193549869.png)
+服务发现— — Netfix Eureka（Nacos）
 
+服务调用 —— Netflix Feign
 
+熔断器 —— Netflix Hystrix
 
-### Spring Cloud的版本
+服务网关 —— Spring Cloud GateWay
+
+分布式配置 —— Spring Cloud Config (Nacos)
+
+消息总线 —— Spring Cloud Bus (Nacos)
+
+#### Spring Cloud的版本
 
 ![](images/image-20230228193934253.png)
 
-#### 小版本
+##### 小版本
 
 spring Cloud 小版本分为：
 
@@ -5362,11 +5390,9 @@ spring Cloud 小版本分为：
 
 实现不同模块间的调用（不是引入，独立运行）。把这些模块在注册中心进行注册，注册之后，实现互相调用。
 
-
-
 ### Nacos
 
-Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构(例如微服务范式、 云原生范式）的服务基础设施。
+Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您**发现、配置和管理**微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构(例如微服务范式、 云原生范式）的服务基础设施。
 
 #### 常见的注册中心：
 
@@ -5375,7 +5401,9 @@ Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构�
 3. Consul（ 原生，GO语言开发）
 4. ﻿﻿﻿Nacos
 
-​	相对于 Spring Cloud Eureka 来说，Nacos 更强大。Nacos = Spring Cloud Eureka + Spring Cloud Config；
+​	相对于 Spring Cloud Eureka 来说，Nacos 更强大。
+
+​	Nacos = Spring Cloud Eureka + Spring Cloud Config；
 
 ​	Nacos 可以与Spring, Spring Boot, Spring Cloud 集成，并能代替 Spring Cloud Eureka, Spring Cloud Config；
 
@@ -5383,7 +5411,7 @@ Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构�
 
 #### Nacos四大功能
 
-Nacos是以服务为主要服务对象的中间体，Nacos支持所有主流的服务发现、配置和管理。
+Nacos是以服务为主要服务对象的中间体，**Nacos支持所有主流的服务发现、配置和管理**。
 
 1. 服务发现和服务健康检测
 2. 动态配置服务
@@ -5399,6 +5427,8 @@ Nacos是以服务为主要服务对象的中间体，Nacos支持所有主流的�
 #### Nacos安装
 
 https://github.com/alibaba/nacos/releases
+
+下载版本：nacos-server-1.1.4.tar.gz或nacos-server-1.1.4.zip
 
 解压文件，找到运行文件，启动就可以了
 
@@ -5430,7 +5460,7 @@ https://github.com/alibaba/nacos/releases
    </dependency>
    ```
 
-2. 在要注册的服务（service-edu）的配置文件中进行配置nacos地址：
+2. 【添加服务配置信息】在要注册的服务（service-edu）的配置文件中进行配置nacos地址：
 
 ```yaml
 spring:
@@ -5441,31 +5471,37 @@ spring:
         server-addr: 127.0.0.1:8848
 ```
 
-3. 在service-edu启动类添加注解：
+3. 【添加Nacos客户端注解】在service-edu启动类添加注解：
 
    ```java
    @EnableDiscoveryClient // nacos注册
    ```
 
-#### 把service-edu服务在Nacos进行注册
+4. 启动客户端微服务
+
+启动已注册的微服务，可以在Nacos服务列表中看到被注册的微服务
+
+#### 把service-vod服务在Nacos进行注册
 
 类似的方法 
 
 
 
-#### Feign
+### Feign
 
 - ﻿Feign是Netflix开发的声明式、模板化的HTTP客户端，Feign可以帮助我们更快捷、 优雅地调用HTTP API。
-- ﻿Feign支持多种汪解，例如Feign自带的注解或者 JAX-RS注解等。
+- ﻿Feign支持多种汪解，例如Feign自带的注解或者JAX-RS注解等。
 - ﻿Spring Cloud对Feign进行了增强，使Feign支持了Spring MVC注解，并整合了Ribbon和Eureka，从而让Feign的使用更加方便。
-- ﻿﻿**Spring Gloud Feign**是基于Netflx feign实现，整合了Spring Cloud Rilbbon和Spring Cloud Hystrix，除了提供这两者的强大功能外，还提供了一种声明式的Web服务客户端定义的方式。
+- ﻿﻿**Spring Cloud Feign**是基于Netflx feign实现，整合了Spring Cloud Rilbbon和Spring Cloud Hystrix，除了提供这两者的强大功能外，还提供了一种声明式的Web服务客户端定义的方式。
 - ﻿Spring Cloud Feign帮助我们定义和实现依赖服务接口的定义。在Spring Cloud feign的实现下，只需要创建一个接口并用注解方式配置它，即可完成服务提供方的接口绑定，简化了在使用Spring Cloud Ribbon时自行封装服务调用客户端的开发量。
 
-
+https://github.com/OpenFeign/feign
 
 #### 实现服务调用
 
 > 前提条件：把互相调用服务在Nacos进行注册
+
+需求：删除课时的同时删除云端视频
 
 1. 在service模块引入依赖：
 
@@ -5477,7 +5513,7 @@ spring:
 </dependency>
 ```
 
-2. 在调用端（service-edu）服务启动类添加注解：
+2. 在调用端（service-edu）服务启动类添加注解：`@EnableFeignClients`
 
 ```java
 @SpringBootApplication
@@ -5513,25 +5549,27 @@ public interface VodClient {
 4. 实现代码删除小节同时删除阿里云视频
 
 ```java
-    @ApiOperation(value = "删除小节、删除对应阿里云视频")
-    @DeleteMapping("{id}")
-    public R delete(@PathVariable String id) {
-        // 根据小节id获得视频id
-        String videoSourceId = videoService.getById(id).getVideoSourceId();
-        if (!StringUtils.isEmpty(videoSourceId)) {
-            // 根据视频id，远程调用实现删除视频
-            vodClient.deleteAliVideo(videoSourceId);
-        }
-        videoService.removeById(id);
-        return R.ok();
-    }
+@ApiOperation(value = "删除小节、删除对应阿里云视频")
+@DeleteMapping("{id}")
+public R delete(@PathVariable String id) {
+  // 根据小节id获得视频id
+  String videoSourceId = videoService.getById(id).getVideoSourceId();
+  if (!StringUtils.isEmpty(videoSourceId)) {
+    // 根据视频id，远程调用实现删除视频
+    vodClient.deleteAliVideo(videoSourceId);
+  }
+  videoService.removeById(id);
+  return R.ok();
+}
 ```
 
 
 
 5. 测试
 
+启动相关微服务
 
+测试删除课时的功能
 
 
 
@@ -5552,7 +5590,7 @@ public interface VodClient {
 
 
 
-## 8 课程管理
+## 8 课程管理-3
 
 ### 删除课程的同时删除阿里云视频
 
@@ -5648,9 +5686,11 @@ public void removeVideoByCourseId(String courseId) {
 
 
 
-## Hystrix基本概念
+## 11 熔断器
 
-### Spring Cloud调用接口过程
+### 1 Hystrix基本概念
+
+#### Spring Cloud调用接口过程
 
 > Feign -> Hystrix -> Ribbon -> Http Client（apache http components 或 Okhttp）
 >
@@ -5658,15 +5698,27 @@ public void removeVideoByCourseId(String courseId) {
 
 ![](images/image-20230302083713327.png)
 
-![](images/image-20230302083833000.png)
+![](images/image-20240223171815135.png)
 
-- Feign：根据服务的名字（如service-vod），找到对应的地址（如`"/eduvod/video/deleteAliVideo/{id}"`）进行调用。
+1. **接口化请求调用**。当调用被`@FeignClient`注解修饰的接口时，在框架内部，将请求转换成Feign的请求实例`feign.Request`，交由Feign框架处理。
 
-- Hystrix（熔断器）：调用过程中，如果服务突然挂掉了，就之心熔断机制（切断调用过程）；如果能调用到，就继续执行。
+2. **Feign** ：转化请求Feign是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，封装了Http调用流程。
 
-- Ribbon（负载均衡器）：挑选合适的服务提供端。
+   Feign：根据服务的名字（如service-vod），找到对应的地址（如`"/eduvod/video/deleteAliVideo/{id}"`）进行调用。
 
-### Hystrix（熔断器）
+3. **Hystrix**：熔断处理机制 Feign的调用关系，会被Hystrix代理拦截，对每一个Feign调用请求，Hystrix都会将其包装成`HystrixCommand`,参与Hystrix的流控和熔断规则。如果请求判断需要熔断，则Hystrix直接熔断，抛出异常或者使用`FallbackFactory`返回熔断`Fallback`结果；如果通过，则将调用请求传递给`Ribbon`组件。
+
+   Hystrix（熔断器）：调用过程中，如果服务突然挂掉了，就之心熔断机制（切断调用过程）；如果能调用到，就继续执行。
+
+4. **Ribbon**：服务地址选择 当请求传递到`Ribbon`之后,`Ribbon`会根据自身维护的服务列表，根据服务的服务质量，如平均响应时间，Load等，结合特定的规则，从列表中挑选合适的服务实例，选择好机器之后，然后将机器实例的信息请求传递给`Http Client`客户端，`HttpClient`客户端来执行真正的Http接口调用；
+
+   Ribbon（负载均衡器）：挑选合适的服务提供端。
+
+5. **HttpClient** ：Http客户端，真正执行Http调用根据上层`Ribbon`传递过来的请求，已经指定了服务地址，则HttpClient开始执行真正的Http请求
+
+
+
+#### Hystrix（熔断器）
 
 Hystrix是一个供分布式系统使用，提供==延迟==和==容错==功能，保证复杂的分布式系统在面临不可避免的失败时，仍能有其弹性。
 
@@ -5678,21 +5730,23 @@ Hystrix是一个供分布式系统使用，提供==延迟==和==容错==功能�
 
 ![](images/image-20230302085112331.png)
 
-### Feign结合Hystrix使用
+### 2 Feign结合Hystrix使用
+
+改造service-edu模块
 
 1. 在service添加熔断器相关依赖：
 
 ```xml
-        <!--hystrix依赖，主要是用  @HystrixCommand -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-        </dependency>
+<!--hystrix依赖，主要是用  @HystrixCommand -->
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+</dependency>
 ```
 
 2. 在调用端service-edu开启熔断器
@@ -5706,7 +5760,7 @@ feign:
 
 
 
-3. 创建接口VodClient的实现类，并实现方法，用于调用出错时调用
+3. 【在service-edu的client包里面创建熔断器的实现类】创建接口VodClient的实现类，并实现方法，用于调用出错时调用
 
 ```java
 @Component
@@ -5769,21 +5823,19 @@ P163后半段
 
 ![](images/image-20230302145539335.png)
 
-## 9 前台系统
+## 12 前台系统
 
 以前：
 
 ![](images/image-20230302152226623.png)
 
-改变成 服务端渲染技术（一次性都在服务端把数据请求完成）：
+改变成==服务端渲染技术==（一次性都在服务端把数据请求完成）：
 
 ![](images/image-20230302153959910.png)
 
-Nuxt就是nodejs的框架，
+### 1 服务端渲染技术Nuxt
 
-
-
-### 服务端渲染技术Nuxt
+#### 什么是服务端渲染
 
 ==服务端渲染（SSR，Server Side Render）==是在服务端完成页面的内容，而不是在客户端通过AJAX获取数据。
 
@@ -5791,7 +5843,7 @@ SSR的优势主要在于：**更好的SEO**，由于搜索引擎爬虫抓取工�
 
 如果你的应用程序初始展示loading的菊花图，然后通过Ajax获取内容，抓取工具并不会等待异步完成后再进行页面内容的抓取。
 
-另外，使用服务器端渲染，我们可以获取更快的内容到达时间（time-to-conent），无需等待所有的JavaScript都完成下载并执行，产生更好的用户体验，对于那些**内容到达时间与转换率直接相关**的应用程序而言，服务端渲染至关重要。
+另外，使用服务器端渲染，我们可以获取更快的**内容到达时间（time-to-conent）**，无需等待所有的JavaScript都完成下载并执行，产生更好的用户体验，对于那些**内容到达时间与转换率直接相关**的应用程序而言，服务端渲染至关重要。
 
 #### 什么是Nuxt
 
@@ -5803,7 +5855,7 @@ https://www.nuxtjs.cn/
 
 
 
-### 使用Nuxt框架搭建前台环境
+### 2 使用Nuxt框架搭建前台环境
 
 - 通过下面命令安装：
 
@@ -5827,13 +5879,14 @@ $ npx create-nuxt-app <项目名>
 
 ```
 .nuxt/  				# 编译后的文件，类似Java中class文件目录
-assets/					# 静态资源
+assets/					# 静态资源，如 LESS、SASS 或 JavaScript。
 components/     # 项目使用的相关组件
 layouts/				# 定义网页布局方式
 	default.vue 
 middleware/
 pages/					# 项目页面
 	index.vue
+plugins					# 插件目录
 nuxt.config.js	# nuxt核心配置文件
 
 ```
@@ -5907,9 +5960,33 @@ Nuxt的动态路由是以下划线开头的vue文件，参数名位下划线后�
 
 
 
-### 首页数据banner显示
+#### 封装axios
 
-1. 在service下创建子模块service_cms
+参考guli-admin将axios操作封装起来
+
+1. 下载axios， `npm install axios`
+
+2. 创建`utils/request.js`，封装axios：
+
+```javascript
+import axios from 'axios'
+// 创建axios实例
+const service = axios.create({
+  baseURL: 'http://localhost:9001', // api的base_url（nginx的端口号）
+  timeout: 20000 // 请求超时时间
+})
+export default service
+```
+
+
+
+### 3 首页数据banner显示
+
+#### 后端
+
+> "CMS" 通常指的是**内容管理系统（Content Management System）**
+
+1. 在service下创建子模块==service_cms==（前台首页banner部分等）【8004】
 
 2. 创建配置文件
 
@@ -5931,15 +6008,27 @@ mybatis-plus.apper-locations=classpath:com/andyron/cmsservice/mapper/xml/*.xml
 mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 ```
 
-3. 创建数据库表（crm_banner），用代码生成器生成代码
+3. 创建数据库表（`crm_banner`），用代码生成器生成代码
 
-   
+
+```sql
+CREATE TABLE `crm_banner` (
+  `id` char(19) NOT NULL DEFAULT '' COMMENT 'ID',
+  `title` varchar(20) DEFAULT '' COMMENT '标题',
+  `image_url` varchar(500) NOT NULL DEFAULT '' COMMENT '图片地址',
+  `link_url` varchar(500) DEFAULT '' COMMENT '链接地址',
+  `sort` int unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `is_deleted` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
+  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_name` (`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='首页banner表';
+```
+
+
 
 4. 后台对banner管理接口，crud操作
-
-
-
-🔖后台管理前端页面
 
 
 
@@ -5958,25 +6047,9 @@ Select * From edu_teacher Order By id Limit 4;
 
 
 
-### 前端页面准备工作
+🔖后台管理前端页面，实现banner后台的添加修改删除和分页查询操作，和其他后台管理模块类似
 
-1. 下载axios， `npm install axios`
-
-2. 创建`utils/request.js`，封装axios：
-
-```javascript
-import axios from 'axios'
-// 创建axios实例
-const service = axios.create({
-  baseURL: 'http://localhost:9001', // api的base_url（nginx的端口号）
-  timeout: 20000 // 请求超时时间
-})
-export default service
-```
-
-
-
-### 首页数据banner显示
+#### 前台
 
 1. 创建api文件夹，接口文件banner.js:
 
@@ -6002,7 +6075,7 @@ export default {
 
 
 
-### 首页课程和名师
+### 4 首页课程和名师
 
 > 网站那个页面访问量最大？
 >
@@ -6010,9 +6083,49 @@ export default {
 
 一般来讲，把经常进行查询，不经常修改，不是特别重要的数据放到redis作为缓存。
 
+#### 新建前台首页课程名师接口
+
+- 在service-edu模块创建`com.andyron.eduservice.controller.front.IndexFrontController`
+
+查询最新前4条讲师数据，查询最新前8条课程数据
+
+```java
+/**
+ * @Author: andyron
+ **/
+@Api(tags = "前台首页")
+@RestController
+@RequestMapping("/eduservice/indexfront")
+@CrossOrigin
+public class IndexFrontController {
+
+    @Autowired
+    private EduCourseService courseService;
+
+    @Autowired
+    private EduTeacherService teacherService;
+
+    @ApiOperation(value = "查询前8条热门课程，前4个名师")
+    @GetMapping("index")
+    public R index() {
+        QueryWrapper<EduCourse> courseWrapper = new QueryWrapper<>();
+        courseWrapper.orderByDesc("id");
+        courseWrapper.last("limit 8");
+        List<EduCourse> courseList = courseService.list(courseWrapper);
+
+        QueryWrapper<EduTeacher> teacherWrapper = new QueryWrapper<>();
+        teacherWrapper.orderByDesc("id");
+        teacherWrapper.last("limit 4");
+        List<EduTeacher> teacherList = teacherService.list(teacherWrapper);
+
+        return R.ok().data("courseList", courseList).data("teacherList", teacherList);
+    }
+}
+```
+
 #### 首页进行redis缓存
 
-1. 在common模块中引入依赖
+1. 在common模块中引入依赖。【由于redis缓存是公共应用，所以把依赖与配置添加到common模块】
 
 ```xml
 <!-- redis -->
@@ -6030,28 +6143,32 @@ export default {
 
 2. 在service_base模块中创建redis配置类
 
-```java
-```
-
 
 
 3. 在service-cms模块中添加中添加springboot缓存注解
 
-> SpringBoot缓存注解
+由于首页数据变化不是很频繁，而且首页访问量相对较大，所以有必要把首页接口数据缓存到redis缓存中，减少数据库压力和提高访问速度。
+
+改造service-cms模块首页banner接口，首页课程与讲师接口类似
+
+> **SpringBoot缓存注解**
 >
-> 1 `@Cacheable`，
+> 1. `@Cacheable`，根据方法对其返回结果进行缓存，下次请求时，如果缓存存在，则直接读取缓存数据返回；如果缓存不存在，则执行方法，并把返回的结果存入缓存中。一般用在查询方法上。
 >
-> ![](images/image-20230406134134628.png)
+>    - value/cacheNames：缓存名，必填，它指定了你的缓存存放在哪块命名空间
+>
+>    - key：可选属性，可以使用 SpEL 标签自定义缓存的key
 >
 > ![](images/image-20230406134037599.png)
 >
-> 2 `@CachePut`
+> 2. `@CachePut`，使用该注解标志的方法，每次都会执行，并将结果存入指定的缓存中。其他方法可以直接从响应的缓存中读取缓存数据，而不需要再去查询数据库。一般用在新增方法上。
 >
-> ![](images/image-20230406134237072.png)
+>    属性/方法名同上。
 >
-> 3 `@CacheEvict`
->
-> ![](images/image-20230406134339725.png)
+> 3. `@CacheEvict`，使用该注解标志的方法，会清空指定的缓存。一般用在更新或者删除方法上
+>    - 同上
+>    - allEntries：是否清空所有缓存，默认为 false。如果指定为 true，则方法调用后将立即清空所有的缓存
+>    - beforeInvocation：是否在方法执行前就清空，默认为 false。如果指定为 true，则在方法执行前就会清空缓存
 
 ```java
 // 这里key和value组合成缓存中key，例如redis中位"banner::selectIndexList"
@@ -6085,8 +6202,6 @@ public interface CacheKeyPrefix {
 
 
 
-
-
 4. 在service-cms的配置文件中添加redis配置
 
 ```properties
@@ -6100,8 +6215,6 @@ spring.redis.lettuce.pool.max-wait=-1
 spring.redis.lettuce.pool.max-idle=5
 spring.redis.lettuce.pool.min-idle=0
 ```
-
-
 
 
 
@@ -6133,13 +6246,24 @@ spring.redis.lettuce.pool.min-idle=0
 
 
 
-### 登录
+### 5 登录实现流程
+
+#### 单一服务器模式
+
+![](images/image-20230406202742386.png)
 
 #### 单点登录
 
-单一服务器
+分布式，SSO(single sign on)模式
 
-![](images/image-20230406202742386.png)
+![](images/image-20240224093416242.png)
+
+**优点 ：** 
+
+- 用户身份信息独立管理，更好的分布式管理。
+- 可以自己扩展安全策略
+
+**缺点：** 认证服务器访问压力较大。
 
 
 
@@ -6159,94 +6283,222 @@ spring.redis.lettuce.pool.min-idle=0
 
 ![](images/image-20230406204355440.png)
 
+#### Token模式
 
+业务流程图{用户访问业务时，必须登录的流程}
+
+![](images/image-20240224094609885.png)
+
+**优点：**
+
+- 无状态： token无状态，session有状态的
+
+- 基于标准化: 你的API可以采用标准化的 JSON Web Token (JWT)
+
+**缺点：**
+
+- 占用带宽
+
+- 无法在服务器端销毁
+
+注：基于微服务开发，选择token的形式相对较多，因此我使用token作为用户认证的标准
 
 #### JWT令牌
+
+##### 访问令牌的类型
+
+![](images/image-20240224095717955.png)
+
+##### JWT的组成
 
 token这种包含用户信息的也叫做**自包含令牌**。不同公司这种字符串可能有不同的规则生成，而JWT（JSON Web Token）就一种比较通用生成规则。
 
 ![](images/image-20230406205059858.png)
 
+![](images/image-20240224100023721.png)
+
 - Header
 - Payload
 - Signature
 
+##### JWT的原则
 
+JWT的原则是在服务器身份验证之后，将生成一个JSON对象并将其发送回用户，如下所示。
+
+```json
+{
+	"sub": "1234567890",
+  "name": "Helen",
+  "admin": true
+}
+```
+
+之后，当用户与服务器通信时，客户在请求中发回JSON对象。服务器仅依赖于这个JSON对象来标识用户。为了防止用户篡改数据，服务器将在生成对象时添加签名。
+
+服务器不保存任何会话数据，即服务器变为无状态，使其更容易扩展。
+
+##### JWT的用法
+
+客户端接收服务器返回的JWT，将其存储在Cookie或localStorage中。
+
+此后，客户端将在与服务器交互中都会带JWT。如果将它存储在Cookie中，就可以自动发送，但是不会跨域，因此一般是将它放入HTTP请求的Header Authorization字段中。当跨域时，也可以将JWT被放置于POST请求的数据主体中。
+
+##### JWT问题和趋势
+
+- JWT不仅可用于认证，还可用于信息交换。善用JWT有助于减少服务器请求数据库的次数。
+- 生产的token可以包含基本信息，比如id、用户昵称、头像等信息，避免再次查库
+- 存储在客户端，不占用服务端的内存资源
+
+- JWT默认不加密，但可以加密。生成原始令牌后，可以再次对其进行加密。
+- 当JWT未加密时，一些私密数据无法通过JWT传输。
+- JWT的最大缺点是服务器不保存会话状态，所以在使用期间不可能取消令牌或更改令牌的权限。也就是说，一旦JWT签发，在有效期内将会一直有效。
+- JWT本身包含认证信息，token是经过base64编码，所以可以解码，因此token加密前的对象不应该包含敏感信息，一旦信息泄露，任何人都可以获得令牌的所有权限。为了减少盗用，JWT的有效期不宜设置太长。对于某些重要操作，用户在使用时应该每次都进行进行身份验证。
+- 为了减少盗用和窃取，JWT不建议使用HTTP协议来传输代码，而是使用加密的HTTPS协议进行传输。
+
+
+
+#### 整合JWT令牌
 
 1. 在common_utils模块引入依赖
 
 ```xml
-    <dependencies>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-        </dependency>
-    </dependencies>
+<dependencies>
+  <dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+  </dependency>
+</dependencies>
 ```
 
 2. 工具类JwtUtils
 
 
 
-### 阿里云短信服务
+### 6 整合阿里云短信服务
 
 短信验证码
 
-1. 子模块service_msm
+#### 新建短信微服务
+
+1. 子模块**service_msm**
 
 2. 创建包结构、controller、service、配置文件、启动类等等
-3. 
+3. 配置application.properties
+
+#### 阿里云短信服务
+
+[阿里云短信服务](https://dysms.console.aliyun.com/overview)，帮助文档：https://help.aliyun.com/zh/sms/
 
 P183
 
-![](images/image-20230406222815556.png)
+![](images/image-20240224120245913.png)
 
-申请模板管理
+##### 1-申请资质
 
-申请签名
 
-#### **编写代码**
+
+##### 2-申请签名
+
+
+
+##### 3-申请模版
+
+```
+您正在申请注册，验证码为：${code}，5分钟内有效！
+```
+
+#### 编写发送短信接口
+
+**编写代码**
 
 1. 在子模块service_msm中引入依赖
 
 ```xml
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-core</artifactId>
-        </dependency>
+<dependency>
+  <groupId>com.alibaba</groupId>
+  <artifactId>fastjson</artifactId>
+</dependency>
+<dependency>
+  <groupId>com.aliyun</groupId>
+  <artifactId>aliyun-java-sdk-core</artifactId>
+</dependency>
 ```
 
-2. 
+2. 编写controller，根据手机号发送短信【MsmController】
 
-#### 短信验证码有效时间
+```java
+    @ApiOperation("向手机发送验证码短信")
+    @GetMapping("/send/{phone}")
+    public R sendMsm(@PathVariable String phone) {
+        // 1 从redis获取验证码，如果有，就直接返回
+        String code = redisTemplate.opsForValue().get(phone);
+        if (!StringUtils.isEmpty(code)) {
+            return R.ok();
+        }
+
+        code = RandomUtil.getFourBitRandom();
+        Map<String, Object> param = new HashMap<>();
+        param.put("code", code);
+        boolean isSend = msmService.send(param, phone);
+        log.info(code);
+        if (isSend) {
+            // 2 发送成功后，把验证码放到redis，并设置有效时间
+            redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
+            return R.ok();
+        } else {
+            return R.error().message("短信发送失败");
+        }
+    }
+```
+
+短信验证码有效时间
 
 redis，生成验证码发送后把存入redis中，并设置有效时间。
 
+3. 编写service【MsmServiceImpl】
+
 ```java
-// 1 从redis获取验证码，如果有，就直接返回
-String code = redisTemplate.opsForValue().get(phone);
-        
-// 2 发送成功后，把验证码放到redis
-redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
+
+```
+
+4. swagger测试
+
+手机收到信息类似：
+
+```
+【我的谷粒学院在线教育网站】您正在申请注册，验证码为：1330，5分钟内有效！
 ```
 
 
 
-### 登录注册
+### 7 登录注册
 
 #### 后端
 
-1. 建立子模块service_ucenter
+1. 建立子模块**service_ucenter【用户微服务】**
 
 
 
-2. 创建用户表ucenter_member，使用代码生成器生成代码
+2. 创建用户表`ucenter_member`，使用代码生成器生成代码；配置文件；创建启动类
 
-
+```sql
+CREATE TABLE `ucenter_member` (
+  `id` char(19) NOT NULL COMMENT '会员id',
+  `openid` varchar(128) DEFAULT NULL COMMENT '微信openid',
+  `mobile` varchar(11) DEFAULT '' COMMENT '手机号',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  `nickname` varchar(50) DEFAULT NULL COMMENT '昵称',
+  `sex` tinyint unsigned DEFAULT NULL COMMENT '性别 1 女，2 男',
+  `age` tinyint unsigned DEFAULT NULL COMMENT '年龄',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '用户头像',
+  `sign` varchar(100) DEFAULT NULL COMMENT '用户签名',
+  `is_disabled` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否禁用 1（true）已禁用，  0（false）未禁用',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
+  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='会员表';
+```
 
 3. 登录接口方法
 
@@ -6275,13 +6527,11 @@ public class RegisterVo {
 
 
 
-
-
 6. 创建接口：根据token获取用户信息
 
 
 
-#### 前端：
+#### 前端
 
 1. 首页登录和注册页面整合
 
@@ -6418,17 +6668,10 @@ showInfo() {
 
 - 登出
 
-  
-
-
 
 > day13
 
-
-
-### 微信扫描登录🔖
-
-#### OAuth2
+### 8 OAuth2
 
 OAuth2是针对特定问题一种解决方案。
 
@@ -6436,9 +6679,41 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 
 [OAuth 2.0 的四种方式](https://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html)
 
-##### 开发系统间授权
+#### OAuth2解决什么问题
+
+照片拥有者想要在云冲印服务上打印照片，云冲印服务需要访问云存储服务上的资源。
+
+**开发系统间授权**
 
 ![](images/image-20230407154645745.png)
+
+
+
+资源拥有者：照片拥有者
+
+客户应用：云冲印
+
+受保护的资源：照片
+
+##### 授权方式方式一：用户名密码直接复制
+
+适用于同一公司内部的多个系统，不适用于不受信的第三方应用
+
+![](images/image-20240224172342579.png)
+
+##### 方式二：通用开发者key
+
+适用于合作商或者授信的不同业务部门之间
+
+![](images/image-20240224172421303.png)
+
+##### 方式三：颁发令牌
+
+接近OAuth2方式，需要考虑如何管理令牌、颁发令牌、吊销令牌，需要统一的协议，因此就有了OAuth2协议
+
+![](images/image-20240224172509507.png)
+
+
 
 授权方式：
 
@@ -6452,17 +6727,75 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 
   需要考虑如何管理令牌、颁发令牌、吊销令牌，需要统一的协议，因此就有了OAuth2协议
 
-##### 分布式访问问题(单点登录)
+
+
+#### 现代微服务安全
+
+除了开放系统授权，OAuth2还可以应用于现代微服务安全。
+
+现代微服务中系统微服务化以及应用的形态和设备类型增多，不能用传统的登录方式。
+
+核心的技术不是用户名和密码，而是token，由AuthServer颁发token，用户使用token进行登录。
+
+![](images/image-20240224172630114.png)
+
+#### 典型的OAuth2应用
+
+![](images/image-20240224172733039.png)
+
+![](images/image-20240224172802589.png)
+
+#### 什么是OAuth2
+
+![](images/image-20240224172827842.png)
+
+##### 令牌的核心
+
+![](images/image-20240224172906399.png)
+
+##### OAuth2的历史
+
+![](images/image-20240224172935305.png)
+
+##### OAuth2的优势
+
+![](images/image-20240224173019095.png)
+
+##### OAuth2的不足
+
+![](images/image-20240224173059594.png)
+
+##### Auth2涉及的角色
+
+![](images/image-20240224173130251.png)
+
+##### OAuth2术语
+
+![](images/image-20240224173213309.png)
+
+##### OAuth2令牌的类型
+
+![](images/image-20240224173249164.png)
+
+##### OAuth2的误解
+
+![](images/image-20230407155712392.png)
+
+![](images/image-20240224173433858.png)
+
+#### 分布式访问问题(单点登录)
 
 ![](images/image-20230407155406980.png)
 
 OAuth2仅仅是一个解决方案
 
-![](images/image-20230407155712392.png)
 
 
 
-#### 微信登录
+
+### 9 微信扫描登录 🔖
+
+#### 一、准备工作
 
 [微信开发平台](https://open.weixin.qq.com/)（注意与[微信公众平台](https://mp.weixin.qq.com/)的区别）
 
@@ -6472,9 +6805,22 @@ OAuth2仅仅是一个解决方案
 
 ![](images/image-20230407191018572.png)
 
+1、注册
+2、邮箱激活
+3、完善开发者资料
+4、开发者资质认证
+准备营业执照，1-2个工作日审批、300元
+5、创建网站应用
+提交审核，7个工作日审批
+6、熟悉微信登录流程
+
+获取access_token时序图
+
 
 
 ![](images/image-20230407190910675.png)
+
+#### 二、后端开发
 
 1. 在service_ucenter模块的配置文件中写入微信开发平台需要的相关配置
 2. 创建配置类读取上面的配置信息
@@ -6538,11 +6884,11 @@ OAuth2仅仅是一个解决方案
 >
 > 课程评论
 
-
-
-### 名师
+### 10 名师、课程
 
 #### 名师列表
+
+pages/teacher/index.vue
 
 1. 分页查询接口
 2. 前端页面
@@ -6555,9 +6901,19 @@ OAuth2仅仅是一个解决方案
 
 #### 名师详情
 
+pages/teacher/_id.vue
+
+
+
+#### 名师后端
+
+模块service_edu，com.andyron.eduservice.controller.front.TeacherFrontController
+
 
 
 #### 课程列表
+
+pages/course/index.vue
 
 课程条件查询带分页
 
@@ -6583,7 +6939,9 @@ Access to XMLHttpRequest at 'http://localhost:9001/eduservice/coursefront/getFro
 Access to XMLHttpRequest at  from origin  has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 ```
 
-#### 课程详情
+#### 课程详情🔖
+
+pages/course/_id.vue
 
 1. 编写sql语句，根据课程id查询课程信息
 
@@ -6596,6 +6954,10 @@ Access to XMLHttpRequest at  from origin  has been blocked by CORS policy: Respo
    所属描述
 
    所属讲师
+
+
+
+> 在项目中很多时候需要把model转换成dto用于网站信息的展示，按前端的需要传递对象的数据，==保证model对外是隐私的==，例如密码之类的属性能很好地避免暴露在外，同时也会减小数据传输的体积。
 
 #### 整合阿里云视频播放器
 
@@ -6633,6 +6995,10 @@ public class VideoVo {
 
 
 
+
+
+
+
 > day15
 >
 > 1 课程评论功能
@@ -6641,11 +7007,63 @@ public class VideoVo {
 >
 > ​	微信扫码支付
 >
-> 
 
-🔖
+### 11 课程评论 🔖
+
+```sql
+CREATE TABLE `edu_comment` (
+  `id` char(19) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评论ID',
+  `course_id` varchar(19) NOT NULL DEFAULT '' COMMENT '课程id',
+  `teacher_id` char(19) NOT NULL DEFAULT '' COMMENT '讲师id',
+  `member_id` varchar(19) NOT NULL DEFAULT '' COMMENT '会员id',
+  `nickname` varchar(50) DEFAULT NULL COMMENT '会员昵称',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '会员头像',
+  `content` varchar(500) DEFAULT NULL COMMENT '评论内容',
+  `is_deleted` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
+  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_course_id` (`course_id`),
+  KEY `idx_teacher_id` (`teacher_id`),
+  KEY `idx_member_id` (`member_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='课程评论';
+```
+
+#### 需求
+
+![](images/image-20240224185238182.png)
+
+![](images/image-20240224185351752.png)
 
 
+
+### 12 课程支付🔖
+
+#### 课程支付需求描述
+
+
+
+#### 创建支付模块和准备
+
+
+
+#### 开发创建订单接口
+
+
+
+#### 开发获取订单接口
+
+
+
+#### 开发微信支付接口
+
+
+
+#### 课程支付前端整合
+
+
+
+#### 课程详情页面功能完善
 
 
 
@@ -6665,9 +7083,30 @@ public class VideoVo {
 >
 > ​	使用秃瓢显示统计数据
 
+#### 支付之后流程
+
+![](images/image-20240224190650536.png)
+
+![](images/image-20240224190709815.png)
+
+## 13 后台-统计分析
+
+```sql
+CREATE TABLE `statistics_daily` (
+  `id` char(19) NOT NULL COMMENT '主键',
+  `date_calculated` varchar(20) NOT NULL COMMENT '统计日期',
+  `register_num` int NOT NULL DEFAULT '0' COMMENT '注册人数',
+  `login_num` int NOT NULL DEFAULT '0' COMMENT '登录人数',
+  `video_view_num` int NOT NULL DEFAULT '0' COMMENT '每日播放视频数',
+  `course_num` int NOT NULL DEFAULT '0' COMMENT '每日新增课程数',
+  `gmt_create` datetime NOT NULL COMMENT '创建时间',
+  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `statistics_day` (`date_calculated`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='网站统计日数据';
+```
 
 
-## 后台-统计分析
 
 ### 需求分析
 
@@ -6752,6 +7191,12 @@ npm install --save echarts
 
 2. 整合页面
 
+
+
+
+
+
+
 > day17
 >
 > 1 数据同步工具canal
@@ -6760,7 +7205,7 @@ npm install --save echarts
 >
 > 3 权限管理模块
 
-## 数据同步工具canal
+## 14 数据同步工具canal
 
 ### 应用场景
 
@@ -6874,7 +7319,7 @@ Disconnected from the target VM, address: '127.0.0.1:59776', transport: 'socket'
 
 > canal_clientedu模块暂时不影响主模块开发
 
-## 网关
+## 15 网关
 
 ### 1 API网关介绍
 
@@ -6886,7 +7331,7 @@ API网关出现的原因是微服务架构的出现，不同的微服务一般�
 4. 难以重构，随者项目的选代，可能需要重新划分微服务成 例如，可能将多个服务合并成一个或者将一个服务拆分成多个。如果客户端直接与微服务通信，那么重构将会很难实施。
 5. 某些微服务可能使用了防火墙 ，浏览器不友好的协议，直接访问会有一定的困难。
 
-以上这些问题可以借助 API 网关解決。API 网关是介于客户端和服务器端之问的中间层，所有的外部请求都会先经过 API 网关这一层。也就是说，API 的实现方面更多的考虑业务運辑，而安全、性能、监控可以交由 API 网关来做，这样既提高业务灵活性又不缺安全性。
+以上这些问题可以借助API网关解決。API网关是介于客户端和服务器端之问的中间层，所有的外部请求都会先经过 API网关这一层。也就是说，API的实现方面更多的考虑业务運辑，而安全、性能、监控可以交由 API网关来做，这样既提高业务灵活性又不缺安全性。
 
 ![](images/image-20230416110554920.png)
 
@@ -6896,7 +7341,7 @@ Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project R
 
 ![](images/image-20230416110926380.png)
 
-#### Spring Cloud Gateway核心概念
+### 3 Spring Cloud Gateway核心概念
 
 网关提供API全托管服务，丰富的API管理功能，辅助企业管理大规模的API，以降低管理成本和安全风险，包括==协议适配、协议转发、交全策略、防刷、流量、监控日志==等。一般来说网关对外暴露的URL或者接口信息，我们统称为==路由信息==。如果研发过网关中间件或者使用过zuul的人，会知道网关的核心是==Filter以及Filter Chain (Filter责任链〉==。
 
@@ -6914,9 +7359,9 @@ Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring 
 
 
 
-### 3 Gateway具体使用
+### 4 Gateway具体使用
 
-1. 创建微服务模块
+1. 在infrastructure模块下创建api_gateway模块
 
   infrastructure：基础服务模块父节点
     api-gateway： api网关服务
@@ -7067,9 +7512,33 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 
 
-## 权限管理
+### 5 网关相关配置
 
-### 权限管理需求
+#### 网关解决跨域问题
+
+`CorsConfig`
+
+
+
+#### 全局Filter，统一处理会员登录与外部不允许访问的服务
+
+`AuthGlobalFilter`
+
+#### 自定义异常处理
+
+服务网关调用服务时可能会有一些异常或服务不可用，它返回错误信息不友好，需要我们覆盖处理
+
+`ErrorHandlerConfig`
+
+`JsonExceptionHandler`
+
+
+
+## 16 权限管理
+
+### 权限管理需求描述
+
+不同角色的用户登录后台管理系统拥有不同的菜单权限与功能权限，权限管理包含三个功能模块：菜单管理、角色管理和用户管理
 
 ![](images/image-20230416152757057.png)
 
@@ -7272,7 +7741,7 @@ npm install --save vuex-persistedstate
 
 
 
-## Nacos配置中心
+## 17 Nacos配置中心
 
 https://nacos.io/
 
@@ -7444,7 +7913,7 @@ namespace的值为：
 
 
 
-## Git
+## 18 Git
 
 远程仓库
 
@@ -7462,7 +7931,7 @@ namespace的值为：
 
 
 
-## 项目部署
+## 19 项目部署
 
 > 持续化部署工具jenkins
 >
@@ -7489,7 +7958,7 @@ namespace的值为：
 
 
 
-## 在线教育项目总结
+## 20 在线教育项目总结
 
 1、总结在线教育项目功能点
 
@@ -7727,7 +8196,7 @@ npm命令： npm init    npm install  依赖名称
 
 （2）组成框架有哪些？
 
-服务发现——Netfix Eureka（Nacos）
+服务发现— — Netfix Eureka（Nacos）
 
 服务调用 —— Netflix Feign
 

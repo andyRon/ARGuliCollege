@@ -46,7 +46,7 @@
           <el-table-column prop="buyCount" label="销售数量" min-width="60" />
 
           <el-table-column label="操作" min-width="200" align="center">
-              <template slot-scope="scope">
+                <template slot-scope="scope">
                   <router-link :to="'/course/info/' + scope.row.id">
                     <el-button type="primary" size="mini" icon="el-icon-edit">编辑课程基本信息</el-button>
                   </router-link>
@@ -54,7 +54,8 @@
                     <el-button type="primary" size="mini" icon="el-icon-edit">编辑课程大纲信息</el-button>
                   </router-link>
                   <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeCourseById(scope.row.id)">删除课程</el-button>
-              </template>
+                </template>
+              
           </el-table-column>
 
         </el-table>

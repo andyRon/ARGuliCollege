@@ -29,8 +29,7 @@ public class MsmController {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-    // TODO test
-    @ApiOperation("想手机发送验证码短信")
+    @ApiOperation("向手机发送验证码短信")
     @GetMapping("/send/{phone}")
     public R sendMsm(@PathVariable String phone) {
         // 1 从redis获取验证码，如果有，就直接返回
@@ -42,11 +41,12 @@ public class MsmController {
         code = RandomUtil.getFourBitRandom();
         Map<String, Object> param = new HashMap<>();
         param.put("code", code);
+        // 测试时就不浪费阿里的短信
+        boolean isSend = true;
 //        boolean isSend = msmService.send(param, phone);
         log.info(code);
-        boolean isSend = true;
         if (isSend) {
-            // 2 发送成功后，把验证码放到redis
+            // 2 发送成功后，把验证码放到redis，并设置有效时间
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
             return R.ok();
         } else {
