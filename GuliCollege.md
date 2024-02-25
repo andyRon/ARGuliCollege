@@ -7115,6 +7115,14 @@ CREATE TABLE `statistics_daily` (
 
 ![](images/image-20230413061647707.png)
 
+```sql
+# 查询 2020-03-09有多少注册人数
+# DATE获取日期时间格式里面日期部分
+SELECT COUNT（*） FROM ucenter_menber uc WHERE DAIE（uC.gnt_create）='2020-03-09'
+```
+
+
+
 ### 具体
 
 统计分析数据表
@@ -7331,9 +7339,11 @@ API网关出现的原因是微服务架构的出现，不同的微服务一般�
 4. 难以重构，随者项目的选代，可能需要重新划分微服务成 例如，可能将多个服务合并成一个或者将一个服务拆分成多个。如果客户端直接与微服务通信，那么重构将会很难实施。
 5. 某些微服务可能使用了防火墙 ，浏览器不友好的协议，直接访问会有一定的困难。
 
-以上这些问题可以借助API网关解決。API网关是介于客户端和服务器端之问的中间层，所有的外部请求都会先经过 API网关这一层。也就是说，API的实现方面更多的考虑业务運辑，而安全、性能、监控可以交由 API网关来做，这样既提高业务灵活性又不缺安全性。
+以上这些问题可以借助API网关解決。API网关是介于客户端和服务器端之问的中间层，所有的外部请求都会先经过API网关这一层。也就是说，API的实现方面更多的考虑业务逻辑，而**安全、性能、监控**可以交由API网关来做，这样既提高业务灵活性又不缺安全性。
 
 ![](images/image-20230416110554920.png)
+
+请求转发、负载均衡、权限控制、跨域等。
 
 ### 2 Spring Cloud Gateway
 
@@ -7349,7 +7359,7 @@ Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring 
 
 1. 路由。 路由是网关最基础的部分，路由信息有一个ID、一个目的URL、一组断言和一组Filter组成。如果断言路由为真，则说明请求的URL和配置匹配。
 
-2. 断言。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的`ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
+2. 断言（匹配规则）。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的`ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
 
 3. 过滤器。一个标准的Spring Web Filter。 Soring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。
 
@@ -7406,16 +7416,16 @@ spring.application.name=service-gateway
 # nacos服务地址
 spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848
 
-# 开启，让Gateway网关能在nacos注册中心中找到服务 （使服务发现nacos找到服务）
+# 开启，让Gateway网关能在nacos注册中心中找到服务 （使服务发现nacos找到服务）（通过openfeign发现调用）
 spring.cloud.gateway.discovery.locator.enabled=true
 
 
-# [n]表示第不同的匹配
+# [n]表示第几个不同的匹配。注意数字要连续
 # 设置路由id。理论上随便写，建议写服务的名字
 spring.cloud.gateway.routes[0].id=service-acl
-# 设置路由的uri。 lb://在nacos中注册的服务名
+# 设置路由的uri。 lb://在nacos中注册的服务名。lb://前缀表示这是一个负载均衡服务
 spring.cloud.gateway.routes[0].uri=lb://service-acl
-# 设置路由断言（匹配规则），
+# 设置路由断言（匹配规则）。一个*表示一个值，两个*表示多个值
 spring.cloud.gateway.routes[0].predicates=Path=/*/acl/**
 
 # 配置service-edu服务
@@ -7423,19 +7433,29 @@ spring.cloud.gateway.routes[1].id=service-edu
 spring.cloud.gateway.routes[1].uri=lb://service-edu
 spring.cloud.gateway.routes[1].predicates=Path=/eduservice/**
 
-# 配置service-msm服务
-spring.cloud.gateway.routes[2].id=service-msm
-spring.cloud.gateway.routes[2].uri=lb://service-msm
-spring.cloud.gateway.routes[2].predicates=Path=/edumsm/**
+spring.cloud.gateway.routes[2].id=service-ucenter
+spring.cloud.gateway.routes[2].uri=lb://service-ucenter
+spring.cloud.gateway.routes[2].predicates= Path=/ucenterservice/**
+
+
+# ...
 ```
 
 
 
 4. 启动类
 
+```java
+@SpringBootApplication
+@EnableDiscoveryClient // 网关需要再nacos中注册
+public class ApiGatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayApplication.class, args);
+    }
+}
+```
 
-
-5. 测试，启动nacos、网关服务api-gateway，其它服务
+5. 测试，启动nacos，网关服务api-gateway、其它服务
 
 访问： http://localhost:8848/nacos
 
@@ -7453,9 +7473,9 @@ http://localhost:8222/eduservice/teacher/findAll
 
 
 
-Gateway网关会自动做负载均衡，而不需要做额外配置（多态服务器是通用服务名时，就会把请求平均分配）（nginx中需要额外的配置）
+Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态服务器是通用服务名时，就会把请求平均分配）（nginx中需要额外的配置）
 
-> 负载均衡的几种方式：轮询、权重、最少请求时间
+> 负载均衡的几种方式：轮询、权重、最少请求时间（谁的请求时间最短访问谁）
 
 ![](images/image-20230416121409765.png)
 
@@ -7508,11 +7528,9 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 
 
-🔖网关模块其他内容的作用
 
 
-
-### 5 网关相关配置
+### 5 网关其它作用
 
 #### 网关解决跨域问题
 
@@ -7520,7 +7538,7 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 
 
-#### 全局Filter，统一处理会员登录与外部不允许访问的服务
+#### 全局Filter，统一处理会员登录与外部不允许访问的服务 🔖
 
 `AuthGlobalFilter`
 
@@ -7941,20 +7959,105 @@ namespace的值为：
 
 
 
-总结项目功能点
+### 手动打包
 
-项目描述描述
+#### 创建普通SpringBoot工程
 
-1. ﻿﻿对项目总体介绍
-    示例：在线教育项目采用B2C商业模块，使用微服务架构，项目采用前后端分离开发
-2. ﻿﻿项目功能模块，你做的模块
-    示例：在线教育项目分为前台系统和后台系统
-    前台系统包含：首页数据显示、课程列表和详情、课程支付，课程视频播放，微信登录、微信支付等等后台系统包含：权限管理、课程管理、统计分析、课程分类管理等等我在这个项目，主要负责 前台微信登求和支付，负责后台权限管理和统计分析
-3. ﻿﻿项目涉及技术示例
-    因为项目采用前后端分离开发
-    前端技术包含：vue、element-ui、nuxt、babel等等
-    后端技术包含：SpringBoot、SpringCloud（）、EasyExcel等等
-    第三方技术包含：阿里云OSS、视频点播、短信服务等等
+demojenkins
+
+
+
+#### 使用Maven把工程进行打包，运行
+
+进入项目根目录运行`mvn clean package`进行打包
+
+
+
+#### 运行jar包
+
+`java  –jar  jar包名称`
+
+
+
+### Jenkins（安装）
+
+#### 1、在liunx系统中安装相关软件
+
+##### jdk
+
+第一步：上传或下载安装包
+
+```
+cd /usr/local
+
+jdk-8u121-linux-x64.tar.gz
+```
+
+ 
+
+第二步：解压安装包
+
+`tar -zxvf jdk-8u121-linux-x64.tar.gz`
+
+第三步：建立软连接
+
+`ln -s /usr/local/jdk1.8.0_121/ /usr/local/jdk`
+
+第四步：修改环境变量
+
+```shell
+vim /etc/profile
+
+export JAVA_HOME=/usr/local/jdk
+
+export JRE_HOME=$JAVA_HOME/jre
+
+export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
+
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+```
+
+通过命令`source /etc/profile`让profile文件立即生效
+
+第五步、测试是否安装成功
+
+使用`java -version`，出现版本
+
+##### maven
+
+##### git
+
+`yum -y install git`
+
+##### docker
+
+
+
+#### 2、安装jenkins
+
+
+
+
+
+### Jenkins（配置）
+
+
+
+
+
+### Jenkins（自动化过程）
+
+
+
+
+
+### Jenkins（idea打包）
+
+
+
+
+
+
 
 
 
@@ -8456,5 +8559,9 @@ npm命令： npm init    npm install  依赖名称
 >
 > - 为mp的自动生成代码编写独立模块？加上gmtCreate、gmtModified字段相应注解
 >
-> 
+> ---
+>
+> - 后台讲师头像上传时、统计数据查询出现网关错误
+
+
 

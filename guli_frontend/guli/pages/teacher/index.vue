@@ -21,6 +21,7 @@
             <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
           </section>
           <!-- /无数据提示 结束-->
+
           <article class="i-teacher-list" v-if="data.total > 0" >
             <ul class="of">
               <li v-for="teacher in data.items" :key="teacher.id">
@@ -100,30 +101,30 @@ export default {
   // 异步调用，只调用一次
   // params 相当于 this.$route.params
   asyncData({ params, error }) {
-    // return teacherApi.getTeacherList(1, 8).then(response => {
-    //   // this.data = response.data.data
-    //   return { data: response.data.data }
-    // })
-    return {
-      data: {
-        current: 1,
-        pages: 10, 
-        total: 20,
-        size: 8,
-        hasPrevious: false,
-        hasNext: true,
-        items: [
-          {
-            id: "999",
-            name: "热巴",
-            intro: "高级影星简介",
-            career: "北京大学",
-            level: 0,
-            avatar: "http://edu-longyang.oss-cn-beijing.aliyuncs.com/2020/08/05/74e33ab5bf8d46848cb5df9943a02c56file.png",
-          }
-        ] 
-      }
-    }
+    return teacherApi.getTeacherList(1, 8).then(response => {
+      // this.data = response.data.data
+      return { data: response.data.data }
+    })
+    // return {
+    //   data: {
+    //     current: 1,
+    //     pages: 10, 
+    //     total: 20,
+    //     size: 8,
+    //     hasPrevious: false,
+    //     hasNext: true,
+    //     items: [
+    //       {
+    //         id: "999",
+    //         name: "热巴",
+    //         intro: "高级影星简介",
+    //         career: "北京大学",
+    //         level: 0,
+    //         avatar: "http://edu-longyang.oss-cn-beijing.aliyuncs.com/2020/08/05/74e33ab5bf8d46848cb5df9943a02c56file.png",
+    //       }
+    //     ] 
+    //   }
+    // }
   },
   methods: {
     gotoPage(page) {
@@ -135,30 +136,4 @@ export default {
   }
 };
 
-// export default {
-//   data() {  
-//       return {
-//           data: {
-//             current: 1,
-//             pages: 10, 
-//             total: 20,
-//             size: 8,
-//             hasPrevious: false,
-//             hasNext: true,
-//             items: [
-//             ] 
-//           },
-//       }
-//   }, 
-//   created() {
-//     this.getTeacherList()
-//   },
-//   methods: {
-//     getTeacherList() {
-//       teacherApi.getTeacherList(this.data.current, this.data.size).then(response => {
-//         this.data = response.data.data
-//       })
-//     }
-//   }
-// }
 </script>
