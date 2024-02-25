@@ -2,6 +2,7 @@ package com.andyron.oss.controller;
 
 import com.andyron.common.utils.R;
 import com.andyron.oss.service.OssService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+@Api(tags = "阿里云oss（对象存储）api接口服务 ")
 @RestController
 @RequestMapping("/eduoss/fileoss")
 @CrossOrigin

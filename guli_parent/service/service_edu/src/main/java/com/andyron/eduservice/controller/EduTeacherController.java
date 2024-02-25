@@ -6,6 +6,7 @@ import com.andyron.eduservice.entity.EduTeacher;
 import com.andyron.eduservice.entity.vo.TeacherQuery;
 import com.andyron.eduservice.service.EduTeacherService;
 import com.andyron.servicebase.exceptionhandler.GuliException;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -39,7 +40,9 @@ public class EduTeacherController {
     @ApiOperation(value = "所有讲师列表")
     @GetMapping("findAll")
     public R findAllTeacher() {
-        List<EduTeacher> list = teacherService.list(null);
+        LambdaQueryWrapper<EduTeacher> wrapper = new LambdaQueryWrapper<>();
+        wrapper.orderByAsc(EduTeacher::getSort);
+        List<EduTeacher> list = teacherService.list(wrapper);
         return R.ok().data("items", list);
     }
 
