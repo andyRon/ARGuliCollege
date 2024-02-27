@@ -1,5 +1,5 @@
 谷粒学院
-------
+--------
 
 [尚硅谷_谷粒学苑-微服务+全栈在线教育实战项目](https://www.bilibili.com/video/BV1dQ4y1A75e)
 
@@ -17,20 +17,15 @@ Java高级：Redis Nginx Maven Git
 SpringBoot
 ```
 
-
-
-
-
 > 开启前提：
 >
 > - 开启MySQL `mysql.service start`
->
-> - 配置Nginx，并开启 
+> - 配置Nginx，并开启
 >
 > ```shell
 > # 打开
 > nginx
-> 
+>
 > # 关闭
 > nginx -s stop
 > # 重启
@@ -40,14 +35,11 @@ SpringBoot
 > 配置转发规则
 >
 > - 启动前端项目 `npm run dev`
->
-> - 启动后端项目 
->
+> - 启动后端项目
 > - 访问swagger  http://localhost:8001/swagger-ui.html
->
 > - Nacos
 >
->   进入安装目录启动`sh startup.sh -m standalone` （standalone代表单机模式运行，非集群模式）
+>   进入安装目录启动 `sh startup.sh -m standalone` （standalone代表单机模式运行，非集群模式）
 >
 >   关闭 `sh shutdown.sh`
 >
@@ -87,14 +79,9 @@ SpringBoot
 具体来说在线培训学习系统可适合于：
 
 1. 政府：现今我们的政府也提倡学习型组织，不断变化的政策环境、不断出现的新事物对政府公务员提出了更高的要求，而且政府机构的网络资源较佳，“在线培训系统”对公务员学习新知识和提高素质有很大帮助，更关键的是政府机构是垂直管理体制，只要在一个领域中创建并维护一套知识库，就可以让整个领域共享这宝贵的知识财富。
-
 2. 学校：随着网络的兴起，各大中学校可通过建立网上学校，加强学校、老师、学生之间的相互交流沟通，提高教学质量，亦可建立公共教学资源库，建设精品课程，宣传学校的教育实力。
-
 3. 行业：许多行业知识库体系庞大，专业多且层次深，因此行业一直注重知识和经验的积累，但这些宝贵的知识财富散落在各地，并没有利用和共享，因此，充分利用现有资源就能够创建一套丰富的知识库体系，让整个行业受益。
-
 4. 企业：企业的知识库体系通常是企业的核心竞争力，使用“在线教育培训系统”，企业能够创建自己的知识库体系，并允许企业内部员工随时随地学习和分享这些知识。不断提升的员工素质和不断积累的企业知识库是企业能够保持长久的竞争力的关键。对于大型企业，还可以为合作伙伴及客户创建远程学习平台，提升和考核合作伙伴的专业技能并降低服务和支持成本。
-
-
 
 #### 十个行业分类
 
@@ -112,7 +99,7 @@ SpringBoot
 
 **代表网站**：
 
-妈妈网 https://www.mama.cn/ 
+妈妈网 https://www.mama.cn/
 
 类似社交网站，视频频道跳转到腾讯视频
 
@@ -163,9 +150,9 @@ O2O教育方式对中小学的影响极其深远，其中未来教育的发展�
 对于学历教育而言，无法有效的做到O2O模式，一般以移动端的学历考证知识的学习为主，现代社会对个人水平要求越来越高，在未来的趋势中，大学相关的在线教育领域会迎来一个快速的发展期。
 
 代表网站：
-中国大学慕课 http://www.icourse163.org 
+中国大学慕课 http://www.icourse163.org
 由高教社联手网易推出，让每一个有提升愿望的用户能够学到中国知名高校的课程，并获得认证。
-学堂在线 http://www.xuetangx.com/ 
+学堂在线 http://www.xuetangx.com/
 由清华大学研发出的中文MOOC，面向全球提供在线课程。
 
 ##### 6、留学
@@ -222,8 +209,6 @@ O2O教育方式对中小学的影响极其深远，其中未来教育的发展�
 美食杰 https://www.meishij.net/
 美食菜谱类，有图文和视频
 
-
-
 ### 1.2 项目采用的商业模式
 
 在线教育的常见八种商业模式
@@ -240,19 +225,15 @@ O2O教育方式对中小学的影响极其深远，其中未来教育的发展�
 
 商家到用户，这种模式是自己制作大量自有版权的视频，放在自有平台上，让用户按月付费或者按年付费。 这种模式简单，快速，只要专心录制大量视频即可快速发展，其曾因为 lynda 的天价融资而 大热。但在中国由于版权保护意识不强，教育内容易于复制，有海量的免费资源的竞争对手众多等原因，难以取得像样的现金流。
 代表网站：
-lynda https://www.lynda.com/  
+lynda https://www.lynda.com/
 慕课网 https://www.imooc.com/
 谷粒学院 http://www.gulixueyuan.com/
-
-
 
 B2C的两个角色：管理员（添加、修改、删除）和普通用户（查询）
 
 **在线教育**使用这种模式，它的核心模块：**课程模块**
 
-
-
-##### 3、B2B2C（商家到商家到用户） 
+##### 3、B2B2C（商家到商家到用户）
 
 平台链接第三方教育机构和用户，平台一般不直接提供课程内容，而是更多承担教育的互联网载体角色，为教学过程各个环节提供全方位支持和服务。
 代表网站：
@@ -261,7 +242,7 @@ B2C的两个角色：管理员（添加、修改、删除）和普通用户（�
 
 电商平台**常用**模式
 
-京东：普通用户 可以买自营  可以买普通商家  
+京东：普通用户 可以买自营  可以买普通商家
 
 ##### 4、垂直领域
 
@@ -294,58 +275,43 @@ VIPKID https://www.vipkid.com.cn/
 
 Freemium最早由AVC的Fred Wilson在2006年提出, 指的是用免费服务吸引用户，然后通过增值服务，将部分免费用户转化为收费用户，实现变现。Freemium模式中有“二八定律”的因素，即一小部分对价格不敏感的高端用户，愿意为一些额 外的功能付费，为服务提供者带来大部分收入。
 代表网站：
-中国大学慕课 http://www.icourse163.org 
+中国大学慕课 http://www.icourse163.org
 通过免费的名校课程和高校建立合作，吸引用户。提供考研专栏和学校云增值服务
-学堂在线 http://www.xuetangx.com/  
+学堂在线 http://www.xuetangx.com/
 课程免费，如果希望得到课程的认证证书则要缴纳相应的费用
 
 ### 1.3 项目实现的功能模块
 
 谷粒学院，是一个**B2C模式**的职业技能在线教育系统，分为前台用户系统和后台运营平台。
 
-
-
 **系统后台（管理员使用）**：
 
 1. 讲师管理模块
-
 2. 课程分类管理模块
-
 3. **课程管理模块**。
 
    添加、视频、描述、小节等等。
-
 4. 统计分析模块
 
    课程使用情况（购买量、播放量），使用图标展示；注册人数、登录人数等。
-
 5. 订单管理
-
 6. banner管理
 
    幻灯片（或轮播图）
-
 7. 权限管理
 
 **系统前台（普通用户使用）**：
 
 1. 首页数据显示
-
 2. 讲师列表和详情
-
 3. 课程列表和课程详情
 
    视频在线播放，评论
-
 4. 登录和注册
-
 5. 微信扫码登录
-
 6. 微信扫码支付
 
 ![](images/1bb0cd7a29b6b1bcf3c569e2441efcec.png)
-
-
 
 ### 1.4 项目使用的技术
 
@@ -353,25 +319,25 @@ Freemium最早由AVC的Fred Wilson在2006年提出, 指的是用免费服务吸�
 
 - 后端技术：
 
-​	SpringBoot、SpringCloud、MyBatisPlus、Spring Security
+    SpringBoot、SpringCloud、MyBatisPlus、Spring Security
 
-​	Redis、Maven、easyExcel、jwt、OAuth2
+    Redis、Maven、easyExcel、jwt、OAuth2
 
 - 前端技术：
 
-​	Vue、element-ui、axios、nodejs
+    Vue、element-ui、axios、nodejs
 
 - 其它技术：
 
-​	阿里云oss、阿里云视频点播服务、阿里云短信服务
+    阿里云oss、阿里云视频点播服务、阿里云短信服务
 
-​	微信支付和登录
+    微信支付和登录
 
-​	docker
+    docker
 
-​	Jenkins
+    Jenkins
 
-​	git
+    git
 
 ![](images/7509966.png)
 
@@ -416,72 +382,62 @@ INSERT INTO user (id, name, age, email) VALUES
 (5, 'Billie', 24, 'test5@baomidou.com');
 ```
 
-
-
 ```sql
 ALTER TABLE `user` ADD COLUMN `version` INT;
 ```
 
-
-
 ### 基本使用
 
 1. 建表
-
 2. 建项目 springboot 2.2.1
-
 3. 引入相关依赖  com.baomidou
+4. idea安装lombok插件
+5. 配置配置文件 application.properties
+6. 编写代码
 
-3. idea安装lombok插件
-
-4. 配置配置文件 application.properties
-
-6. 编写代码 
-
-   - <u>MP提供的BaseMapper省去了mybatis中xml的编写</u>，它提供了很多操作数据库的方法：
+   - `<u>`MP提供的BaseMapper省去了mybatis中xml的编写`</u>`，它提供了很多操作数据库的方法：
 
    ```java
    public interface BaseMapper<T> {
        int insert(T var1);
-   
+
        int deleteById(Serializable var1);
-   
+
        int deleteByMap(@Param("cm") Map<String, Object> var1);
-   
+
        int delete(@Param("ew") Wrapper<T> var1);
-   
+
        int deleteBatchIds(@Param("coll") Collection<? extends Serializable> var1);
-   
+
        int updateById(@Param("et") T var1);
-   
+
        int update(@Param("et") T var1, @Param("ew") Wrapper<T> var2);
-   
+
        T selectById(Serializable var1);
-   
+
        List<T> selectBatchIds(@Param("coll") Collection<? extends Serializable> var1);
-   
+
        List<T> selectByMap(@Param("cm") Map<String, Object> var1);
-   
+
        T selectOne(@Param("ew") Wrapper<T> var1);
-   
+
        Integer selectCount(@Param("ew") Wrapper<T> var1);
-   
+
        List<T> selectList(@Param("ew") Wrapper<T> var1);
-   
+
        List<Map<String, Object>> selectMaps(@Param("ew") Wrapper<T> var1);
-   
+
        List<Object> selectObjs(@Param("ew") Wrapper<T> var1);
-   
+
        IPage<T> selectPage(IPage<T> var1, @Param("ew") Wrapper<T> var2);
-   
+
        IPage<Map<String, Object>> selectMapsPage(IPage<T> var1, @Param("ew") Wrapper<T> var2);
    }
    ```
 
    - SpringBoot启动会寻找接口实现类的对象，但使用MP后没有实现类了，因此要在springboot启动类上加上一个注解 `@MapperScan("com.andyron.mpdemo.mapper")`
-   - 在UserMapper上加上注解`@Repository`，就是把对象声明一下，防止之后使用时报错
-
-6. 测试 
+   - 在UserMapper上加上注解 `@Repository`，就是把对象声明一下，防止之后使用时报错
+7. 测试
 
 #### 查看MyBatis的SQL输出日志
 
@@ -510,23 +466,17 @@ MP自动生成19位的ID
 
 #### 修改操作
 
-
-
 #### 简单id查询
 
 #### id批量查询
 
 #### 简单条件查询
 
-
-
 #### 简单id删除
 
 #### id批量删除
 
 #### 简单条件删除
-
-
 
 ### 主键的生成策略
 
@@ -551,21 +501,21 @@ MP自动生成19位的ID
 
 针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。
 
-#### 2 UUID  
+#### 2 UUID
 
 每次随机生成一个唯一值。
 
 **排序不方便**
 
-#### 3 Redis  
+#### 3 Redis
 
 通过redis的原子操作incr，incrby
 
-#### 4 雪花算法  
+#### 4 雪花算法
 
 19位数字
 
-MP自带策略 
+MP自带策略
 
 ![](images/image-20220618182107936.png)
 
@@ -584,7 +534,7 @@ public enum IdType {
     NONE(1),	// 没有，需要自己处理
     INPUT(2), // 需要主动输入
     ID_WORKER(3),		// 雪花算法生成19位得数字
-    UUID(4),		
+    UUID(4),	
     ID_WORKER_STR(5); // 雪花算法生成19位得字符串类型
 
 }
@@ -593,9 +543,7 @@ public enum IdType {
 ### 自动填充
 
 1. 数据库添加字段gmtCreate，gmtModified
-
 2. 实体类添加属性gmtCreate，gmtModified
-
 3. 为实体类自动填充属性添加注解
 
    ```java
@@ -604,8 +552,7 @@ public enum IdType {
    @TableField(fill = FieldFill.INSERT_UPDATE) // 插入和更新都填充值
    private Date gmtModified;
    ```
-
-4. 实现接口`MetaObjectHandler`
+4. 实现接口 `MetaObjectHandler`
 
 ### 乐观锁
 
@@ -614,7 +561,6 @@ public enum IdType {
 > 数据库中如果不考虑事务隔离性，会产生
 >
 > - 读问题：**脏读、不可重复读、幻读**，
->
 > - 写问题：丢失更新问题（多个人同时修改同一条记录，最后提交的把之前的提交数据覆盖）。
 >
 > ![](./images/image-20211030083439678.png)
@@ -622,10 +568,9 @@ public enum IdType {
 丢失更新问题的解决方案：
 
 - 悲观锁（一般不用）： 串行。一个人操作时，其他人都不能操作。
-
 - 乐观锁 `version`
 
-​	乐观锁的现实应用：买票时，每个人都能看到剩余的一张票，但只有一个人能支付成功。
+    乐观锁的现实应用：买票时，每个人都能看到剩余的一张票，但只有一个人能支付成功。
 
 ![](images/image-20220621091527986.png)
 
@@ -634,11 +579,8 @@ public enum IdType {
 MP中乐观锁具体实现：
 
 1. 数据库添加字段version
-
 2. 实体类加对应字段
-
 3. `@Version`
-
 4. 配置乐观锁插件 `OptimisticLockerInterceptor`
 
    ```java
@@ -654,14 +596,11 @@ MP中乐观锁具体实现：
 
 > 把在启动类中MP用于寻找mapper接口实现类的注解（`@MapperScan`），移到专门用于配置MP的配置类上。
 
-
-
 ### 分页
 
 类似PageHelper
 
 1. 配置分页插件
-
 2. 编写分页代码
 
    ```java
@@ -669,7 +608,7 @@ MP中乐观锁具体实现：
    Page<User> page = new Page<>(1, 3);
    // 查询结果所有数据都会被封装到page对象里
    userMapper.selectPage(page, null);
-   
+
    // 通过page对象获取分页数据
    System.out.println(page.getCurrent());
    System.out.println(page.getRecords());  // 没页数据list集合
@@ -679,8 +618,6 @@ MP中乐观锁具体实现：
    System.out.println(page.hasNext());  // 是否有下页
    System.out.println(page.hasPrevious());
    ```
-   
-   
 
 ### 逻辑删除
 
@@ -690,33 +627,27 @@ MP中乐观锁具体实现：
 ALTER TABLE `user` ADD COLUMN `deleted` boolean
 ```
 
-
-
 1. 表中添加字段deleted，实体类中添加对应属性。(默认值可以在数据库表设置，也可以通过MP中自动填充接口MetaObjectHandler实现)。
-
 2. `@TabelLogic`
 
    ```java
    @TableLogic
    private Integer deleted;
    ```
-
 3. 配置文件配置逻辑删除参数，mp默认1是删除，0是未删除，如果与默认值相同就不需要添加配置。
 
-    ```properties
-    mybatis-plus.global-config.db-config.logic-delete-value=1
-    mybatis-plus.global-config.db-config.logic-not-delete-value=0
-    ```
+   ```properties
+   mybatis-plus.global-config.db-config.logic-delete-value=1
+   mybatis-plus.global-config.db-config.logic-not-delete-value=0
+   ```
+4. 配置逻辑删除插件 `ISqlInjector`
 
-4. 配置逻辑删除插件`ISqlInjector`
-
-    ```java
-    @Bean
-    public ISqlInjector sqlInjector() {
-      return new LogicSqlInjector();
-    }
-    ```
-
+   ```java
+   @Bean
+   public ISqlInjector sqlInjector() {
+     return new LogicSqlInjector();
+   }
+   ```
 5. 测试。删除操作语句不变
 
    ```java
@@ -729,9 +660,7 @@ ALTER TABLE `user` ADD COLUMN `deleted` boolean
    <==    Updates: 1
    ```
 
->  要查询已经逻辑删除的，要自己写SQL。
-
-
+> 要查询已经逻辑删除的，要自己写SQL。
 
 ### 性能分析插件
 
@@ -805,29 +734,21 @@ QueryWrapper<User> wrapper = new QueryWrapper<>();
     }
 ```
 
-
-
 Wrapper ： 条件构造抽象类，最顶端父类
 
   AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件
 
-​    QueryWrapper ： Entity 对象封装操作类，不是用lambda语法
+    QueryWrapper ： Entity 对象封装操作类，不是用lambda语法
 
-​    UpdateWrapper ： Update 条件封装，用于Entity对象更新操作
+    UpdateWrapper ： Update 条件封装，用于Entity对象更新操作
 
   AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。
 
-​    LambdaQueryWrapper ：看名称也能明白就是用于Lambda语法使用的查询Wrapper
+    LambdaQueryWrapper ：看名称也能明白就是用于Lambda语法使用的查询Wrapper
 
-​    LambdaUpdateWrapper ： Lambda 更新封装Wrapper
-
-
-
-
+    LambdaUpdateWrapper ： Lambda 更新封装Wrapper
 
 > 第二天
-
-
 
 ## 3 初始化项目
 
@@ -839,13 +760,11 @@ Wrapper ： 条件构造抽象类，最顶端父类
 
 前端使用Vue，开发IDE使用VSCode。
 
-
-
 crud
 
 ### 创建数据库guli
 
-创建表`edu_teacher`
+创建表 `edu_teacher`
 
 **数据库设计规约**（参考《阿里巴巴Java开发手册》）
 
@@ -871,19 +790,19 @@ G.M.T.(Greenwich Mean Time)格林威治标准时间
 >
 > gmt_create, gmt_modified 的类型均为 datetime 类型，前者现在时表示主动创建，后者过去分词表示被动更新。
 >
-> 6、单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。 说明：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。 
+> 6、单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。 说明：如果预计三年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。
 >
-> 7、表达是与否概念的字段，必须使用 is_xxx 的方式命名，数据类型是 unsigned tinyint （1 表示是，0 表示否）。 
+> 7、表达是与否概念的字段，必须使用 is_xxx 的方式命名，数据类型是 unsigned tinyint （1 表示是，0 表示否）。
 >
-> 说明：任何字段如果为非负数，必须是 unsigned。 
+> 说明：任何字段如果为非负数，必须是 unsigned。
 >
-> 注意：POJO 类中的任何布尔类型的变量，都不要加 is 前缀。数据库表示是与否的值，使用 tinyint 类型，坚持 is_xxx 的 命名方式是为了明确其取值含义与取值范围。 
+> 注意：POJO 类中的任何布尔类型的变量，都不要加 is 前缀。数据库表示是与否的值，使用 tinyint 类型，坚持 is_xxx 的 命名方式是为了明确其取值含义与取值范围。
 >
-> 正例：表达逻辑删除的字段名 is_deleted，1 表示删除，0 表示未删除。 
+> 正例：表达逻辑删除的字段名 is_deleted，1 表示删除，0 表示未删除。
 >
 > 8、小数类型为 decimal，禁止使用 float 和 double。 说明：float 和 double 在存储的时候，存在精度损失的问题，很可能在值的比较时，得到不 正确的结果。如果存储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数分开存储。
 >
-> 9、如果存储的字符串长度几乎相等，使用 char 定长字符串类型。 
+> 9、如果存储的字符串长度几乎相等，使用 char 定长字符串类型。
 >
 > 10、varchar 是可变长字符串，不预先分配存储空间，长度不要超过 5000，如果存储长度大于此值，定义字段类型为 text，独立出来一张表，用主键来对应，避免影响其它字段索 引效率。
 >
@@ -891,7 +810,7 @@ G.M.T.(Greenwich Mean Time)格林威治标准时间
 >
 > 说明：uk_ 即 unique key；idx_ 即 index 的简称
 >
-> 12、不得使用外键与级联，一切外键概念必须在应用层解决。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。 
+> 12、不得使用外键与级联，一切外键概念必须在应用层解决。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。
 
 ### 创建项目结构
 
@@ -975,13 +894,9 @@ guli_parent： 在线教学根目录（父工程），管理四个子模块：
 <packaging>pom</packaging>
 ```
 
-
-
 ## 4 讲师管理模块（后端）
 
 ### 1 模块service_edu中创建配置文件
-
-
 
 ### 2 使用MP代码生成功能，生成controller service mapper代码内容
 
@@ -993,22 +908,14 @@ guli_parent： 在线教学根目录（父工程），管理四个子模块：
         </dependency>
 ```
 
-
-
 mp中的BaseMapper、IService
-
-
 
 ### 3 项目开始
 
 1. 创建controller
-
 2. 创建启动类EduApplication
-
 3. 创建配置类，配置扫描mapper和其它配置
-
 4. 启动、测试
-
 5. 默认时间返回格式是
 
 ```
@@ -1025,8 +932,6 @@ spring:
     time-zone: GMT+8
 ```
 
-
-
 #### 讲师逻辑删除功能
 
 1. 配置逻辑插件
@@ -1037,18 +942,12 @@ spring:
            return new LogicSqlInjector();
        }
    ```
-
-   
-
 2. 在对应属性加注解
 
    ```java
    		@TableLogic
        private Integer isDeleted;
    ```
-
-   
-
 3. 编写controller方法
 
    ```java
@@ -1058,8 +957,8 @@ spring:
      return flag
    }
    ```
-
 4. 如何测试？
+
    - swagger测试
    - postman
 
@@ -1068,7 +967,6 @@ spring:
 swagger的作用：
 
 - 生成在线接口文档
-
 - 进行接口测试
 
 整合步骤：
@@ -1079,7 +977,7 @@ swagger的作用：
    @Configuration
    @EnableSwagger2
    public class SwaggerConfig {
-   
+
        @Bean
        public Docket webApiConfig() {
            return new Docket(DocumentationType.SWAGGER_2)
@@ -1090,7 +988,7 @@ swagger的作用：
                    .paths(Predicates.not(PathSelectors.regex("/error.*")))
                    .build();
        }
-   
+
        private ApiInfo webApiInfo() {
            return new ApiInfoBuilder()
                    .title("网站-课程中心API文档")
@@ -1101,52 +999,40 @@ swagger的作用：
        }
    }
    ```
-
 2. 在模块service_edu中，要使用其它模块代码，就要在pom文件中引入：
 
-    ```xml
-    <!-- 引入service_base模块，然后才能使用其中代码功能 -->
-    <dependency>
-      <groupId>com.andyron</groupId>
-      <artifactId>service_base</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    ```
+   ```xml
+   <!-- 引入service_base模块，然后才能使用其中代码功能 -->
+   <dependency>
+     <groupId>com.andyron</groupId>
+     <artifactId>service_base</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+   </dependency>
+   ```
 
-    并且要在service_edu的启动类上添加组件扫描：
+   并且要在service_edu的启动类上添加组件扫描：
 
-    ```java
-    // 为了能使用service_base模块中的功能，要指定扩大扫描区域，指定扫描规则，默认只扫描当前模块下的类
-    @ComponentScan(basePackages = {"com.andyron"})
-    public class EduApplication {
-    ...
-    ```
-
+   ```java
+   // 为了能使用service_base模块中的功能，要指定扩大扫描区域，指定扫描规则，默认只扫描当前模块下的类
+   @ComponentScan(basePackages = {"com.andyron"})
+   public class EduApplication {
+   ...
+   ```
 3. 访问swagger  http://localhost:8001/swagger-ui.html
-
-
 
 几个注解让swagger说明更仔细，
 
 - @Api  定义在类上
-
 - @ApiOperation  定义在方法上
-
 - @ApiParam  定义在参数上
 
-
-
-<font color=#FF263D>注意：报错</font>，提示引入不到其它模块下的swagger配置，如果把swagger放在本模块的启动类里配置，是没有问题的。
+`<font color=#FF263D>`注意：报错`</font>`，提示引入不到其它模块下的swagger配置，如果把swagger放在本模块的启动类里配置，是没有问题的。
 
 ```
 Unable to infer base url. This is common when using dynamic servlet registration or when the API is behind an API Gateway. The base url is the root of where all the swagger resources are served. For e.g. if the api is available at http://example.org/api/v2/api-docs then the base url is http://example.org/api/. Please enter the location manually: 
 ```
 
 无意中解决：先把原来swagger的版本2.7换成2.10，然后再换回来，就解决了
-
-
-
-
 
 ### 4 统一返回数据格式
 
@@ -1219,22 +1105,16 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 }
 ```
 
-
-
 1. 创建common模块中，common_utils子模块
 2. 创建返回码接口ResultCode
 3. 统一返回结果类 R
 4. 在service模块中引入common_utils
-4. 修改controller中返回结果，都改为R
-
-
+5. 修改controller中返回结果，都改为R
 
 ### 5 讲师分页功能
 
 1. 配置mp分页插件
 2. 编写讲师分页查询
-
-
 
 ### 6 条件查询
 
@@ -1244,11 +1124,11 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 1. 把条件值传递到接口
 
-​	把条件值封装到对象（TeacherQuery）里面，把对象传递到接口（**VO**，View Object，显示层对象）
+    把条件值封装到对象（TeacherQuery）里面，把对象传递到接口（**VO**，View Object，显示层对象）
 
 2. 根据条件值进行判断，拼接条件
 
-   现在前端传输数据时，每个条件都会作为一个参数。实际开发中，使用`@RequestBody`注解 (必须是POST)更加方便，让所有条件参数作为一个json参数传输，
+   现在前端传输数据时，每个条件都会作为一个参数。实际开发中，使用 `@RequestBody`注解 (必须是POST)更加方便，让所有条件参数作为一个json参数传输，
 
    ```java
    @RequestBody(required = false) TeacherQuery teacherQuery) { // false表示这个参数可以为空
@@ -1256,7 +1136,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
    ![](images/image-20220709071633282.png)
 
-> @RequestBody，使用JSON传递数据，把json数据封装到对应对象里面 
+> @RequestBody，使用JSON传递数据，把json数据封装到对应对象里面
 >
 > @ResponseBody，返回json数据
 
@@ -1266,8 +1146,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 自动填充：
 
-1. 在相应实体类属性上添加注解`@TableField` 
-
+1. 在相应实体类属性上添加注解 `@TableField`
 2. 在service_base模块找添加一个自动填充类
 
    ```java
@@ -1279,15 +1158,14 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
            this.setFieldValByName("gmtCreate", new Date(), metaObject);
            this.setFieldValByName("gmtModified", new Date(), metaObject);
        }
-   
+
        @Override
        public void updateFill(MetaObject metaObject) {
            this.setFieldValByName("gmtModified", new Date(), metaObject);
        }
    }
-   
-   ```
 
+   ```
 3. 添加接口方法
 
    ```java
@@ -1304,8 +1182,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
    ```
 
    > 注意：传递参数eduTeacher的json中，id、两个时间字段不需要。
-
-
+   >
 
 ### 8 讲师修改
 
@@ -1341,15 +1218,12 @@ public class GlobalExceptionHandler {
 
 > @ControllerAdvice介绍
 >
-> - `ControllerAdvice`本质上是一个`Component`，因此也会被当成组件扫描。它是aop思想的一种实现，根据规则进行拦截处理。
->
+> - `ControllerAdvice`本质上是一个 `Component`，因此也会被当成组件扫描。它是aop思想的一种实现，根据规则进行拦截处理。
 > - @ControllerAdvice提供了很多规则指定方式，默认是advice所有的Controller。
->
-> - `@ControllerAdvice("org.my.pkg")` 或者`@ControllerAdvice(basePackages={"org.my.pkg", "org.my.other.pkg"})`，则匹配指定包及其子包下的所有`Controller`。
->
+> - `@ControllerAdvice("org.my.pkg")` 或者 `@ControllerAdvice(basePackages={"org.my.pkg", "org.my.other.pkg"})`，则匹配指定包及其子包下的所有 `Controller`。
 > - 可通过指定注解来匹配。
 >
->   比如自定义一个注解`CustomAnnotation`，那么`@ControllerAdvice（annotations={CustomAnnotation.class})`就表示匹配所有被这个注解修饰的Controller。
+>   比如自定义一个注解 `CustomAnnotation`，那么 `@ControllerAdvice（annotations={CustomAnnotation.class})`就表示匹配所有被这个注解修饰的Controller。
 >
 > 三种用法：
 >
@@ -1359,25 +1233,18 @@ public class GlobalExceptionHandler {
 >    @ControllerAdvice
 >    public class GlobalExceptionHandler {
 >    ```
->
 > 2. 预设全局数据
 >
 >    配合 `@ModelAttribute` 预设全局数据
->
 > 3. 请求参数预处理
 >
->     配合 `@InitBinder` 实现对请求参数的预处理
+>    配合 `@InitBinder` 实现对请求参数的预处理
 
-
-
->  注意pom文件中模块之间不要重复引用，**==依赖传递==**（Maven）
+> 注意pom文件中模块之间不要重复引用，**==依赖传递==**（Maven）
 >
 > ![](images/image-20220709075808546.png)
 
-
-
 1. 全局异常处理（上面的）
-
 2. 特定异常处理（根据特定异常给与特定的输出）。 机制：**先找特定异常处理，没有，再找全局异常处理。**
 
    ```java
@@ -1389,11 +1256,9 @@ public class GlobalExceptionHandler {
            return R.error().message("执行了ArithmeticException异常处理");
        }
    ```
-
 3. 自定义异常处理
 
    - 第一步，创建自定义异常类继承RuntimeException，写异常属性
-
    - 第二步，再统一异常类添加规则
 
      ```java
@@ -1404,7 +1269,6 @@ public class GlobalExceptionHandler {
        return R.error().code(e.getCode()).message(e.getMsg());
      }
      ```
-
    - 第三步，执行自定义异常。自定义异常不是系统自带的异常，系统不会抛出，需要我们手动抛出
 
      ```java
@@ -1415,15 +1279,13 @@ public class GlobalExceptionHandler {
      }
      ```
 
-     
-
 > 第三天
 
 ### 10 统一日志处理
 
 #### 配置日志级别
 
-日志记录器（Logger）的行为是分等级的，优先级从高到低依次为：OFF, FATAL, <u>ERROR, WARN, INFO, DEBUG</u>, ALL。低级别的会记录高级别的信息。
+日志记录器（Logger）的行为是分等级的，优先级从高到低依次为：OFF, FATAL, `<u>`ERROR, WARN, INFO, DEBUG`</u>`, ALL。低级别的会记录高级别的信息。
 
 ```yaml
 logging:
@@ -1456,26 +1318,25 @@ Logback和log4j非常相似，logback相对于log4j的一些优点：https://blo
    #  level:
    #    root: INFO  # 设置日志级别，默认就是INFO
    ```
-
-2. 在resource在创建配置文件`logback-spring.xml`(比较固定的配置)
+2. 在resource在创建配置文件 `logback-spring.xml`(比较固定的配置)
 
    ```xml
        ...
    		<property name="log.path" value="/Users/andyron/tmp/guili_log"/>
-   
+
        <property name="CONSOLE_LOG_PATTERN"
                  value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>
    		...
    ```
 
-   默认会在指定的目录（guili_log）中生成三个日志文件log_warn.log、log_info.log、log_error.log（多了还会建立不同目录存放）。 
+   默认会在指定的目录（guili_log）中生成三个日志文件log_warn.log、log_info.log、log_error.log（多了还会建立不同目录存放）。
 
-> **将错误日志输出到文件** 
+> **将错误日志输出到文件**
 >
 > 错误日志不会直接输出到log_error.log文件中，需要配置：
 >
-> - 在GlobalExceptionHandler类上加上注解`@Slf4j`，
-> - 添加异常输出语句`log.error(e.getMessage());`
+> - 在GlobalExceptionHandler类上加上注解 `@Slf4j`，
+> - 添加异常输出语句 `log.error(e.getMessage());`
 >
 > ```java
 > @ControllerAdvice
@@ -1531,8 +1392,6 @@ Logback和log4j非常相似，logback相对于log4j的一些优点：https://blo
 > log.error(ExceptionUtil.getMessage(e));
 > ```
 
-
-
 ## 5 前端知识
 
 前端工程师
@@ -1557,7 +1416,7 @@ Vetur  vue工具
 
 ![](images/image-20220711082538744.png)
 
-> 实际，就是在对应目录中创建一个`***.code-workspace`文件。
+> 实际，就是在对应目录中创建一个 `***.code-workspace`文件。
 
 ### 2 ES6
 
@@ -1751,11 +1610,7 @@ console.log(f4(2, 3))
 当箭头函数函数体有多行语句，用 {} 包裹起来，表示代码块，
 当只有一行语句，并且需要返回结果时，可以省略 {} , 结果会自动返回。
 
-
-
 多用于匿名函数定义是使用
-
-
 
 ### 3 Vue
 
@@ -1769,11 +1624,8 @@ Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方�
 > vscode快速生成html模板文件方法： `!+tab`；直接打html:5。
 
 1. 创建html
-
 2. 引入vue.js
-
 3. 创建带id的div，`<div id="app"></div>`
-
 4. 编写vue代码，固定结构
 
    ```html
@@ -1786,8 +1638,6 @@ Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方�
      })
    </script>
    ```
-
-   
 
 Vue的完整固定写法：
 
@@ -1824,7 +1674,7 @@ Vue的完整固定写法：
 
 VSCode中代码简化的快捷方式
 
-> 文件（mac版的是code） -> 首选项 ->  用户代码片段 ->  新建`vue-html.code-snippets`
+> 文件（mac版的是code） -> 首选项 ->  用户代码片段 ->  新建 `vue-html.code-snippets`
 
 ```json
 {
@@ -1863,15 +1713,15 @@ VSCode中代码简化的快捷方式
 
 #### Vue基本语法
 
-#####  1 基本数据渲染和指令
+##### 1 基本数据渲染和指令
 
 单向数据绑定
 
-`v-bind`指令(指令带有前缀`v-`)
+`v-bind`指令(指令带有前缀 `v-`)
 
 一般用在标签属性里面，获取值。写在属性前面
 
-除了使用插值表达式`{{}}`进行数据渲染，也可以使用 v-bind指令，它的简写的形式就是一个冒号（`:`）。
+除了使用插值表达式 `{{}}`进行数据渲染，也可以使用 v-bind指令，它的简写的形式就是一个冒号（`:`）。
 
 ```html
 <div id="app">
@@ -1894,8 +1744,6 @@ VSCode中代码简化的快捷方式
   })
 </script>
 ```
-
-
 
 ##### 2 双向数据绑定
 
@@ -1960,7 +1808,7 @@ VSCode中代码简化的快捷方式
 
 阻止事件原本的默认行为，使用自己定义行为。
 
-例如，`.prevent`修饰告诉v-on指令对于触发的事件调用`event.preventDefault()`
+例如，`.prevent`修饰告诉v-on指令对于触发的事件调用 `event.preventDefault()`
 
 ```html
 		<div id="app">
@@ -2119,8 +1967,6 @@ Vue.component('Navbar', {
 
 #### 实例的生命周期
 
-
-
 ![组件生命周期图示](images/lifecycle.16e4c08e.png)
 
 数据渲染（页面渲染）之前执行：beforeCreate、**created**
@@ -2219,12 +2065,6 @@ vue对象销毁之前执行：beforeDestroy
 </body>
 ```
 
-
-
-
-
-
-
 #### 路由
 
 Vue.js 路由允许我们通过不同的 URL 访问不同的内容。
@@ -2265,7 +2105,7 @@ router-view
         const Welcome = {template: '<div>欢迎</div>'}
         const Student = {template: '<div>student list</div>'}
         const Teacher = {template: '<div>teacher list</div>'}
-        
+      
         // 2. 定义路由。每个路由应该映射一个组件
         const routes = [
             {path: '/', redirect: '/welcome'},      //设置默认指向的路径
@@ -2286,8 +2126,6 @@ router-view
         })
     </script>
 ```
-
-
 
 > 第四天
 
@@ -2364,8 +2202,6 @@ element-ui 是饿了么前端出品的基于 Vue.js的 **后台组件库**，方
 
 通过文档会使用即可。
 
-
-
 ### 6 nodejs
 
 #### nodejs是什么？
@@ -2404,8 +2240,6 @@ http.createServer(function(request, response) {
 console.log('Server running at http://127.0.0.1:8888/')
 ```
 
-
-
 #### 在vscode内置命令行运行
 
 右击相应文件或目录，【在集成终端打开】；菜单栏中打开。
@@ -2426,11 +2260,10 @@ npm类似maven，用在前端开发中，管理前端js依赖，联网下载js�
 
 1. npm项目初始化操作
 
-   `npm init`，按步骤输入一些初始参数或者直接回车默认，生成`package.json`（类似maven的pom.xml）；
+   `npm init`，按步骤输入一些初始参数或者直接回车默认，生成 `package.json`（类似maven的pom.xml）；
 
    `npm init -y`表示直接使用默认值初始化
-
-2. npm下载js依赖`npm install [包名]`
+2. npm下载js依赖 `npm install [包名]`
 
 > 修改npm镜像
 >
@@ -2447,17 +2280,13 @@ npm类似maven，用在前端开发中，管理前端js依赖，联网下载js�
 
 > package-lock.json文件作用，就是当其他人在其他电脑中使用这个项目时，下载依赖锁定某个版本。
 >
-> package.json文件中的版本如`"jquery": "^3.6.0"`是变动的版本。
-
-
+> package.json文件中的版本如 `"jquery": "^3.6.0"`是变动的版本。
 
 3. 根据package.json下载依赖
 
-   在package.json文件目录下`npm install`
+   在package.json文件目录下 `npm install`
 
-
-
-devDependencies节点：开发时的依赖包，项目打包到生产环境的时候不包含的依赖。使用`-D`或`-save-dev `参数将依赖添加到devDependencies节点：
+devDependencies节点：开发时的依赖包，项目打包到生产环境的时候不包含的依赖。使用 `-D`或 `-save-dev `参数将依赖添加到devDependencies节点：
 
 ```bash
  # 当前项目中安装，包安装在当前项目的node_modules目录里
@@ -2483,8 +2312,6 @@ npm uninstall -g 包名
 npm list -g
 ```
 
-
-
 ### 8 babel
 
 babel是转码器，把es6代码转换为es5代码（因为es6兼容性很差）。
@@ -2499,17 +2326,16 @@ babel --version
 
 新建目录babeldemo；
 
-初始化`npm init -y`
+初始化 `npm init -y`
 
-2. 编写es6的js文件`babeldemo/es6/1.js`
+2. 编写es6的js文件 `babeldemo/es6/1.js`
 
    ```javascript
    let input = [1, 2, 3]
    input = input.map(item => item + 1)
    console.log(input)
    ```
-
-3. 创建babel配置文件`.babelrc`：
+3. 创建babel配置文件 `.babelrc`：
 
    ```json
    {
@@ -2517,13 +2343,11 @@ babel --version
        "plugins": []
    }
    ```
-
 4. 安装es2015转码器
 
    ```bash
    npm install --save-dev babel-preset-es2015
    ```
-
 5. 转码
 
    ```bash
@@ -2534,18 +2358,16 @@ babel --version
    ```
 
    转换结果为：
-   
+
    ```javascript
    "use strict";
-   
+
    var input = [1, 2, 3];
    input = input.map(function (item) {
      return item + 1;
    });
    console.log(input);
    ```
-   
-   
 
 ### 9 模块化
 
@@ -2579,26 +2401,24 @@ Javascript不是一个中模块化编程语言，它不支持“类”（class�
    const subtract = function(a, b){
        return parseInt(a) - parseInt(b)
    }
-   
+
    // 2 设置哪些方法可以被其它js文件调用
    module.exports = {
        sum,
        subtract
    }
    ```
-
 2. `02.js`:
 
    ```js
    // 调用01.js里面的方法
    // 1 引入01.js文件
    const m = require('./01.js')
-   
+
    // 2 调用
    console.log(m.sum(1, 2))
    console.log(m.subtract(10, 3))
    ```
-
 3. 测试
 
    ```bash
@@ -2647,8 +2467,6 @@ getList.....
 save......
 ```
 
-
-
 #### es6模块化写法二
 
 更加简化一点
@@ -2688,15 +2506,13 @@ $ node modulees6-2-dist/02.js
 保存数据
 ```
 
-
-
 ### 10 webpack
 
 webpack是打包工具，把多种静态资源（如js、css、less）打包一个静态文件，减少页面请求次数。一般在项目开发完成，部署之前操作。
 
 ![](images/image-20220712174837698.png)
 
-新建一个webpackdemo目录，初始化`npm init -y`。
+新建一个webpackdemo目录，初始化 `npm init -y`。
 
 打包js
 
@@ -2724,13 +2540,10 @@ $ webpack -v
    ```javascript
    const common = require('./common.js')
    const utils = require('./utils.js')
-   
+
    common.info("hello world!" + utils.add(100, 200));
    ```
-
-   
-
-3. 创建webpack的配置文件`webpack.config.js`
+3. 创建webpack的配置文件 `webpack.config.js`
 
    ```js
    const path = require("path"); // Node.js内置模块
@@ -2743,21 +2556,17 @@ $ webpack -v
        }
    }
    ```
-
 4. 打包
 
    ```bash
    $ webpack 
    $ webpack --mode=development # 没有黄色警告，生成的代码不是一行，便于看
    ```
-
 5. 测试
 
    ```html
    <script src="dist/bundle.js"></script>
    ```
-
-   
 
 打包css
 
@@ -2768,13 +2577,11 @@ $ webpack -v
        background-color: red;
    }
    ```
-
 2. 在main.js中引入css文件
 
    ```js
    require('./style.css')
    ```
-
 3. 安装css加载工具
 
    ```bash
@@ -2786,7 +2593,6 @@ $ webpack -v
    Loader可以理解是模块和资源的转换器。
 
    loader插件，css-loader是将css装载到JavaScript中；style-loader是让JavaScript认识css
-
 4. 修改webpack配置文件
 
    ```js
@@ -2807,13 +2613,11 @@ $ webpack -v
        }
    }
    ```
-
 5. 打包
 
    ```bash
    $ webpack --mode=development
    ```
-
 6. 测试
 
 > 打包的另外一种方式：
@@ -2824,7 +2628,7 @@ $ webpack -v
 > "scripts": {
 >  
 >   "dev": "webpack --mode=development"
-> 
+>
 > }
 > ```
 >
@@ -2833,8 +2637,6 @@ $ webpack -v
 > ```bash
 > npm run dev
 > ```
->
-> 
 
 ### 11 vue-element-admin和vue-admin-template
 
@@ -2860,9 +2662,6 @@ npm install
 npm run dev
 ```
 
-
-
-
 vueAdmin-template是基于vue-element-admin的一套后台管理系统基础模板（最少精简版），可作为模板进行二次开发。
 
 GitHub地址：https://github.com/PanJiaChen/vue-admin-template
@@ -2883,47 +2682,34 @@ npm install
 npm run dev
 ```
 
-
-
-
-
-
-
 ### 12 搭建项目前端页面环境 🔖
 
 ![](images/image-20220712181503198.png)
-
-
 
 选取一个模板（框架）进行环境搭建 [vue-admin-template](https://gitee.com/panjiachen/vue-admin-template#http://panjiachen.github.io/vue-admin-template)  4.4    -> guli-admin
 
 > 完整版的https://github.com/PanJiaChen/vue-element-admin，`src/components`中含有很可用插件或组件。
 
 1. `git clone https://github.com/PanJiaChen/vue-admin-template.git`
-
 2. 依赖安装 `npm install`
-
 3. 启动：
 
    ```bash
    $ npm run dev
-   
+
    > vue-admin-template@4.4.0 dev
    > vue-cli-service serve
-   
+
     INFO  Starting development server...
    98% after emitting CopyPlugin
-   
+
     DONE  Compiled successfully in 3870ms                                              下午10:56:12
-   
-   
+
+
      App running at:
      - Local:   http://localhost:9528/ 
      - Network: http://192.168.0.104:9528/
    ```
-
-
-
 
 #### 前端项目环境说明
 
@@ -2937,20 +2723,14 @@ npm run dev
 └── package.jspon // 项目信息和依赖配置
 ```
 
-
-
 1. 前端框架入口
 
    `public/index.html`
 
    `src/main.js`
-
 2. 前端项目环境使用的模板**vue-admin-template**主要使用了vue + element-ui
-
 3. `build/`目录放项目构建的脚本文件（类似java中的class文件）
-
 4. `config/`目录。旧版本
-
 5. `src`目录
 
    ```
@@ -2968,7 +2748,7 @@ npm run dev
    	main.js //***项目入口文件***
    	permission.js //认证入口
    ```
-   
+
    重点：api、router、views，这是之后开发经常修改的地方。
 
 ```
@@ -2981,7 +2761,7 @@ npm run dev
 >
 > Vscode ESlint插件，自动检查代码格式，缺点：检查太严格。
 >
->  `.eslintrc.js`是配置文件:
+> `.eslintrc.js`是配置文件:
 >
 > ```javascript
 > {
@@ -3026,8 +2806,6 @@ src/views/layout/components/Navbar.vue
 
 ##### favicon.ico
 
-
-
 ##### 面包屑文字
 
 src/components（可以在很多项目中复用的通用组件）
@@ -3038,10 +2816,7 @@ src/components/Breadcrumb/index.vue
 meta: { title: '首页' }
 ```
 
-
-
 #### Eslint语法规范型检查
-
 
 JavaScript 是一个动态的弱类型语言，在开发中比较容易出错。因为没有编译程序，为了寻找 JavaScript 代码错误通常需要在执行过程中不断调适。
 ESLint 是一个**语法规则和代码风格的检查工具**，可以用来保证写出语法正确、风格统一的代码。让程序员在编码的过程中发现问题而不是在执行的过程中。
@@ -3063,9 +2838,7 @@ useEslint: true,
 
 ##### ESLint插件安装、配置
 
-vs code的ESLint插件，能帮助我们自动整理代码格式 
-
-
+vs code的ESLint插件，能帮助我们自动整理代码格式
 
 ```json
 "files.autoSave": "off",
@@ -3082,10 +2855,6 @@ vs code的ESLint插件，能帮助我们自动整理代码格式
 "eslint.autoFixOnSave": true
 ```
 
-
-
-
-
 > 第五天
 
 ## 6 讲师管理前端开发
@@ -3098,7 +2867,7 @@ vs code的ESLint插件，能帮助我们自动整理代码格式
 
 老版本的使用，http://localhost:9528/dev-api/vue-admin-template/user/login
 
-新版的配置文件在根目录的`.env.xxxx`文件中
+新版的配置文件在根目录的 `.env.xxxx`文件中
 
 ```properties
 # 后端service_edu的地址
@@ -3111,12 +2880,12 @@ VUE_APP_BASE_API = 'http://localhost:8001/'
 
 2. 查看前端对应login和info需要后端接口返回的信息
 
-根据文件`src/store/modules/user.js`
+根据文件 `src/store/modules/user.js`
 
 1. login 需要返回token
 2. info 需要返回 name、avatar
 
-P72 
+P72
 
 3. 开发登录后端相关接口
 
@@ -3145,8 +2914,6 @@ public class EduLoginController {
 }
 ```
 
-
-
 4. 修改前端请求地址，对应后端接口地址
 
 `src/api/user.js`
@@ -3171,8 +2938,6 @@ export function getInfo(token) {
 }
 ```
 
-
-
 5. 跨域解决方式
 
 ![](./images/image-20211112094651991.png)
@@ -3186,9 +2951,7 @@ Access to XMLHttpRequest at 'http://localhost:8001/eudservice/user/login' from o
 > **==跨域问题==**：通过一个地址去访问另一个地址，这个过程如果有三个地方任何一个不一样就会出现跨域问题。
 >
 > - 访问协议  http https
->
 > - ip地址
->
 > - 端口号
 
 前端：http://localhost:9528
@@ -3197,7 +2960,7 @@ Access to XMLHttpRequest at 'http://localhost:8001/eudservice/user/login' from o
 
 跨域解决几种方式：
 
-1. 在后端controller上加上注解`@CrossOrigin`（常用）
+1. 在后端controller上加上注解 `@CrossOrigin`（常用）
 2. 使用网关解决
 
 > ![](images/image-20220714074445163.png)
@@ -3205,8 +2968,6 @@ Access to XMLHttpRequest at 'http://localhost:8001/eudservice/user/login' from o
 > **==同一个接口两次请求？==**
 >
 > 这是浏览器的一个机制，第一次是option方式请求，没有返回数据，用于检测接口是否正常联通，第二次正常请求数据。
-
-
 
 ### vue-admin-template框架使用过程
 
@@ -3246,13 +3007,13 @@ Access to XMLHttpRequest at 'http://localhost:8001/eudservice/user/login' from o
 
 #### 第三步：在api目录中创建js文件，定义接口地址和相关参数
 
-页面（`***.vue`）中一般需要引入用于请求数据的js文件，如`src/views/table/index.vue`中：
+页面（`***.vue`）中一般需要引入用于请求数据的js文件，如 `src/views/table/index.vue`中：
 
 ```javascript
 import { getList } from '@/api/table'
 ```
 
-那么就需要编写`src/api/table.js`：
+那么就需要编写 `src/api/table.js`：
 
 ```javascript
 import request from '@/utils/request'
@@ -3295,9 +3056,6 @@ export function getList(params) {
        ]
      },
    ```
-
-   
-
 2. 创建路由对应的页面
 
    页面默认结构(***.vue)
@@ -3308,19 +3066,16 @@ export function getList(params) {
            讲师添加
        </div>
    </template>
-   
+
    <script>
    </script>
    ```
-
-   
-
-3. 在api文件夹中创建`edu/teacher.js`文件，定义访问接口的地址：
+3. 在api文件夹中创建 `edu/teacher.js`文件，定义访问接口的地址：
 
    ```js
    import rquest from '@/utils/request'
    // request.js 封装了axios请求
-   
+
    export default {
        // 1 讲师列表（条件查询）
        getTeacherListPage(current, limit, teacherQuery) {
@@ -3334,24 +3089,23 @@ export function getList(params) {
        }
    }
    ```
-
 4. 在讲师列表list.vue页面调用定义的接口方法，得到接口返回的数据
 
    ```vue
    <script>
    // 引入调用teacher.js文件
    import teacher from "@/api/edu/teacher";
-   
+
    /*
    export default 表示被别人调用
    原始使用Vue，需要new Vue({})
    现在不需要这样写，在main.js中已经封装好了
    */
    export default { // 写核心代码位置
-     	
+
      	// 两种写法形式都可以
        // data: {
-   
+
        // },
        data() {  // 定义当页面中使用的变量和初始值
            return {
@@ -3381,11 +3135,7 @@ export function getList(params) {
    }
    </script>
    ```
-
 5. 在list.vue文件中，使用element-ui组件把接口数据在页面中进行展示
-
-
-
 6. 分页效果
 
    ```html
@@ -3399,12 +3149,12 @@ export function getList(params) {
    />
    ```
 
-​		分页的方法修改，添加页码参数
+    分页的方法修改，添加页码参数
 
 7. 讲师列表条件查询
 
    添加条件输入表单：
-   
+
    ```vue
    <!-- 查询表单 -->
    <el-form :inline="true" class="demo-form-inline">
@@ -3417,7 +3167,7 @@ export function getList(params) {
          <el-option label="首席讲师" :value="2"></el-option>
        </el-select>
      </el-form-item>
-   
+
      <el-form-item label="添加时间">
        <el-date-picker v-model="teacherQuery.begin" 
                        placeholder="选择开始时间"
@@ -3425,7 +3175,7 @@ export function getList(params) {
                        value-format="yyyy-MM-dd HH:mm:ss"
                        default-time="00:00:00"></el-date-picker>
      </el-form-item>
-   
+
      <el-form-item label="">
        <el-date-picker v-model="teacherQuery.end" 
                        placeholder="选择截止时间"
@@ -3433,15 +3183,15 @@ export function getList(params) {
                        value-format="yyyy-MM-dd HH:mm:ss"
                        default-time="00:00:00"></el-date-picker>
      </el-form-item>
-   
+
      <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
      <el-button type="default" @click="resetData()">清空</el-button>
-   
+
    </el-form>
    ```
 
    清空：
-   
+
    ```js
    resetData() {
      // 表单输入项数据清空，（因为是双向绑定）
@@ -3450,7 +3200,7 @@ export function getList(params) {
      this.getList()
    }
    ```
-   
+
    v-model 表示双向绑定
 
 ### 讲师删除
@@ -3460,7 +3210,6 @@ export function getList(params) {
   ```vue
   <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
   ```
-
 - 在api目录的teacher.js中地址删除接口调用地址
 
   ```js
@@ -3472,7 +3221,6 @@ export function getList(params) {
     })
   }
   ```
-
 - 页面调用，实现方法删除
 
   ```js
@@ -3492,11 +3240,11 @@ export function getList(params) {
         // 回到列表页面
         this.getList()
       })
-    })     
+    })   
   }
   ```
-  
->  这边没有写catch错误是处理情况，因为框架已经帮忙处理了，当然也可以写。但是如果自己写了，有的浏览器会执行两次（自己写的一次+框架执行的一次），所以就统一不写了。
+
+> 这边没有写catch错误是处理情况，因为框架已经帮忙处理了，当然也可以写。但是如果自己写了，有的浏览器会执行两次（自己写的一次+框架执行的一次），所以就统一不写了。
 
 ### 讲师添加
 
@@ -3592,9 +3340,7 @@ this.$router.push({path: ''})
      <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
    </router-link>
    ```
-
 2. 点击修改按钮进入表单页面，进行数据回显（根据讲师id查询数据显示）
-
 3. 通过路由跳转进入数据回显页面，在路由index.js页面添加**(隐藏)路由**
 
    ```js
@@ -3606,7 +3352,6 @@ this.$router.push({path: ''})
            hidden: true   // 不需要在左侧菜单栏显示
          }
    ```
-
 4. 在表单页面实现数据回显
 
    - 在teacher.js定义根据id查询接口
@@ -3619,7 +3364,6 @@ this.$router.push({path: ''})
        })
      }
      ```
-
    - 在页面调用接口实现数据回显
 
      save.vue
@@ -3633,7 +3377,6 @@ this.$router.push({path: ''})
        })
      }
      ```
-
    - 调用 根据id查询的方法。由于添加和修改使用同一个页面(save)，通过判断路由是否有id来区别：
 
      ```js
@@ -3644,13 +3387,12 @@ this.$router.push({path: ''})
        }
      },
      ```
-     
+
      vue中获取路由的参数的的固定用法：
-     
+
      ```vue
      this.$route.params
      ```
-
 5. 修改实现
 
    - 在teacher.js定义修改接口
@@ -3664,7 +3406,6 @@ this.$router.push({path: ''})
        })
      }
      ```
-
    - 在页面调用修改方法
 
      ```js
@@ -3691,8 +3432,6 @@ this.$router.push({path: ''})
      }
      ```
 
-
-
 ### 路由切换问题
 
 > 问题描述：点击修改，在表单进行了数据回显，此时再点击添加讲师时，表单应该都是清空，但上次数据回显还在。
@@ -3701,7 +3440,7 @@ this.$router.push({path: ''})
 
 原因：多次路由跳转同一页面时，在页面中created方法只会执行第一次，和面的跳转不会执行。
 
-解决方式：使用vue的监听，当路由变化时就调用`$route(to, from)`方法。
+解决方式：使用vue的监听，当路由变化时就调用 `$route(to, from)`方法。
 
 ```js
 created() { // 页面渲染之前执行
@@ -3726,8 +3465,6 @@ methods: {
 }
 ```
 
-
-
 > 第六天
 
 讲师头像上传
@@ -3742,22 +3479,15 @@ https://www.aliyun.com/
 
 ![](./images/image-20211113171531631.png)
 
-
-
-
-
 #### java代码操作阿里oss，上传文件到阿里云oss操作
 
 1. 准备工作：创建阿里云oss许可证（阿里云颁发的id和秘钥）
 
 **创建Access Key**
 
-
-
 [阿里oss-SDK-Java](https://help.aliyun.com/document_detail/32007.html)
 
-2. 建立子模块`service_oss`
-
+2. 建立子模块 `service_oss`
 3. 引入依赖
 
    ```xml
@@ -3771,33 +3501,29 @@ https://www.aliyun.com/
      <artifactId>joda-time</artifactId>
    </dependency>
    ```
-
 4. 配置文件
 
    ```properties
    server.port=8002
-   
+
    # 服务名
    spring.application.name=service-oss
-   
+
    spring.profiles.active=dev
-   
+
    # 阿里云oss配置
    aliyun.oss.file.endpoint=
    aliyun.oss.file.keyid=
    aliyun.oss.file.keysecret=
    aliyun.oss.file.bucketname=
    ```
-
-   
-
 5. 创建启动类
 
    启动报错：
 
    ```
    Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
-   
+
    Reason: Failed to determine a suitable driver class
    ```
 
@@ -3809,13 +3535,11 @@ https://www.aliyun.com/
    @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
    ```
 
-
-
 #### 上传讲师头像
 
 1. 创建常量类，读取配置文件相关内容。
 
-Spring的注解`@Value`，接口`InitializingBean`
+Spring的注解 `@Value`，接口 `InitializingBean`
 
 ```java
 /**
@@ -3853,23 +3577,17 @@ public class ConstantPropertiesUtils implements InitializingBean {
 }
 ```
 
-
-
 2. 创建controller，创建service
 
 `MultipartFile`
 
 3. 在service中实现上传文件到oss
-3. 重启oss服务
-
+4. 重启oss服务
 5. 使用swagger测试http://localhost:8002/swagger-ui.html
-
-
 
 两个问题：
 
 1. 同名文件覆盖
-
 2. 文件按日期归类
 
 ```java
@@ -3882,10 +3600,6 @@ String datePath = new DateTime().toString("yyyy/MM/dd");
 filename = datePath + "/" + filename;
 ```
 
-   
-
-
-
 ### Nginx概念回顾
 
 反向代理服务器
@@ -3897,7 +3611,6 @@ filename = datePath + "/" + filename;
    ![](./images/image-20211115082134677.png)
 
    路径匹配
-
 2. 负载均衡（分配可能是轮询、请求时间长短等来判断）
 
    ![](./images/image-20211115082404272.png)
@@ -3908,7 +3621,6 @@ filename = datePath + "/" + filename;
    - 请求时间长短（那个服务器访问时间短就访问谁）
    - 随机法
    - 加权轮询法
-
 3. 动静分离
 
    动静分离从目前实现角度来讲大致分为两种：
@@ -3916,15 +3628,11 @@ filename = datePath + "/" + filename;
    - 把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案
    - 动态跟静态文件混合在一起发布，通过 nginx 来分开（通过 location 指定不同的后缀名实现不同的请求转发）。
 
-
-
 > ==注意：==
 >
 > 多路复用：Nginx开启可能有多个进程
 >
 > Nginx开启后，关闭命令行不会关闭Nginx
-
-
 
 #### 安装使用关闭
 
@@ -3947,8 +3655,6 @@ nginx -s reload
 ```shell
 http://localhost:8080/
 ```
-
-
 
 #### 配置Nginx转发规则：
 
@@ -3986,8 +3692,7 @@ Image Cropper
 
 PanThumb
 
-1. 拷贝这两个组件代码到前端项目`src/components/`
-
+1. 拷贝这两个组件代码到前端项目 `src/components/`
 2. 样式：
 
    ```vue
@@ -3995,7 +3700,7 @@ PanThumb
    <el-form-item label="讲师头像">
      <pan-thumb :image="teacher.avatar"/>
      <el-button type="primary" icon="el-icon-upload" @click="imagecropperShow=true">更换头像</el-button>
-   
+
      <!-- v-show： 是否显示上传组件
    :key 类似于id，如果一个页面多个图片上传控件，可以做区分
    :url  后台上传的url地址
@@ -4012,13 +3717,10 @@ PanThumb
                     field="file"
                     @close="close"
                     @crop-upload-success="cropSuccess" />
-   
+
    </el-form-item>
    ```
-
-   
-
-3. 在`data()`中定义变量和初始值：
+3. 在 `data()`中定义变量和初始值：
 
 ```js
 imagecropperShow: false,
@@ -4039,8 +3741,6 @@ export default {
 
 5. 编写close方法和上传成功的方法
 
-
-
 > 注意：前端框架为了防止出现图片名为中文等情况，默认把图片名称都改为了file.png。
 
 问题：
@@ -4049,7 +3749,7 @@ export default {
 
 ## 7 课程分类管理
 
-表`edu_subject`
+表 `edu_subject`
 
 ```mysql
 CREATE TABLE `edu_subject` (
@@ -4081,7 +3781,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
 
 1. 引入依赖
 
->  easyexcel是对poi的封装，所以也需要引入poi，而且版本是有一定对应关系的，easyexcel的2.1.1对应poi的3.17
+> easyexcel是对poi的封装，所以也需要引入poi，而且版本是有一定对应关系的，easyexcel的2.1.1对应poi的3.17
 
 ```xml
 <!--  需要apache poi的依赖，在service模块中已经引入  -->
@@ -4106,19 +3806,16 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        private String sname;
    }
    ```
-
-   
-
 3. 测试
 
    ```java
    @Test
    public void writeTest() {
      String fileName = "/Users/andyron/tmp/write.xlsx";
-   
+
      EasyExcel.write(fileName, DemoData.class).sheet("学生列表").doWrite(getData());
    }
-   
+
    private static List<DemoData> getData() {
      List<DemoData> list = new ArrayList<>();
      for (int i = 0; i < 10; i++) {
@@ -4131,8 +3828,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
    }
    ```
 
-   
-
 ### EasyExcel读
 
 1. 在实体类中标记对应列关系
@@ -4143,7 +3838,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
    @ExcelProperty(value = "学生姓名", index = 1)
    private String sname;
    ```
-
 2. 创建监听器，进行excel的读取。读取操作都在这里写。
 
    ```java
@@ -4155,7 +3849,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public void invoke(DemoData data, AnalysisContext analysisContext) {
            System.out.println("***" + data);
        }
-   
+
        /**
         * 读取表头内容
         */
@@ -4163,7 +3857,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
            System.out.println("表头" + headMap);
        }
-   
+
        /**
         * 读取完成之后
         */
@@ -4172,7 +3866,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        }
    }
    ```
-
 3. 测试
 
    ```java
@@ -4186,27 +3879,25 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
 ### 课程分类添加
 
 1. 使用代码生成器生成课程分类的相关代码
-
 2. 创建实体类和Excel文件对应关系
 
    ```java
    @Data
    public class SubjectData {
-   
+
        @ExcelProperty(value = "一级分类", index = 0)
        private String oneSubjectName;
-   
+
        @ExcelProperty(value = "二级分类", index = 1)
        private String twoSubjectName;
    }
    ```
-
-3. 创建对应service 
+3. 创建对应service
 
    ```java
    @Service
    public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubject> implements EduSubjectService {
-   
+
        @Override
        public void saveSubject(MultipartFile file, EduSubjectService eduSubjectService) {
            try {
@@ -4219,7 +3910,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        }
    }
    ```
-
 4. 创建监听器
 
    ```java
@@ -4234,13 +3924,13 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public SubjectExcelListenser(EduSubjectService eduSubjectService) {
            this.eduSubjectService = eduSubjectService;
        }
-   
+
        @Override
        public void invoke(SubjectData subjectData, AnalysisContext analysisContext) {
            if (subjectData == null) {
                throw new GuliException(20001, "文件数据为空");
            }
-   
+
            // 一行一行读取，每次读取两个值，第一个值是一级分类，第二个值是二级分类
            EduSubject existOneSubject = existOneSubject(eduSubjectService, subjectData.getOneSubjectName());
            // 没有一级分类，就添加
@@ -4250,7 +3940,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                existOneSubject.setParentId("0");
                eduSubjectService.save(existOneSubject);
            }
-   
+
            String pid = existOneSubject.getId();
            EduSubject existTwoSubject = existTwoSubject(eduSubjectService, subjectData.getTwoSubjectName(), pid);
            if (existTwoSubject == null) {
@@ -4259,9 +3949,9 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                existTwoSubject.setTitle(subjectData.getTwoSubjectName());
                eduSubjectService.save(existTwoSubject);
            }
-   
+
        }
-   
+
        /**
         * 判断一级分类不能重复添加
         */
@@ -4271,7 +3961,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            wrapper.eq("parent_id", "0");
            return eduSubjectService.getOne(wrapper);
        }
-   
+
        /**
         * 判断一级分类不能重复添加
         */
@@ -4281,13 +3971,12 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            wrapper.eq("parent_id", pid);
            return eduSubjectService.getOne(wrapper);
        }
-   
+
        @Override
        public void doAfterAllAnalysed(AnalysisContext analysisContext) {
        }
    }
    ```
-
 5. 创建接口
 
    ```java
@@ -4297,8 +3986,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
      return R.ok();
    }
    ```
-
-   
 
 > day7
 >
@@ -4313,19 +4000,14 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
 ### 课程分类添加前端
 
 1. 添加课程分类路由
-
 2. 创建课程分类页面，并修改上面的路由对应的页面路径
 3. 使用Element的“手动上传”组件
-
-
 
 > 服务器本地的文件下载不行？
 >
 > ```html
 > <a :href="'/public/static/01.xlsx'">点击下载模板</a>
 > ```
->
-> 
 
 ### 课程分类列表
 
@@ -4368,7 +4050,6 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
 
 1. 针对返回数据创建对应的实体类。一级和二级分类实体
 2. 在两个实体类之间表示关系（一个一级分类有多个二级分类）
-
 3. 编写具体封装代码
 
    ```java
@@ -4378,12 +4059,12 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            QueryWrapper<EduSubject> oneWrapper = new QueryWrapper<>();
            oneWrapper.eq("parent_id", "0");
            List<EduSubject> oneSubjects = baseMapper.selectList(oneWrapper);
-   
+
            // 2 查询所有二级分类
            QueryWrapper<EduSubject> twoWrapper = new QueryWrapper<>();
            twoWrapper.ne("parent_id", "0");
            List<EduSubject> twoSubjects = baseMapper.selectList(twoWrapper);
-   
+
            // 存储最终封装数据
            List<OneSubject> finalSubjects = new ArrayList<>();
            // 3 封装一级分类
@@ -4391,7 +4072,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                OneSubject oneSubject = new OneSubject();
                // 使用spring中的工具类，把一个对象的属性复制到另一个对象（目标对象有的属性）
                BeanUtils.copyProperties(subject, oneSubject);
-   
+
                // 4 封装二级分类
                for (EduSubject tSubject : twoSubjects) {
                    if (subject.getId().equals(tSubject.getParentId())) {
@@ -4402,12 +4083,10 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                }
                finalSubjects.add(oneSubject);
            }
-   
+
            return finalSubjects;
        }
    ```
-
-   
 
 #### 前端
 
@@ -4474,8 +4153,6 @@ export default {
         this.$router.push({path: '/subject/list'})
 ```
 
-
-
 ## 8 课程管理
 
 ### 分析
@@ -4494,7 +4171,7 @@ export default {
 >
 > c. 讲师和课程分类要做成下拉列表显示，课程分类还要有二级联动效果。
 >
-> 2.  编辑课程大纲
+> 2. 编辑课程大纲
 >
 > ![](images/image-20220721071242009.png)
 >
@@ -4529,12 +4206,9 @@ export default {
    ```
 
    删除EduCourseDescriptionController.java，不需要单独做操作简介，在课程中操作
-
 2. 创建vo类封装表单提交的数据，CourseInfoVo
 
 > 价格 BigDecimal 精度更准确
-
-
 
 3. 编写controller和service
 
@@ -4558,7 +4232,7 @@ export default {
     }
 ```
 
-EduCourseDescription的添加策略要改成`IdType.INPUT`：
+EduCourseDescription的添加策略要改成 `IdType.INPUT`：
 
 ```java
     @ApiModelProperty(value = "课程ID")
@@ -4615,20 +4289,13 @@ EduCourseDescription的添加策略要改成`IdType.INPUT`：
   }
 ```
 
-
-
 2. 编写表单页面，实现接口调用
 
 先把流程走通
 
 Element的Steps 步骤条
 
-
-
 3. 添加之后，返回课程id。修改后端接口
-
-
-
 4. 完善课程信息添加中的讲师
 
 下拉列表
@@ -4646,8 +4313,6 @@ Element的Steps 步骤条
   </el-select>
 </el-form-item>
 ```
-
-
 
 5. 课程分类二级联动
 
@@ -4689,11 +4354,7 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
 }
 ```
 
-
-
 6. 课程封面
-
-
 
 > Day8
 >
@@ -4701,17 +4362,15 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
 >
 > 课程大纲管理
 >
-> ​	课程大纲列表显示
+>     课程大纲列表显示
 >
-> ​	章节添加修改删除
+>     章节添加修改删除
 >
-> ​	小结添加修改删除
+>     小结添加修改删除
 >
 > 课程信息确认
 >
-> ​	编写SQL语句实现（多表）
-
-
+>     编写SQL语句实现（多表）
 
 #### 课程简介-整合文本编辑器
 
@@ -4721,7 +4380,7 @@ subjectOneChange(value) { // value就是一级分类id，vue默认会把下拉�
 
 https://github.com/tinymce/tinymce
 
-1. 把tinymce相关文件复制到项目`src/components`和`static/`中
+1. 把tinymce相关文件复制到项目 `src/components`和 `static/`中
 
 #### 课程大纲列表功能
 
@@ -4732,13 +4391,7 @@ https://github.com/tinymce/tinymce
 > edu_video
 
 1. 创建两个实体类（ChapterVo、VideoVo），章节和小节，在章节实体类中使用list表示小节
-
-
-
 2. 编写封装代码
-
-
-
 3. 前端
 
 前端样式可采用类似课程分类中el的二级，不过这里为了练习，采用原始的ul
@@ -4757,8 +4410,6 @@ https://github.com/tinymce/tinymce
 </ul>
 ```
 
-
-
 ### 修改课程基本信息
 
 1. 点击**上一步**，回到第一步，把课程基本信息数据回显
@@ -4775,18 +4426,12 @@ https://github.com/tinymce/tinymce
 
 修改chapter页面的，跳转路径（添加课程id）；
 
-
-
 2. 在数据回显页面，修改内容，保存，修改数据库内容
-
-
 
 > 403 错误 一般：
 >
 > - 跨域
 > - 路径错误
-
-
 
 3. 下拉列表数据的回显
 
@@ -4811,8 +4456,6 @@ getCourseInfo() {
   })
 }
 ```
-
-
 
 > 小bug，添加和修改，回显数据清空
 
@@ -4854,13 +4497,7 @@ addInfo() {
 ### 课程章节 添加、修改、删除
 
 1. “添加章节” 按钮
-
-
-
 2. 弹出框 输入章节信息
-
-
-
 3. 章节相关接口
 
 > 删除章节（章节有小节）时，这种有关联的数据删除有两种删除方式：
@@ -4868,23 +4505,13 @@ addInfo() {
 > - 删除章节时，同时删除该章节下的所有小节
 > - 章节下有小节时，不能删除，先要删除了小节才能删除章节
 
-
-
 4. 添加章节前端
-
-
-
 5. 修改章节
-
-
-
 6. 章节删除
 
 ### 章节的小节添加、修改、删除
 
 > 🔖 删除弹框，取消时有一个js错误
-
-
 
 ### 发布新课程最终确认发布
 
@@ -4924,7 +4551,6 @@ Where ec.id=?
 > 两中原因：
 >
 > - 方法名写错了
->
 > - maven没有编译mybatis的xml文件
 >
 >   maven默认加载机制：只会加载src/main/java中的java文件而不会加载其它文件
@@ -4932,7 +4558,6 @@ Where ec.id=?
 >   3种解决方式：
 >
 >   1. 复制xml文件到target中（临时）
->
 >   2. maven的配置文件pom中配置。`**/*.xml`中两个星号表示是多层目录。
 >
 >      ```xml
@@ -4961,7 +4586,7 @@ Where ec.id=?
 >                          <include>**/*.xml</include>
 >                      </includes>
 >                  </resource>
->      
+>
 >      <!--            上述的指定是将原有的编译资源resources目录覆盖掉了，而不是添加编译目录，因此需要补充原有的编译资源目录-->
 >                  <resource>
 >                      <directory>src/main/resources</directory>
@@ -4969,7 +4594,7 @@ Where ec.id=?
 >                          <include>**/*.*</include>
 >                      </includes>
 >                  </resource>
->                  
+>
 >      <!--            有webapp的Maven工程也需要重新指定webapp这个目录-->
 >      <!--            <resource>-->
 >      <!--                <directory>src/main/webapp</directory>-->
@@ -4982,7 +4607,6 @@ Where ec.id=?
 >      ```
 >
 >      这种方式需要右击pom文件，**Maven->Generate xxxxx**
->
 >   3. 在spring的配置文件application.yml中配置
 >
 >      ```yaml
@@ -4993,8 +4617,6 @@ Where ec.id=?
 >
 >   🔖第二种方式有时还是不成功，原因？
 
-
-
 > day9
 >
 > 1. 课程最终发布实现。课程信息确认；课程发布
@@ -5002,11 +4624,7 @@ Where ec.id=?
 > 3. 阿里云视频点播服务
 > 4. 添加小节视频上传
 
-
-
 ### 课程的最终发布
-
-
 
 ### 课程列表
 
@@ -5019,8 +4637,6 @@ Where ec.id=?
 > 外键，一般不建议声明出来
 >
 > ![](images/image-20220728191808916.png)
-
-
 
 ## 9 阿里视频点播
 
@@ -5060,9 +4676,6 @@ httpclient技术，不需要浏览器，模拟浏览器请求
 ![](images/image-20220729095643602.png)
 
 1. 获取视频播放地址
-
-
-
 2. 获取视频播放凭证
 
 > 因为上传视频可以进行加密，加密之后，使用加密之后地址不能进行视频播放，在数据库不存储地址，而是存储**视频id**。
@@ -5076,13 +4689,11 @@ httpclient技术，不需要浏览器，模拟浏览器请求
 3. 根据视频id获取视频播放地址
 4. 根据视频id获取视频播放凭证
 
-
-
 #### 视频上传
 
 ![](images/image-20230227080657874.png)
 
-> 注意：以下列举出部分依赖jar包的版本，您可直接在您的项目中添加maven依赖，也可以将VODUploadDemo-java-1.4.9.zip包中的所有jar包引入您的项目中使用。其中，<u>aliyun-java-vod-upload-1.4.9.jar</u> 还未正式开源，请您直接引入 jar包至您的项目中使用。
+> 注意：以下列举出部分依赖jar包的版本，您可直接在您的项目中添加maven依赖，也可以将VODUploadDemo-java-1.4.9.zip包中的所有jar包引入您的项目中使用。其中，`<u>`aliyun-java-vod-upload-1.4.9.jar`</u>` 还未正式开源，请您直接引入 jar包至您的项目中使用。
 
 * 引入上传依频，但是这个依赖不能在maven中央仓库下我到，需要手动把依赖安装到本地仓库里面。
 
@@ -5092,12 +4703,11 @@ httpclient技术，不需要浏览器，模拟浏览器请求
 
   ```shell
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.14 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.14.jar
-  
+
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.11 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.11.jar
-  
+
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
   ```
-
 * 也可直接把jar包拷贝到项目中，然后pom文件配置jar位置，如：
 
   ```xml
@@ -5135,14 +4745,11 @@ create table edu_video
     comment '课程视频' charset = utf8mb4;
 ```
 
-
-
 ### 小节上传视频
 
 ![](images/image-20230227102052274.png)
 
 1. 配置模块service_vod的依赖（之前测试已经配置过）
-
 2. 初始化模块：创建配置文件、启动类、controller、service
 
 ```java
@@ -5170,10 +4777,6 @@ public class VodApplication {
 > spring.servlet.multipart.max-request-size=1024MB
 > ```
 
-
-
-
-
 ### 前端整合添加小节上传视频
 
 P148 和p147视频顺序反了
@@ -5184,9 +4787,8 @@ P148 和p147视频顺序反了
    				location ~ /eduvod/ {
                proxy_pass http://localhost:8003;
            }
-   
-   ```
 
+   ```
 2. nginx支持上传文件大小也有限制的
 
 ![](images/image-20230227122437584.png)
@@ -5200,8 +4802,6 @@ http {
     client_max_body_size 1024m;
 ```
 
-
-
 3. 视频名称存储到数据库中
 
 ```js
@@ -5214,8 +4814,8 @@ http {
 > day10
 >
 > - 添加小节中删除阿里云里的视频
->
 > - 微服务、springcloud
+>
 >   - 删除小节删除视频（完善）
 >   - 删除课程也需要删除掉视频（完善）
 
@@ -5293,26 +4893,22 @@ chapter.vue
 ![](images/image-20230228183058896.png)
 
 - 微服务是架构风格
-
 - 把一个项目拆分成独立的多个服务，每个服务独立运行，每个服务占用独立进程
 
-
-微服务最早由Martin Fowler与James Lewis于2014年共同提出，微服务架构风格是一种使用一套小服务来开发单个应用的方式途径，每个服务运行在自己的进程中，并使用轻量级机制通信，通常是HTTP API，这些服务基于业务能力构建，并能够通过自动化部署机制来独立部署，这些服务使用不同的编程语言实现，以及不同数据存储技术，并保持最低限度的集中式管理。 
+微服务最早由Martin Fowler与James Lewis于2014年共同提出，微服务架构风格是一种使用一套小服务来开发单个应用的方式途径，每个服务运行在自己的进程中，并使用轻量级机制通信，通常是HTTP API，这些服务基于业务能力构建，并能够通过自动化部署机制来独立部署，这些服务使用不同的编程语言实现，以及不同数据存储技术，并保持最低限度的集中式管理。
 
 #### 为什么需要微服务
 
-在传统的IT行业软件大多都是各种独立系统的堆砌，这些系统的问题总结来说就是扩展性差，可靠性不高，维护成本高。到后面引入了SOA服务化，但是，由于 SOA 早期均使用了总线模式，这种总线模式是与某种技术栈强绑定的，比如：J2EE。这导致很多企业的遗留系统很难对接，切换时间太长，成本太高，新系统稳定性的收敛也需要一些时间。 
+在传统的IT行业软件大多都是各种独立系统的堆砌，这些系统的问题总结来说就是扩展性差，可靠性不高，维护成本高。到后面引入了SOA服务化，但是，由于 SOA 早期均使用了总线模式，这种总线模式是与某种技术栈强绑定的，比如：J2EE。这导致很多企业的遗留系统很难对接，切换时间太长，成本太高，新系统稳定性的收敛也需要一些时间。
 
 #### 微服务与单体架构区别
 
 - 单体架构所有的模块全都耦合在一块，代码量大，维护困难。
 
   微服务每个模块就相当于一个单独的项目，代码量明显减少，遇到问题也相对来说比较好解决
-
 - 单体架构所有的模块都共用一个数据库，存储方式比较单一。
 
   微服务每个模块都可以使用不同的存储方式（比如有的用redis，有的用mysql等）
-
 - 单体架构所有的模块开发所使用的技术一样。
 
   微服每个模块都可以使用不同的开发技术（java、php等），开发模式更灵活项目外包
@@ -5325,9 +4921,7 @@ chapter.vue
 
 #### 什么样的项目适合微服务
 
-微服务可以按照业务功能本身的独立性来划分，如果系统提供的业务是非常**底层**的，如：<u>操作系统内核、存储系统、网络系统、数据库系统等等</u>，这类系统都偏底层，功能和功能之同有着紧密的配合关系，如果强制拆分为较小的服务单元，会让集成工作量急剧上升，并且这种人为的切割无法带来业务上的真正的隔离，所以无法做到独立部署和运行，也就不适合做成微服务了。
-
-
+微服务可以按照业务功能本身的独立性来划分，如果系统提供的业务是非常**底层**的，如：`<u>`操作系统内核、存储系统、网络系统、数据库系统等等`</u>`，这类系统都偏底层，功能和功能之同有着紧密的配合关系，如果强制拆分为较小的服务单元，会让集成工作量急剧上升，并且这种人为的切割无法带来业务上的真正的隔离，所以无法做到独立部署和运行，也就不适合做成微服务了。
 
 #### 微服务开发框架
 
@@ -5340,8 +4934,6 @@ chapter.vue
 - springcloud里面有很多框架（技术），使用springcloud里面这些框架实现微服务操作
 - 要使用springcloud，需要依赖springboot
 
-
-
 #### springcloud和springboot是什么关系
 
 spring Boot 是spring 的一套快速配置脚手架，可以基于spring Boot快速开发单个微服务，spring Cloud是一个基于Spring Boot实现的开发工具；
@@ -5351,8 +4943,6 @@ Spring Boot专注于快速、方便集成的单个微服务个体，Spring Cloud
 Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮你选择好了，能不配置就不配置，Spring Cloud很大的一部分是基于Spring Boot来实现，必须基于Spring Boot开发。
 
 可以单独使用Spring Boot开发项目，但是Spring Cloud离不开 Spring Boot。
-
-
 
 #### Spring Cloud相关基础服务组件
 
@@ -5377,10 +4967,8 @@ Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮�
 spring Cloud 小版本分为：
 
 - `SNAPSHOT`：快照版本，随时可能修改，临时版本，一般不使用；
-
 - `M:Milestone`，M1表示第公个里程碑版本 ，一般同时标注PRE ，表示预览版版。
-
-- `SR` : Service Release，SR1表示第1个正式版本，一般同时标注`GA`：(Generally Available),表示稳定版本。
+- `SR` : Service Release，SR1表示第1个正式版本，一般同时标注 `GA`：(Generally Available),表示稳定版本。
 
 选择顺序：`GA -> SR -> M`
 
@@ -5401,13 +4989,13 @@ Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构�
 3. Consul（ 原生，GO语言开发）
 4. ﻿﻿﻿Nacos
 
-​	相对于 Spring Cloud Eureka 来说，Nacos 更强大。
+    相对于 Spring Cloud Eureka 来说，Nacos 更强大。
 
-​	Nacos = Spring Cloud Eureka + Spring Cloud Config；
+    Nacos = Spring Cloud Eureka + Spring Cloud Config；
 
-​	Nacos 可以与Spring, Spring Boot, Spring Cloud 集成，并能代替 Spring Cloud Eureka, Spring Cloud Config；
+    Nacos 可以与Spring, Spring Boot, Spring Cloud 集成，并能代替 Spring Cloud Eureka, Spring Cloud Config；
 
-​	通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现服务的注册与发现。
+    通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现服务的注册与发现。
 
 #### Nacos四大功能
 
@@ -5417,8 +5005,6 @@ Nacos是以服务为主要服务对象的中间体，**Nacos支持所有主流�
 2. 动态配置服务
 3. 动态DNS服务
 4. 服务及其元数据管理
-
-
 
 #### Nacos结构图
 
@@ -5437,12 +5023,9 @@ https://github.com/alibaba/nacos/releases
 - Linux/Mac
 
   启动命令：`sh startup.sh -m standalone` （standalone代表单机模式运行，非集群模式）
-
 - Windows
 
   启动命令：`cmd startup.cmd` 后直接双击
-
-
 
 访问： http://localhost:8848/nacos
 
@@ -5459,7 +5042,6 @@ https://github.com/alibaba/nacos/releases
      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
    </dependency>
    ```
-
 2. 【添加服务配置信息】在要注册的服务（service-edu）的配置文件中进行配置nacos地址：
 
 ```yaml
@@ -5476,16 +5058,13 @@ spring:
    ```java
    @EnableDiscoveryClient // nacos注册
    ```
-
 4. 启动客户端微服务
 
 启动已注册的微服务，可以在Nacos服务列表中看到被注册的微服务
 
 #### 把service-vod服务在Nacos进行注册
 
-类似的方法 
-
-
+类似的方法
 
 ### Feign
 
@@ -5563,15 +5142,11 @@ public R delete(@PathVariable String id) {
 }
 ```
 
-
-
 5. 测试
 
 启动相关微服务
 
 测试删除课时的功能
-
-
 
 > 注意，此时启动service_oss会出现下面错误：
 >
@@ -5587,8 +5162,6 @@ public R delete(@PathVariable String id) {
 > 这是因为在service模块中引入了服务注册等依赖，service_oss启动时也会去寻找nacos注册中心。
 >
 > 配置一下就好了（之后所有模块都需要注册到注册中）：配置文件添加nacos地址，启动文件上添加注解。
-
-
 
 ## 8 课程管理-3
 
@@ -5634,8 +5207,6 @@ public R delete(@PathVariable String id) {
 public R deleteBatch(@RequestParam("videoIdList") List videoIdList);
 ```
 
-
-
 修改EduVideoServiceImpl中的：
 
 ```java
@@ -5670,8 +5241,6 @@ public void removeVideoByCourseId(String courseId) {
 
 ```
 
-
-
 > 问题报错时，主要看错误信息头尾。
 >
 > ![](images/image-20230301204344223.png)
@@ -5683,8 +5252,6 @@ public void removeVideoByCourseId(String courseId) {
 3. 测试
 
 > 🔖小bug，前端连续添加小节时，视频重复
-
-
 
 ## 11 熔断器
 
@@ -5700,23 +5267,17 @@ public void removeVideoByCourseId(String courseId) {
 
 ![](images/image-20240223171815135.png)
 
-1. **接口化请求调用**。当调用被`@FeignClient`注解修饰的接口时，在框架内部，将请求转换成Feign的请求实例`feign.Request`，交由Feign框架处理。
-
+1. **接口化请求调用**。当调用被 `@FeignClient`注解修饰的接口时，在框架内部，将请求转换成Feign的请求实例 `feign.Request`，交由Feign框架处理。
 2. **Feign** ：转化请求Feign是一个http请求调用的轻量级框架，可以以Java接口注解的方式调用Http请求，封装了Http调用流程。
 
-   Feign：根据服务的名字（如service-vod），找到对应的地址（如`"/eduvod/video/deleteAliVideo/{id}"`）进行调用。
-
-3. **Hystrix**：熔断处理机制 Feign的调用关系，会被Hystrix代理拦截，对每一个Feign调用请求，Hystrix都会将其包装成`HystrixCommand`,参与Hystrix的流控和熔断规则。如果请求判断需要熔断，则Hystrix直接熔断，抛出异常或者使用`FallbackFactory`返回熔断`Fallback`结果；如果通过，则将调用请求传递给`Ribbon`组件。
+   Feign：根据服务的名字（如service-vod），找到对应的地址（如 `"/eduvod/video/deleteAliVideo/{id}"`）进行调用。
+3. **Hystrix**：熔断处理机制 Feign的调用关系，会被Hystrix代理拦截，对每一个Feign调用请求，Hystrix都会将其包装成 `HystrixCommand`,参与Hystrix的流控和熔断规则。如果请求判断需要熔断，则Hystrix直接熔断，抛出异常或者使用 `FallbackFactory`返回熔断 `Fallback`结果；如果通过，则将调用请求传递给 `Ribbon`组件。
 
    Hystrix（熔断器）：调用过程中，如果服务突然挂掉了，就之心熔断机制（切断调用过程）；如果能调用到，就继续执行。
-
-4. **Ribbon**：服务地址选择 当请求传递到`Ribbon`之后,`Ribbon`会根据自身维护的服务列表，根据服务的服务质量，如平均响应时间，Load等，结合特定的规则，从列表中挑选合适的服务实例，选择好机器之后，然后将机器实例的信息请求传递给`Http Client`客户端，`HttpClient`客户端来执行真正的Http接口调用；
+4. **Ribbon**：服务地址选择 当请求传递到 `Ribbon`之后,`Ribbon`会根据自身维护的服务列表，根据服务的服务质量，如平均响应时间，Load等，结合特定的规则，从列表中挑选合适的服务实例，选择好机器之后，然后将机器实例的信息请求传递给 `Http Client`客户端，`HttpClient`客户端来执行真正的Http接口调用；
 
    Ribbon（负载均衡器）：挑选合适的服务提供端。
-
-5. **HttpClient** ：Http客户端，真正执行Http调用根据上层`Ribbon`传递过来的请求，已经指定了服务地址，则HttpClient开始执行真正的Http请求
-
-
+5. **HttpClient** ：Http客户端，真正执行Http调用根据上层 `Ribbon`传递过来的请求，已经指定了服务地址，则HttpClient开始执行真正的Http请求
 
 #### Hystrix（熔断器）
 
@@ -5758,8 +5319,6 @@ feign:
     enabled: true
 ```
 
-
-
 3. 【在service-edu的client包里面创建熔断器的实现类】创建接口VodClient的实现类，并实现方法，用于调用出错时调用
 
 ```java
@@ -5800,8 +5359,6 @@ P163后半段
             }
 ```
 
-
-
 - 重现在前端页面添加一个课程、章节、小节，然后停掉series-vod服务
 - 在删除小节的接口添加断点，并用Debug启动service_edu，==Debug EduApplication==。
 
@@ -5811,7 +5368,7 @@ P163后半段
 >
 > 1 搭建前台系统环境
 >
-> ​	Nuxt
+>     Nuxt
 >
 > 2 整合前台系统页面
 >
@@ -5853,8 +5410,6 @@ https://nuxtjs.org/
 
 https://www.nuxtjs.cn/
 
-
-
 ### 2 使用Nuxt框架搭建前台环境
 
 - 通过下面命令安装：
@@ -5866,14 +5421,9 @@ $ npx create-nuxt-app <项目名>
 或者直接拷贝。
 
 - 进入项目，`npm install`
-
 - 修改package.json
-
 - 修改nuxt.config.js
-
 - 运行 `npm run dev`
-
-
 
 #### Nuxt环境目录结构
 
@@ -5903,7 +5453,7 @@ npm install vue-awesome-swiper
 
 2. 配置幻灯片插件
 
-在plugins文件夹下新建文件`nuxt-swiper-plugin.js`：
+在plugins文件夹下新建文件 `nuxt-swiper-plugin.js`：
 
 ```js
 import Vue from 'vue'
@@ -5924,21 +5474,10 @@ Vue.use(VueAwesomeSwiper)
   ],
 ```
 
-3. 复制项目使用的静态资源到assets目录 
-
-
-
+3. 复制项目使用的静态资源到assets目录
 4. 复制layouts/default.vue页面
-
-
-
 5. 复制pages/index.vue
-
-
-
 6. 在index.vue中整合幻灯片
-
-
 
 #### nuxt路由
 
@@ -5950,7 +5489,7 @@ Vue.use(VueAwesomeSwiper)
 </router-link>
 ```
 
-`/course`对应到`page/course/index.vue`
+`/course`对应到 `page/course/index.vue`
 
 2. 动态路由
 
@@ -5958,15 +5497,12 @@ Vue.use(VueAwesomeSwiper)
 
 Nuxt的动态路由是以下划线开头的vue文件，参数名位下划线后边的文件名。
 
-
-
 #### 封装axios
 
 参考guli-admin将axios操作封装起来
 
 1. 下载axios， `npm install axios`
-
-2. 创建`utils/request.js`，封装axios：
+2. 创建 `utils/request.js`，封装axios：
 
 ```javascript
 import axios from 'axios'
@@ -5978,8 +5514,6 @@ const service = axios.create({
 export default service
 ```
 
-
-
 ### 3 首页数据banner显示
 
 #### 后端
@@ -5987,7 +5521,6 @@ export default service
 > "CMS" 通常指的是**内容管理系统（Content Management System）**
 
 1. 在service下创建子模块==service_cms==（前台首页banner部分等）【8004】
-
 2. 创建配置文件
 
 ```properties
@@ -6010,7 +5543,6 @@ mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 3. 创建数据库表（`crm_banner`），用代码生成器生成代码
 
-
 ```sql
 CREATE TABLE `crm_banner` (
   `id` char(19) NOT NULL DEFAULT '' COMMENT 'ID',
@@ -6026,11 +5558,7 @@ CREATE TABLE `crm_banner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='首页banner表';
 ```
 
-
-
 4. 后台对banner管理接口，crud操作
-
-
 
 ```mysql
 # 根据id进行降序排列，显示排列之后前8条记录
@@ -6039,13 +5567,9 @@ Select * From edu_course Order By id DESC Limit 8;
 Select * From edu_teacher Order By id Limit 4;
 ```
 
-
-
 5. 前台接口
 
 查询热门课程和名师接口
-
-
 
 🔖后台管理前端页面，实现banner后台的添加修改删除和分页查询操作，和其他后台管理模块类似
 
@@ -6068,12 +5592,7 @@ export default {
 ```
 
 2. 在页面index.vue调用接口得到数据进行显示
-
-
-
 3. nginx中进行访问配置
-
-
 
 ### 4 首页课程和名师
 
@@ -6085,7 +5604,7 @@ export default {
 
 #### 新建前台首页课程名师接口
 
-- 在service-edu模块创建`com.andyron.eduservice.controller.front.IndexFrontController`
+- 在service-edu模块创建 `com.andyron.eduservice.controller.front.IndexFrontController`
 
 查询最新前4条讲师数据，查询最新前8条课程数据
 
@@ -6142,9 +5661,6 @@ public class IndexFrontController {
 ```
 
 2. 在service_base模块中创建redis配置类
-
-
-
 3. 在service-cms模块中添加中添加springboot缓存注解
 
 由于首页数据变化不是很频繁，而且首页访问量相对较大，所以有必要把首页接口数据缓存到redis缓存中，减少数据库压力和提高访问速度。
@@ -6156,7 +5672,6 @@ public class IndexFrontController {
 > 1. `@Cacheable`，根据方法对其返回结果进行缓存，下次请求时，如果缓存存在，则直接读取缓存数据返回；如果缓存不存在，则执行方法，并把返回的结果存入缓存中。一般用在查询方法上。
 >
 >    - value/cacheNames：缓存名，必填，它指定了你的缓存存放在哪块命名空间
->
 >    - key：可选属性，可以使用 SpEL 标签自定义缓存的key
 >
 > ![](images/image-20230406134037599.png)
@@ -6164,8 +5679,8 @@ public class IndexFrontController {
 > 2. `@CachePut`，使用该注解标志的方法，每次都会执行，并将结果存入指定的缓存中。其他方法可以直接从响应的缓存中读取缓存数据，而不需要再去查询数据库。一般用在新增方法上。
 >
 >    属性/方法名同上。
->
 > 3. `@CacheEvict`，使用该注解标志的方法，会清空指定的缓存。一般用在更新或者删除方法上
+>
 >    - 同上
 >    - allEntries：是否清空所有缓存，默认为 false。如果指定为 true，则方法调用后将立即清空所有的缓存
 >    - beforeInvocation：是否在方法执行前就清空，默认为 false。如果指定为 true，则在方法执行前就会清空缓存
@@ -6200,8 +5715,6 @@ public interface CacheKeyPrefix {
 }
 ```
 
-
-
 4. 在service-cms的配置文件中添加redis配置
 
 ```properties
@@ -6216,19 +5729,15 @@ spring.redis.lettuce.pool.max-idle=5
 spring.redis.lettuce.pool.min-idle=0
 ```
 
-
-
 **启动redis服务**
 
 连接redis服务可能遇到的问题
 
 虚拟机中的redis访问，需要关闭防火墙；
 
-注释掉`bind 127.0.0.1`，它表示只允许本地访问；
+注释掉 `bind 127.0.0.1`，它表示只允许本地访问；
 
 ![](images/image-20230406135427240.png)
-
-
 
 > day 12
 >
@@ -6236,15 +5745,13 @@ spring.redis.lettuce.pool.min-idle=0
 >
 > 2 注册接口
 >
-> ​	整合jwt
+>     整合jwt
 >
-> ​	整合阿里云短信微服务
+>     整合阿里云短信微服务
 >
 > 3 登录接口
 >
 > 4 注册和登录前端实现
-
-
 
 ### 5 登录实现流程
 
@@ -6258,28 +5765,18 @@ spring.redis.lettuce.pool.min-idle=0
 
 ![](images/image-20240224093416242.png)
 
-**优点 ：** 
+**优点 ：**
 
 - 用户身份信息独立管理，更好的分布式管理。
 - 可以自己扩展安全策略
 
 **缺点：** 认证服务器访问压力较大。
 
-
-
 单点登录三种常见方式：
 
 1. session广播机制实现（session复制）
-
-
-
 2. 使用cookie+redis实现
-
-
-
 3. 使用token（令牌）实现
-
-    
 
 ![](images/image-20230406204355440.png)
 
@@ -6292,13 +5789,11 @@ spring.redis.lettuce.pool.min-idle=0
 **优点：**
 
 - 无状态： token无状态，session有状态的
-
 - 基于标准化: 你的API可以采用标准化的 JSON Web Token (JWT)
 
 **缺点：**
 
 - 占用带宽
-
 - 无法在服务器端销毁
 
 注：基于微服务开发，选择token的形式相对较多，因此我使用token作为用户认证的标准
@@ -6348,14 +5843,11 @@ JWT的原则是在服务器身份验证之后，将生成一个JSON对象并将�
 - JWT不仅可用于认证，还可用于信息交换。善用JWT有助于减少服务器请求数据库的次数。
 - 生产的token可以包含基本信息，比如id、用户昵称、头像等信息，避免再次查库
 - 存储在客户端，不占用服务端的内存资源
-
 - JWT默认不加密，但可以加密。生成原始令牌后，可以再次对其进行加密。
 - 当JWT未加密时，一些私密数据无法通过JWT传输。
 - JWT的最大缺点是服务器不保存会话状态，所以在使用期间不可能取消令牌或更改令牌的权限。也就是说，一旦JWT签发，在有效期内将会一直有效。
 - JWT本身包含认证信息，token是经过base64编码，所以可以解码，因此token加密前的对象不应该包含敏感信息，一旦信息泄露，任何人都可以获得令牌的所有权限。为了减少盗用，JWT的有效期不宜设置太长。对于某些重要操作，用户在使用时应该每次都进行进行身份验证。
 - 为了减少盗用和窃取，JWT不建议使用HTTP协议来传输代码，而是使用加密的HTTPS协议进行传输。
-
-
 
 #### 整合JWT令牌
 
@@ -6372,8 +5864,6 @@ JWT的原则是在服务器身份验证之后，将生成一个JSON对象并将�
 
 2. 工具类JwtUtils
 
-
-
 ### 6 整合阿里云短信服务
 
 短信验证码
@@ -6381,7 +5871,6 @@ JWT的原则是在服务器身份验证之后，将生成一个JSON对象并将�
 #### 新建短信微服务
 
 1. 子模块**service_msm**
-
 2. 创建包结构、controller、service、配置文件、启动类等等
 3. 配置application.properties
 
@@ -6395,11 +5884,7 @@ P183
 
 ##### 1-申请资质
 
-
-
 ##### 2-申请签名
-
-
 
 ##### 3-申请模版
 
@@ -6469,17 +5954,12 @@ redis，生成验证码发送后把存入redis中，并设置有效时间。
 【我的谷粒学院在线教育网站】您正在申请注册，验证码为：1330，5分钟内有效！
 ```
 
-
-
 ### 7 登录注册
 
 #### 后端
 
 1. 建立子模块**service_ucenter【用户微服务】**
-
-
-
-2. 创建用户表`ucenter_member`，使用代码生成器生成代码；配置文件；创建启动类
+2. 创建用户表 `ucenter_member`，使用代码生成器生成代码；配置文件；创建启动类
 
 ```sql
 CREATE TABLE `ucenter_member` (
@@ -6501,9 +5981,6 @@ CREATE TABLE `ucenter_member` (
 ```
 
 3. 登录接口方法
-
-
-
 4. 创建用于注册的VO对象
 
 ```java
@@ -6521,15 +5998,8 @@ public class RegisterVo {
 }
 ```
 
-
-
 5. 注册接口方法
-
-
-
 6. 创建接口：根据token获取用户信息
-
-
 
 #### 前端
 
@@ -6558,7 +6028,7 @@ Vue.use(VueAwesomeSwiper)
 
 3. 整合注册页面
 
-- 在layouts创建注册登录页面的额布局页面`sign.vue`：
+- 在layouts创建注册登录页面的额布局页面 `sign.vue`：
 
 ```vue
 <template>
@@ -6573,31 +6043,24 @@ Vue.use(VueAwesomeSwiper)
 ```
 
 - 修改首页登录和注册地址
-
 - 创建注册页面
-- 创建接口文件`register.js`
+- 创建接口文件 `register.js`
 - 在注册页面实现验证码发送后的倒计时效果
 
 ```js
 setInterval()
 ```
 
-
-
 > 🔖 前端框架的验证规则
 >
 > ```html
 > :rules="[{ required: true, message: '请输入你的昵称', trigger: 'blur' }]"
 > ```
->
-> 
-
-
 
 4. 整合登录页面
 
-- 接口文件`login.js`
-- 下载插件`npm install js-cookie`
+- 接口文件 `login.js`
+- 下载插件 `npm install js-cookie`
 - 页面调用
 
 > 登录和登录成功之后首页面显示数据实现过程分析：
@@ -6633,8 +6096,6 @@ submitLogin() {
 }
 ```
 
-
-
 - 在request.js添加拦截器，用于传递token信息
 
 ```js
@@ -6652,7 +6113,7 @@ service.interceptors.request.use(
 )
 ```
 
-- 在首页显示用户信息`default.vue`
+- 在首页显示用户信息 `default.vue`
 
 ```
 showInfo() {
@@ -6664,10 +6125,7 @@ showInfo() {
 }
 ```
 
-
-
 - 登出
-
 
 > day13
 
@@ -6686,8 +6144,6 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 **开发系统间授权**
 
 ![](images/image-20230407154645745.png)
-
-
 
 资源拥有者：照片拥有者
 
@@ -6713,21 +6169,15 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 
 ![](images/image-20240224172509507.png)
 
-
-
 授权方式：
 
 - 密码用户名直接复制
-
 - 通用开发者key
 
   适用于合作商或授信的不同业务部门之间
-
 - 颁发令牌
 
   需要考虑如何管理令牌、颁发令牌、吊销令牌，需要统一的协议，因此就有了OAuth2协议
-
-
 
 #### 现代微服务安全
 
@@ -6789,17 +6239,13 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 
 OAuth2仅仅是一个解决方案
 
-
-
-
-
 ### 9 微信扫描登录 🔖
 
 #### 一、准备工作
 
 [微信开发平台](https://open.weixin.qq.com/)（注意与[微信公众平台](https://mp.weixin.qq.com/)的区别）
 
-文档https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html 
+文档https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
 
 准备p200 🔖
 
@@ -6816,15 +6262,12 @@ OAuth2仅仅是一个解决方案
 
 获取access_token时序图
 
-
-
 ![](images/image-20230407190910675.png)
 
 #### 二、后端开发
 
 1. 在service_ucenter模块的配置文件中写入微信开发平台需要的相关配置
 2. 创建配置类读取上面的配置信息
-
 3. 生成微信扫描二维码
 
    直接请求微信提供的固定地址，在地址后面拼接参数即可
@@ -6858,17 +6301,11 @@ OAuth2仅仅是一个解决方案
         </dependency>
 ```
 
-
-
 ![](images/image-20230407224033667.png)
-
-
 
 首页显示微信扫描用户后的信息
 
 ![](images/image-20230407224438173.png)
-
-
 
 > Day14
 >
@@ -6897,19 +6334,13 @@ pages/teacher/index.vue
 >
 > 前端 *asyncData* p209
 
-
-
 #### 名师详情
 
 pages/teacher/_id.vue
 
-
-
 #### 名师后端
 
 模块service_edu，com.andyron.eduservice.controller.front.TeacherFrontController
-
-
 
 #### 课程列表
 
@@ -6927,7 +6358,6 @@ pages/course/index.vue
    查询课程列表的方法
 
    查询所有分类
-
 2. 页面调用
 
 🔖🐞 p214
@@ -6955,8 +6385,6 @@ pages/course/_id.vue
 
    所属讲师
 
-
-
 > 在项目中很多时候需要把model转换成dto用于网站信息的展示，按前端的需要传递对象的数据，==保证model对外是隐私的==，例如密码之类的属性能很好地避免暴露在外，同时也会减小数据传输的体积。
 
 #### 整合阿里云视频播放器
@@ -6974,7 +6402,7 @@ https://help.aliyun.com/document_detail/125570.html?spm=a2c4g.29932.0.0.196f7f48
 <a :href="'/player/' + video.videoSourceId" target="_blank">
 ```
 
-创建页面`player/_vid.vue`，动态路由
+创建页面 `player/_vid.vue`，动态路由
 
 ```java
 @Data
@@ -6987,17 +6415,9 @@ public class VideoVo {
 
 🐞 同样的 connect ECONNREFUSED 问题
 
-
-
 > 阿里播发器组件
 >
 > https://player.alicdn.com/aliplayer/presentation/index.html?spm=a2c4g.417353.0.0.2ec2147epOHSnP&type=cover
-
-
-
-
-
-
 
 > day15
 >
@@ -7005,8 +6425,7 @@ public class VideoVo {
 >
 > 2 课程支付功能
 >
-> ​	微信扫码支付
->
+>     微信扫码支付
 
 ### 11 课程评论 🔖
 
@@ -7035,39 +6454,21 @@ CREATE TABLE `edu_comment` (
 
 ![](images/image-20240224185351752.png)
 
-
-
 ### 12 课程支付🔖
 
 #### 课程支付需求描述
 
-
-
 #### 创建支付模块和准备
-
-
 
 #### 开发创建订单接口
 
-
-
 #### 开发获取订单接口
-
-
 
 #### 开发微信支付接口
 
-
-
 #### 课程支付前端整合
 
-
-
 #### 课程详情页面功能完善
-
-
-
-
 
 > Day16
 >
@@ -7077,11 +6478,11 @@ CREATE TABLE `edu_comment` (
 >
 > 3 系统后台-统计分析模块
 >
-> ​	统计分析模块需求
+>     统计分析模块需求
 >
-> ​	生成统计数据
+>     生成统计数据
 >
-> ​	使用秃瓢显示统计数据
+>     使用秃瓢显示统计数据
 
 #### 支付之后流程
 
@@ -7106,8 +6507,6 @@ CREATE TABLE `statistics_daily` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='网站统计日数据';
 ```
 
-
-
 ### 需求分析
 
 1. 统计在线教育项目找中，每一天有多少注册人数和其他数据
@@ -7121,8 +6520,6 @@ CREATE TABLE `statistics_daily` (
 SELECT COUNT（*） FROM ucenter_menber uc WHERE DAIE（uC.gnt_create）='2020-03-09'
 ```
 
-
-
 ### 具体
 
 统计分析数据表
@@ -7132,8 +6529,6 @@ Date(gmt_create)='2020-03-10'
 ```
 
 ![](images/image-20230413061800526.png)
-
-
 
 ### 测试
 
@@ -7147,14 +6542,11 @@ Date(gmt_create)='2020-03-10'
 >
 > 分层不同团队开，可能是不同的数据库，不同的服务器
 
-
-
 ### 后台前端
 
 生成数据
 
 1. 配置nginx
-
 2. 添加路由
 3. 创建页面
 4. 创建api
@@ -7172,7 +6564,7 @@ public class ScheduledTask {
     @Autowired
     private StatisticsDailyService staService;
 
-    
+  
     /**
      * 在每天凌晨1点，把前一天数据进行查询添加统计
      */
@@ -7185,8 +6577,6 @@ public class ScheduledTask {
 
 > 在生成cron表达式（七域表达式）：https://www.pppet.net/
 
-
-
 ### 图表显示
 
 #### echarts
@@ -7198,12 +6588,6 @@ npm install --save echarts
 ```
 
 2. 整合页面
-
-
-
-
-
-
 
 > day17
 >
@@ -7223,8 +6607,6 @@ npm install --save echarts
 
 把远程数据库里面内容同步到本地库。
 
-
-
 ### 准备工作
 
 ![](images/image-20230413172913286.png)
@@ -7236,7 +6618,7 @@ npm install --save echarts
 SHOW VARIABLES LIKE 'log_bin';
 ```
 
-开启binlong功能， 在配置文件`/etc/my.cnf`中追加：
+开启binlong功能， 在配置文件 `/etc/my.cnf`中追加：
 
 ![](images/image-20230413181045328.png)
 
@@ -7275,18 +6657,13 @@ canal.instance.filter.regex=.*\\..*
 sh bin/startup.sh 
 ```
 
-
-
 ### 代码
 
 1. 新建模块canal_clientedu
-
 2. 引入依赖
 3. 创建配置文件
 4. 创建CanalClient
 5. 修改启动类，让其启动后一直监控远程Linux系统数据库的变化
-
-
 
 🔖🐞
 
@@ -7323,8 +6700,6 @@ Caused by: java.nio.channels.UnresolvedAddressException: null
 Disconnected from the target VM, address: '127.0.0.1:59776', transport: 'socket'
 ```
 
-
-
 > canal_clientedu模块暂时不影响主模块开发
 
 ## 15 网关
@@ -7358,16 +6733,12 @@ Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project R
 Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring Cloud Gateway中几个重要的概念。
 
 1. 路由。 路由是网关最基础的部分，路由信息有一个ID、一个目的URL、一组断言和一组Filter组成。如果断言路由为真，则说明请求的URL和配置匹配。
-
-2. 断言（匹配规则）。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的`ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
-
+2. 断言（匹配规则）。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的 `ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
 3. 过滤器。一个标准的Spring Web Filter。 Soring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。
 
 ![](images/image-20230416115534168.png)
 
 上图，Spring Cloud Gateway发出求。然后再由Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web handler。Handler再通过指定的过滤器链将请求发送到我们实际的服务执行业务逻辑，然后返回。
-
-
 
 ### 4 Gateway具体使用
 
@@ -7402,8 +6773,6 @@ Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring 
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 ```
-
-
 
 3. 编写配置文件
 
@@ -7441,8 +6810,6 @@ spring.cloud.gateway.routes[2].predicates= Path=/ucenterservice/**
 # ...
 ```
 
-
-
 4. 启动类
 
 ```java
@@ -7469,19 +6836,13 @@ http://localhost:8222/eduservice/teacher/findAll
 
 通过原本的端口和网关都可以访问
 
-
-
-
-
 Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态服务器是通用服务名时，就会把请求平均分配）（nginx中需要额外的配置）
 
 > 负载均衡的几种方式：轮询、权重、最少请求时间（谁的请求时间最短访问谁）
 
 ![](images/image-20230416121409765.png)
 
-
-
-> 之前在控制器上加`@CrossOrigin`为了跨域，现在跨域可以统一交给网关处理。
+> 之前在控制器上加 `@CrossOrigin`为了跨域，现在跨域可以统一交给网关处理。
 >
 > ```java
 > /**
@@ -7497,11 +6858,11 @@ Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态
 >         config.addAllowedMethod("*");
 >         config.addAllowedOrigin("*");
 >         config.addAllowedHeader("*");
-> 
+>
 >         // UrlBasedCorsConfigurationSource
 >         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
 >         source.registerCorsConfiguration("/**", config);
-> 
+>
 >         return new CorsWebFilter(source);
 >     }
 > }
@@ -7513,10 +6874,6 @@ Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态
 >
 > ![](images/image-20230416130535886.png)
 
-
-
-
-
 把前端的访问端口，从之前的nginx改为网关的(`.env.development`文件)：
 
 ```js
@@ -7526,17 +6883,11 @@ Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态
 VUE_APP_BASE_API = 'http://localhost:8222/'
 ```
 
-
-
-
-
 ### 5 网关其它作用
 
 #### 网关解决跨域问题
 
 `CorsConfig`
-
-
 
 #### 全局Filter，统一处理会员登录与外部不允许访问的服务 🔖
 
@@ -7549,8 +6900,6 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 `ErrorHandlerConfig`
 
 `JsonExceptionHandler`
-
-
 
 ## 16 权限管理
 
@@ -7568,23 +6917,17 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 菜单删除功能
 
-
-
 2. 角色管理
 
 添加、修改、删除、查询
 
 为角色分配菜单
 
-
-
 3. 用户管理
 
 添加、修改、删除、查询
 
 为用户分配角色
-
-
 
 ### 权限管理相关表和之间的关系
 
@@ -7625,38 +6968,14 @@ CREATE TABLE `acl_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='权限';
 ```
 
-
-
 ### 整合权限管理模块
 
 1. 创建子模块service_acl
-
-
-
 2. 引入依赖
-
-
-
 3. 编写配置文件
-
-
-
 4. 编写启动类
-
-
-
 5. 生成相关代码
-
-
-
-
-
-
-
 6. 在common模块下创建spring_security子模块
-
-
-
 7. 编写接口
 
 查询所有菜单：
@@ -7665,30 +6984,18 @@ CREATE TABLE `acl_permission` (
 
 递归删除菜单
 
-
-
 给角色分配菜单
-
-
 
 🔖// TODO 给acl模块表做逻辑删除
 
-
-
 > swagger测试时，需要临时关闭spring security
 
-
-
-> day18 
+> day18
 >
 > 1. 整合Spring Security权限框架
->
 > 2. 整合权限管理前端页面
->
 > 3. Nacos配置中心（用Nacos替换Spring Cloud config）
 > 4. 提交git
-
-
 
 ### Spring Security
 
@@ -7697,13 +7004,11 @@ CREATE TABLE `acl_permission` (
 Spring Security 基于 Spring 框架，提供了一套==web应用安全性==的完整解决方案。一般来说，wveb 应用的安全性包括==用户认证==(Authentication〉和==用户授权==( Authorization〉两个部分。
 
 - 用户认证：验证某个用户是否为系统中的合法主体，也就是说**用户能否访问该系统**。用户认证一般要求用户提供用户名和密码。系统通过校验用户名和密码来完成认证过程。
-
 - 用户授权：验证某个用户是否有权限执行某个操作。在一个系统中，不同用户所具有的权限是不同的。比如对一个文件来说，有的用户只能进行读取，而有的用户可以进行修改。一般来说，系统会为不同的用户分配不同的角色，而每个角色则对应一系列的权限。
 
 **==Spring Security本质就是filter==，对请求的路径进行过滤。**
 
 - 如果是基于Session，那么Spring-security会对cookie 里的sessionid进行解析，找到服务器存储的sesion信息，然后判断当前用户是否符合请求的要求。
-
 - 如果是token，则是解析出token，然后将当前请求加入到Spring-Security管理的权限信息中去。
 
 #### 2 认证与授权实现思路
@@ -7718,18 +7023,13 @@ Spring Security 基于 Spring 框架，提供了一套==web应用安全性==的�
 
 ![](images/image-20230417005852858.png)
 
-
-
 #### 整合Spring Security权限框架
 
 1. 子模块spring_security
-
 2. 依赖
 3. 代码结构
 
 ![](images/image-20230417010432349.png)
-
-
 
 - 在service_acl模块中引入spring_security模块
 
@@ -7741,23 +7041,17 @@ Spring Security 基于 Spring 框架，提供了一套==web应用安全性==的�
 </dependency>
 ```
 
-
-
-- 创建查询登录和用户权限的类`UserDetailsServiceImpl`
+- 创建查询登录和用户权限的类 `UserDetailsServiceImpl`
 
 P274
 
 ### 权限管理前端整合
 
-P275 
+P275
 
 ```
 npm install --save vuex-persistedstate
 ```
-
-
-
-
 
 ## 17 Nacos配置中心
 
@@ -7792,9 +7086,7 @@ Nacos可以与Spring, Spring Boot, spring cloud 集成，并能代替 Spring Clo
 如果微服务架构中没有使用统一配置中心时，所存在的问题：
 
 - 配置文件分散在各个项目里，不方便维护
-
 - 配置内容安全与权限
-
 - 更新配置后，项目需要重启
 
 nacos配置中心：系统配置的集中管理（编辑、存储、分发）、动态更新不重启、回滚配置（变更管理、历史版本管理、变更审计）等所有与配置相关的活动。
@@ -7806,8 +7098,6 @@ Spring Cloud Config作为官方提供的配置中心，适合学习和刚开始�
 Nacos作为阿里2018年开源的产品，有阿里背书，且服务发现和配置集与一体。但是从目前的发展来看，阿里开发重心在于服务发现端，配置中心相关功能开发相对滞后，适合中小型企业使用
 
 Apollo是携程2016年开源的配置中心，经历了5年的迭代，现在已经是一个很完善的产品，能满足大型互联网的大多数需要
-
-
 
 ### 二、读取Nacos配置中心的配置文件
 
@@ -7822,28 +7112,16 @@ Data ID 的完整规则格式如下
 `${prefix}-${spring.profile.active}.${file-extension}`
 
 - prefix 默认为所属工程配置spring.application.name 的值（即：nacos-provider），也可以通过配置项 spring.cloud.nacos.config.prefix来配置。
-
 - spring.profiles.active=dev 即为当前环境对应的 profile。 注意：当 spring.profiles.active 为空时，对应的连接符 - 也将不存在，dataId 的拼接格式变成 `${prefix}.${file-extension}`
-
 - file-exetension 为配置内容的数据格式，可以通过配置项 spring.cloud.nacos.config.file-extension 来配置。目前只支持 properties 和 yaml 类型。
-
-
 
 #### 2、以service-statistics模块为例
 
 **（1）在service中引入依赖**
 
-
-
 （2）创建bootstrap.properties配置文件
 
-
-
 （3）把项目之前的application.properties内容注释，启动项目查看效果
-
-
-
-
 
 #### 3、补充：springboot配置文件加载顺序
 
@@ -7855,8 +7133,6 @@ bootstrap与application
 
 bootstrap.yml（bootstrap.properties）先加载
 application.yml（application.properties）后加载
-
-
 
 bootstrap.yml 用于应用程序上下文的引导阶段。
 
@@ -7917,8 +7193,6 @@ spring.application.name=service-statistics
 spring.cloud.nacos.config.namespace=13b5c197-de5b-47e7-9903-ec0538c9db01
 ```
 
-
-
 namespace的值为：
 
 ![](images/a2eeac43-a089-452a-9228-7fbf23527ded.png)
@@ -7927,15 +7201,9 @@ namespace的值为：
 
 ### 四、多配置文件加载
 
-
-
-
-
 ## 18 Git
 
 远程仓库
-
-
 
 - 码云的密码修改位置windows：
 
@@ -7947,17 +7215,12 @@ namespace的值为：
 
 或者直接删除项目根目录下的.git文件夹
 
-
-
-## 19 项目部署
+## 19 项目部署 🔖
 
 > 持续化部署工具jenkins
 >
 > - 手动打包运行
->
 > - 使用jenkins实现完整过程
-
-
 
 ### 手动打包
 
@@ -7965,19 +7228,13 @@ namespace的值为：
 
 demojenkins
 
-
-
 #### 使用Maven把工程进行打包，运行
 
-进入项目根目录运行`mvn clean package`进行打包
-
-
+进入项目根目录运行 `mvn clean package`进行打包
 
 #### 运行jar包
 
 `java  –jar  jar包名称`
-
-
 
 ### Jenkins（安装）
 
@@ -7992,8 +7249,6 @@ cd /usr/local
 
 jdk-8u121-linux-x64.tar.gz
 ```
-
- 
 
 第二步：解压安装包
 
@@ -8017,11 +7272,11 @@ export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 ```
 
-通过命令`source /etc/profile`让profile文件立即生效
+通过命令 `source /etc/profile`让profile文件立即生效
 
 第五步、测试是否安装成功
 
-使用`java -version`，出现版本
+使用 `java -version`，出现版本
 
 ##### maven
 
@@ -8032,33 +7287,111 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 ##### docker
 
 
-
 #### 2、安装jenkins
 
+https://www.jenkins.io/
+
+https://www.jenkins.io/zh/doc/book/installing/
+
+使用Jenkins的war包进行安装。（Jenkins的Web应用程序ARchive（WAR）文件版本可以安装在任何支持Java的操作系统或平台上。)
 
 
+第一步：上传或下载安装包
+
+```shell
+mkdir /usr/local/jenkins
+
+cd /usr/local/jenkins
+
+mv jenkins.war /usr/local/jenkins/
+```
+
+
+第二步：启动
+
+```shell
+nohup java -jar  /usr/local/jenkins/jenkins.war >/usr/local/jenkins/jenkins.out &
+```
+
+> `nohup`表示在终端退出时，让进程在后台继续运行。它的全称为“no hang up”，意为“不挂起”。
+
+连续两次回车键
+
+关闭使用 `kill -9`杀掉进程
+
+```shell
+ps -ef | grep jenkins
+kill -9 12708
+```
+
+第二步：访问
+
+[http://ip:8080](http://ip:8080)
+
+#### 3、初始化 Jenkins 插件和管理员用户
+
+解锁
+
+>  注意：配置国内的镜像
+>
+> 官方下载插件慢 更新下载地址
+>
+> ```shell
+> cd {你的Jenkins工作目录}/updates  #进入更新配置位置
+> cd /root/.jenkins/updates/
+>
+> # 把国外的镜像替换为国内的额
+> sed -i 's#https://updates.jenkins.io/download#https://mirrors.tuna.tsinghua.edu.cn/jenkins#g' default.json
+> sed -i 's#http://www.google.com#https://www.baidu.com#g' default.json
+>
+> sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json && sed -i 's/http:\/\/www.google.com/https:\/\/www.baidu.com/g' default.json
+> ```
+>
+> 这是直接修改的配置文件，如果前边Jenkins用sudo启动的话，那么这里的两个sed前均需要加上sudo
+>
+> 重启Jenkins，安装插件
+
+
+
+`/root/.jenkins/secrets/initialAdminPassword`
+
+andy 123456
 
 
 ### Jenkins（配置）
 
+1、配置自动化部署需要环境
 
+![image-1709043134862](images/image-1709043134862.png)
+
+2、配置jdk环境
+
+![image-1709043188802](images/image-1709043188802.png)
+
+3、配置maven环境
+
+
+4、配置git环境
 
 
 
 ### Jenkins（自动化过程）
 
+#### 1、准备工作
 
+（1）需要项目工程，需要做修改
+
+第一项目需要Dockerfile文件
+
+
+
+#### 2、在jenkins管理界面创建自动化任务
 
 
 
 ### Jenkins（idea打包）
 
-
-
-
-
-
-
+![image-1709043419985](images/image-1709043419985.png)
 
 
 ## 20 在线教育项目总结
@@ -8082,8 +7415,8 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 #### 二、后台管理系统功能
 
 1. 登录、注册功能（SpringSecurity框架）
-
 2. 权限管理模块
+
    1. 菜单管理：列表、添加、修改、删除
    2. 角色管理：列表、添加、修改、删除、批量删除、为角色分配菜单
    3. 用户管理：列表、添加、修改、删除、批量删除、为用户分配角色
@@ -8101,26 +7434,23 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 3. 讲师管理模块
 
-​	条件查询分页列表、添加、修改、删除
+    条件查询分页列表、添加、修改、删除
 
 4. 课程分类模块
+
    1. 添加课程分类。读取Excel里面课程分类数据，添加到数据库中。
    2. 课程分类列表。使用树形结构显示课程分类列表。
-
 5. 课程管理模块
 
    1. 课程列表功能
-
    2. 添加课程
 
       课程发布流程：第一步填写课程基本信息，第二步添加课程大纲（章节和小节），第三步课程信息确认，最终课程发布
 
-      **课程如何判断是否已经被发布了？**使用status字段 
+      **课程如何判断是否已经被发布了？**使用status字段
 
       **课程添加过程中，中途把课程停止添加，重新去添加新的课程，如何找到之前没有发布完成课程，继续进行发布？** 到课程列表中根据课程状态查询未发布的课程，点击课程右边超链接把课程继续发布完成
-
    3. **添加小节上传课程视频**
-
 6. 统计分析模块
 
 **（1）生成统计数据**
@@ -8157,27 +7487,17 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 是针对特定问题解决方案
 
-主要有两个问题：开放系统间授权，分布式访问 
+主要有两个问题：开放系统间授权，分布式访问
 
 **如何获取扫描人信息过程？**
 
 扫描之后微信接口返回code（临时票据），拿着code值请求微信固定地址，得到两个值：access_token（访问凭证）和openid（微信唯一标识）,你拿着这两个值再去请求微信固定的地址，得到微信扫描人信息（比如昵称，头像等等）
 
- 
-
 4. 名师列表功能
-
- 
-
 5. 名师详情功能
-
- 
-
 6. 课程列表功能
 
 条件查询分页列表功能
-
- 
 
 7. 课程详情页
 
@@ -8185,12 +7505,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 （2）判断课程是否需要购买
 
- 
-
 8. 课程视频在线播放
-
- 
-
 9. 课程支付功能（微信支付）
 
 （1）生成课程订单
@@ -8199,16 +7514,11 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 （3）微信最终支付
 
- 
-
 微信支付实现流程：
 
 - 如果课程是收费课程，点击立即购买，生成课程订单
-
 - 点击订单页面去支付，生成微信支付二维码
-
 - 使用微信扫描支付二维码实现支付
-
 - 支付之后，每隔3秒查询支付状态（是否支付成功），如果没有支付成功等待，如果支付成功之后，更新订单状态（已经支付状态），向支付记录表添加支付成功记录
 
 ### 总结技术点
@@ -8229,12 +7539,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 *** ES6规范**
 
- 
-
 2. Element-ui
-
- 
-
 3. nodejs
 
 是JavaScript运行环境，不需要浏览器直接运行js代码，模拟服务器效果
@@ -8291,8 +7596,6 @@ npm命令： npm init    npm install  依赖名称
 
 \* 配置文件加载顺序：bootstrap   application   application-dev
 
- 
-
 ##### 3、SpringCloud
 
 （1）是很多框架总称，使用这些框架实现微服务架构，基于SpringBoot实现
@@ -8313,31 +7616,21 @@ npm命令： npm init    npm install  依赖名称
 
 （3）项目中，使用阿里巴巴Nacos，替代SpringCloud一些组件
 
- 
-
 （4）Nacos
 
 \* 使用Nacos作为注册中心
 
 \* 使用Nacos作为配置中心
 
- 
-
 （5）Feign
 
 \* 服务调用，一个微服务调用另外一个微服务，实现远程调用
 
- 
-
 （6）熔断器
-
- 
 
 （7）Gateway网关
 
 \* SpringCloud之前zuul网关，目前Gateway网关
-
- 
 
 **（8）版本**
 
@@ -8354,8 +7647,6 @@ npm命令： npm init    npm install  依赖名称
 （4）逻辑删除
 
 （5）代码生成器
-
- 
 
 ##### 5、EasyExcel
 
@@ -8385,9 +7676,7 @@ npm命令： npm init    npm install  依赖名称
 
 （2）Redis数据类型
 
-（3）使用Redis作为缓存，不太重要或者不经常改变数据适合放到Redis作为缓存 
-
- 
+（3）使用Redis作为缓存，不太重要或者不经常改变数据适合放到Redis作为缓存
 
 3、Nginx
 
@@ -8395,23 +7684,17 @@ npm命令： npm init    npm install  依赖名称
 
 （2）请求转发，负载均衡，动静分离
 
- 
-
 4、OAuth2+JWT
 
 （1）OAuth2针对特定问题解决方案
 
 （2）JWT包含三部分
 
- 
-
 5、HttpClient
 
 （1）发送请求返回响应的工具，不需要浏览器完成请求和响应的过程
 
 （2）应用场景：微信登录获取扫描人信息，微信支付查询支付状态
-
- 
 
 6、Cookie
 
@@ -8425,21 +7708,15 @@ npm命令： npm init    npm install  依赖名称
 
 \* 但是可以设置cookie有效时长  setMaxAge
 
- 
-
 7、微信登录
 
 8、微信支付
-
- 
 
 9、阿里云OSS
 
 （1）文件存储服务器
 
 （2）添加讲师时候上传讲师头像
-
- 
 
 10、阿里云视频点播
 
@@ -8449,19 +7726,13 @@ npm命令： npm init    npm install  依赖名称
 
 \* 使用视频播放凭证
 
- 
-
 11、阿里云短信服务
 
 （1）注册时候，发送手机验证码
 
- 
-
 12、Git
 
 （1）代码提交到远程Git仓库
-
- 
 
 13、Docker+Jenkins
 
@@ -8470,8 +7741,6 @@ npm命令： npm init    npm install  依赖名称
 （2）idea打包
 
 （3）jenkins自动化部署过程
-
-
 
 ### 总结项目问题
 
@@ -8519,11 +7788,6 @@ npm命令： npm init    npm install  依赖名称
 
 通过配置实现
 
-
-
-
-
-
 > 问题汇总：
 >
 > - exports 和 module.exports 的区别是什么？
@@ -8545,7 +7809,7 @@ npm命令： npm init    npm install  依赖名称
 >
 > ```js
 > window.location.href = "/";
-> 
+>
 > this.$router.push({path:'/login'})
 > ```
 >
@@ -8562,6 +7826,3 @@ npm命令： npm init    npm install  依赖名称
 > ---
 >
 > - 后台讲师头像上传时、统计数据查询出现网关错误
-
-
-
