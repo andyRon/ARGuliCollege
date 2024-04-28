@@ -400,37 +400,37 @@ ALTER TABLE `user` ADD COLUMN `version` INT;
    ```java
    public interface BaseMapper<T> {
        int insert(T var1);
-
+   
        int deleteById(Serializable var1);
-
+   
        int deleteByMap(@Param("cm") Map<String, Object> var1);
-
+   
        int delete(@Param("ew") Wrapper<T> var1);
-
+   
        int deleteBatchIds(@Param("coll") Collection<? extends Serializable> var1);
-
+   
        int updateById(@Param("et") T var1);
-
+   
        int update(@Param("et") T var1, @Param("ew") Wrapper<T> var2);
-
+   
        T selectById(Serializable var1);
-
+   
        List<T> selectBatchIds(@Param("coll") Collection<? extends Serializable> var1);
-
+   
        List<T> selectByMap(@Param("cm") Map<String, Object> var1);
-
+   
        T selectOne(@Param("ew") Wrapper<T> var1);
-
+   
        Integer selectCount(@Param("ew") Wrapper<T> var1);
-
+   
        List<T> selectList(@Param("ew") Wrapper<T> var1);
-
+   
        List<Map<String, Object>> selectMaps(@Param("ew") Wrapper<T> var1);
-
+   
        List<Object> selectObjs(@Param("ew") Wrapper<T> var1);
-
+   
        IPage<T> selectPage(IPage<T> var1, @Param("ew") Wrapper<T> var2);
-
+   
        IPage<Map<String, Object>> selectMapsPage(IPage<T> var1, @Param("ew") Wrapper<T> var2);
    }
    ```
@@ -608,7 +608,7 @@ MP中乐观锁具体实现：
    Page<User> page = new Page<>(1, 3);
    // 查询结果所有数据都会被封装到page对象里
    userMapper.selectPage(page, null);
-
+   
    // 通过page对象获取分页数据
    System.out.println(page.getCurrent());
    System.out.println(page.getRecords());  // 没页数据list集合
@@ -739,13 +739,13 @@ Wrapper ： 条件构造抽象类，最顶端父类
   AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件
 
     QueryWrapper ： Entity 对象封装操作类，不是用lambda语法
-
+    
     UpdateWrapper ： Update 条件封装，用于Entity对象更新操作
 
   AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。
 
     LambdaQueryWrapper ：看名称也能明白就是用于Lambda语法使用的查询Wrapper
-
+    
     LambdaUpdateWrapper ： Lambda 更新封装Wrapper
 
 > 第二天
@@ -977,7 +977,7 @@ swagger的作用：
    @Configuration
    @EnableSwagger2
    public class SwaggerConfig {
-
+   
        @Bean
        public Docket webApiConfig() {
            return new Docket(DocumentationType.SWAGGER_2)
@@ -988,7 +988,7 @@ swagger的作用：
                    .paths(Predicates.not(PathSelectors.regex("/error.*")))
                    .build();
        }
-
+   
        private ApiInfo webApiInfo() {
            return new ApiInfoBuilder()
                    .title("网站-课程中心API文档")
@@ -1158,13 +1158,13 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
            this.setFieldValByName("gmtCreate", new Date(), metaObject);
            this.setFieldValByName("gmtModified", new Date(), metaObject);
        }
-
+   
        @Override
        public void updateFill(MetaObject metaObject) {
            this.setFieldValByName("gmtModified", new Date(), metaObject);
        }
    }
-
+   
    ```
 3. 添加接口方法
 
@@ -1323,7 +1323,7 @@ Logback和log4j非常相似，logback相对于log4j的一些优点：https://blo
    ```xml
        ...
    		<property name="log.path" value="/Users/andyron/tmp/guili_log"/>
-
+   
        <property name="CONSOLE_LOG_PATTERN"
                  value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>
    		...
@@ -2361,7 +2361,7 @@ babel --version
 
    ```javascript
    "use strict";
-
+   
    var input = [1, 2, 3];
    input = input.map(function (item) {
      return item + 1;
@@ -2401,7 +2401,7 @@ Javascript不是一个中模块化编程语言，它不支持“类”（class�
    const subtract = function(a, b){
        return parseInt(a) - parseInt(b)
    }
-
+   
    // 2 设置哪些方法可以被其它js文件调用
    module.exports = {
        sum,
@@ -2414,7 +2414,7 @@ Javascript不是一个中模块化编程语言，它不支持“类”（class�
    // 调用01.js里面的方法
    // 1 引入01.js文件
    const m = require('./01.js')
-
+   
    // 2 调用
    console.log(m.sum(1, 2))
    console.log(m.subtract(10, 3))
@@ -2540,7 +2540,7 @@ $ webpack -v
    ```javascript
    const common = require('./common.js')
    const utils = require('./utils.js')
-
+   
    common.info("hello world!" + utils.add(100, 200));
    ```
 3. 创建webpack的配置文件 `webpack.config.js`
@@ -2696,13 +2696,13 @@ npm run dev
 
    ```bash
    $ npm run dev
-
+   
    > vue-admin-template@4.4.0 dev
    > vue-cli-service serve
-
+   
     INFO  Starting development server...
    98% after emitting CopyPlugin
-
+   
     DONE  Compiled successfully in 3870ms                                              下午10:56:12
 
 
@@ -2713,7 +2713,7 @@ npm run dev
 
 #### 前端项目环境说明
 
-```
+   ```
 . 
 ├── build // 构建脚本
 ├── config // 全局配置 
@@ -2733,7 +2733,7 @@ npm run dev
 4. `config/`目录。旧版本
 5. `src`目录
 
-   ```
+```
    src
    	api					定义调用方法
    	assets			静态资源
@@ -2751,7 +2751,7 @@ npm run dev
 
    重点：api、router、views，这是之后开发经常修改的地方。
 
-```
+   ```
 npm run dev
 ```
 
@@ -3066,7 +3066,7 @@ export function getList(params) {
            讲师添加
        </div>
    </template>
-
+   
    <script>
    </script>
    ```
@@ -3075,7 +3075,7 @@ export function getList(params) {
    ```js
    import rquest from '@/utils/request'
    // request.js 封装了axios请求
-
+   
    export default {
        // 1 讲师列表（条件查询）
        getTeacherListPage(current, limit, teacherQuery) {
@@ -3095,17 +3095,17 @@ export function getList(params) {
    <script>
    // 引入调用teacher.js文件
    import teacher from "@/api/edu/teacher";
-
+   
    /*
    export default 表示被别人调用
    原始使用Vue，需要new Vue({})
    现在不需要这样写，在main.js中已经封装好了
    */
    export default { // 写核心代码位置
-
+   
      	// 两种写法形式都可以
        // data: {
-
+   
        // },
        data() {  // 定义当页面中使用的变量和初始值
            return {
@@ -3167,7 +3167,7 @@ export function getList(params) {
          <el-option label="首席讲师" :value="2"></el-option>
        </el-select>
      </el-form-item>
-
+   
      <el-form-item label="添加时间">
        <el-date-picker v-model="teacherQuery.begin" 
                        placeholder="选择开始时间"
@@ -3175,7 +3175,7 @@ export function getList(params) {
                        value-format="yyyy-MM-dd HH:mm:ss"
                        default-time="00:00:00"></el-date-picker>
      </el-form-item>
-
+   
      <el-form-item label="">
        <el-date-picker v-model="teacherQuery.end" 
                        placeholder="选择截止时间"
@@ -3183,10 +3183,10 @@ export function getList(params) {
                        value-format="yyyy-MM-dd HH:mm:ss"
                        default-time="00:00:00"></el-date-picker>
      </el-form-item>
-
+   
      <el-button type="primary" icon="el-icon-search" @click="getList()">查询</el-button>
      <el-button type="default" @click="resetData()">清空</el-button>
-
+   
    </el-form>
    ```
 
@@ -3505,12 +3505,12 @@ https://www.aliyun.com/
 
    ```properties
    server.port=8002
-
+   
    # 服务名
    spring.application.name=service-oss
-
+   
    spring.profiles.active=dev
-
+   
    # 阿里云oss配置
    aliyun.oss.file.endpoint=
    aliyun.oss.file.keyid=
@@ -3523,7 +3523,7 @@ https://www.aliyun.com/
 
    ```
    Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
-
+   
    Reason: Failed to determine a suitable driver class
    ```
 
@@ -3700,7 +3700,7 @@ PanThumb
    <el-form-item label="讲师头像">
      <pan-thumb :image="teacher.avatar"/>
      <el-button type="primary" icon="el-icon-upload" @click="imagecropperShow=true">更换头像</el-button>
-
+   
      <!-- v-show： 是否显示上传组件
    :key 类似于id，如果一个页面多个图片上传控件，可以做区分
    :url  后台上传的url地址
@@ -3717,7 +3717,7 @@ PanThumb
                     field="file"
                     @close="close"
                     @crop-upload-success="cropSuccess" />
-
+   
    </el-form-item>
    ```
 3. 在 `data()`中定义变量和初始值：
@@ -3812,10 +3812,10 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
    @Test
    public void writeTest() {
      String fileName = "/Users/andyron/tmp/write.xlsx";
-
+   
      EasyExcel.write(fileName, DemoData.class).sheet("学生列表").doWrite(getData());
    }
-
+   
    private static List<DemoData> getData() {
      List<DemoData> list = new ArrayList<>();
      for (int i = 0; i < 10; i++) {
@@ -3849,7 +3849,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public void invoke(DemoData data, AnalysisContext analysisContext) {
            System.out.println("***" + data);
        }
-
+   
        /**
         * 读取表头内容
         */
@@ -3857,7 +3857,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
            System.out.println("表头" + headMap);
        }
-
+   
        /**
         * 读取完成之后
         */
@@ -3884,10 +3884,10 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
    ```java
    @Data
    public class SubjectData {
-
+   
        @ExcelProperty(value = "一级分类", index = 0)
        private String oneSubjectName;
-
+   
        @ExcelProperty(value = "二级分类", index = 1)
        private String twoSubjectName;
    }
@@ -3897,7 +3897,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
    ```java
    @Service
    public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubject> implements EduSubjectService {
-
+   
        @Override
        public void saveSubject(MultipartFile file, EduSubjectService eduSubjectService) {
            try {
@@ -3924,13 +3924,13 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
        public SubjectExcelListenser(EduSubjectService eduSubjectService) {
            this.eduSubjectService = eduSubjectService;
        }
-
+   
        @Override
        public void invoke(SubjectData subjectData, AnalysisContext analysisContext) {
            if (subjectData == null) {
                throw new GuliException(20001, "文件数据为空");
            }
-
+   
            // 一行一行读取，每次读取两个值，第一个值是一级分类，第二个值是二级分类
            EduSubject existOneSubject = existOneSubject(eduSubjectService, subjectData.getOneSubjectName());
            // 没有一级分类，就添加
@@ -3940,7 +3940,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                existOneSubject.setParentId("0");
                eduSubjectService.save(existOneSubject);
            }
-
+   
            String pid = existOneSubject.getId();
            EduSubject existTwoSubject = existTwoSubject(eduSubjectService, subjectData.getTwoSubjectName(), pid);
            if (existTwoSubject == null) {
@@ -3949,9 +3949,9 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                existTwoSubject.setTitle(subjectData.getTwoSubjectName());
                eduSubjectService.save(existTwoSubject);
            }
-
+   
        }
-
+   
        /**
         * 判断一级分类不能重复添加
         */
@@ -3961,7 +3961,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            wrapper.eq("parent_id", "0");
            return eduSubjectService.getOne(wrapper);
        }
-
+   
        /**
         * 判断一级分类不能重复添加
         */
@@ -3971,7 +3971,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            wrapper.eq("parent_id", pid);
            return eduSubjectService.getOne(wrapper);
        }
-
+   
        @Override
        public void doAfterAllAnalysed(AnalysisContext analysisContext) {
        }
@@ -4059,12 +4059,12 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
            QueryWrapper<EduSubject> oneWrapper = new QueryWrapper<>();
            oneWrapper.eq("parent_id", "0");
            List<EduSubject> oneSubjects = baseMapper.selectList(oneWrapper);
-
+   
            // 2 查询所有二级分类
            QueryWrapper<EduSubject> twoWrapper = new QueryWrapper<>();
            twoWrapper.ne("parent_id", "0");
            List<EduSubject> twoSubjects = baseMapper.selectList(twoWrapper);
-
+   
            // 存储最终封装数据
            List<OneSubject> finalSubjects = new ArrayList<>();
            // 3 封装一级分类
@@ -4072,7 +4072,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                OneSubject oneSubject = new OneSubject();
                // 使用spring中的工具类，把一个对象的属性复制到另一个对象（目标对象有的属性）
                BeanUtils.copyProperties(subject, oneSubject);
-
+   
                // 4 封装二级分类
                for (EduSubject tSubject : twoSubjects) {
                    if (subject.getId().equals(tSubject.getParentId())) {
@@ -4083,7 +4083,7 @@ EasyExcel能大大减少占用内存的主要原因是在解析Excel时没有将
                }
                finalSubjects.add(oneSubject);
            }
-
+   
            return finalSubjects;
        }
    ```
@@ -4586,7 +4586,7 @@ Where ec.id=?
 >                          <include>**/*.xml</include>
 >                      </includes>
 >                  </resource>
->
+>     
 >      <!--            上述的指定是将原有的编译资源resources目录覆盖掉了，而不是添加编译目录，因此需要补充原有的编译资源目录-->
 >                  <resource>
 >                      <directory>src/main/resources</directory>
@@ -4594,7 +4594,7 @@ Where ec.id=?
 >                          <include>**/*.*</include>
 >                      </includes>
 >                  </resource>
->
+>     
 >      <!--            有webapp的Maven工程也需要重新指定webapp这个目录-->
 >      <!--            <resource>-->
 >      <!--                <directory>src/main/webapp</directory>-->
@@ -4703,9 +4703,9 @@ httpclient技术，不需要浏览器，模拟浏览器请求
 
   ```shell
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.14 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.14.jar
-
+  
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.11 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.11.jar
-
+  
   mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.15 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.15.jar
   ```
 * 也可直接把jar包拷贝到项目中，然后pom文件配置jar位置，如：
@@ -4787,7 +4787,7 @@ P148 和p147视频顺序反了
    				location ~ /eduvod/ {
                proxy_pass http://localhost:8003;
            }
-
+   
    ```
 2. nginx支持上传文件大小也有限制的
 
@@ -7311,6 +7311,8 @@ mv jenkins.war /usr/local/jenkins/
 
 ```shell
 nohup java -jar  /usr/local/jenkins/jenkins.war >/usr/local/jenkins/jenkins.out &
+# 或如果jdk版本低了
+nohup /usr/local/jdk-17.0.6/bin/java -jar jenkins.war > jenkins.out &
 ```
 
 > `nohup`表示在终端退出时，让进程在后台继续运行。它的全称为“no hang up”，意为“不挂起”。
@@ -7323,6 +7325,10 @@ nohup java -jar  /usr/local/jenkins/jenkins.war >/usr/local/jenkins/jenkins.out 
 ps -ef | grep jenkins
 kill -9 12708
 ```
+
+
+
+
 
 第二步：访问
 
