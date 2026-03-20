@@ -35,8 +35,8 @@ class MpdemoApplicationTests {
     @Test
     void updateUser() {
         User user = new User();
-        user.setId(1538332646477991938l);
-        user.setAge(121);
+        user.setId(4L);
+        user.setAge(38);
         System.out.println(userMapper.updateById(user));
     }
 
@@ -46,7 +46,7 @@ class MpdemoApplicationTests {
     @Test
     void optimisticLockerTest() {
         // 先查询
-        User user = userMapper.selectById(1539063991684653057L);
+        User user = userMapper.selectById(4L);
         // 再改
         user.setAge(100);
         userMapper.updateById(user);
@@ -55,7 +55,7 @@ class MpdemoApplicationTests {
     // 多个id批量查询
     @Test
     void  select1Test() {
-        System.out.println(userMapper.selectBatchIds(Arrays.asList(1l, 2l, 5l)));
+        System.out.println(userMapper.selectBatchIds(Arrays.asList(1L, 2L, 5L)));
     }
 
     // 简单的条件查询
@@ -87,7 +87,7 @@ class MpdemoApplicationTests {
 
     @Test
     void deleteTest() {
-        System.out.println(userMapper.deleteById(1539063991684653057l));
+        System.out.println(userMapper.deleteById(4L));
     }
 
     // 复杂查询

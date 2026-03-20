@@ -1,18 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : windows
-Source Server Version : 50724
-Source Host           : localhost:3306
-Source Database       : guli
-
-Target Server Type    : MYSQL
-Target Server Version : 50724
-File Encoding         : 65001
-
-Date: 2020-12-23 21:58:28
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
