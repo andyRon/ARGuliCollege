@@ -853,9 +853,9 @@ guli_parent： 在线教学根目录（父工程），管理四个子模块：
 
 ## 4 讲师管理模块（后端）
 
-### 1 模块service_edu中创建配置文件
+### 4.1 模块service_edu中创建配置文件
 
-### 2 使用MP代码生成功能，生成controller service mapper代码内容
+### 4.2 使用MP代码生成功能，生成controller service mapper代码内容
 
 ```xml
         <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
@@ -867,7 +867,7 @@ guli_parent： 在线教学根目录（父工程），管理四个子模块：
 
 mp中的BaseMapper、IService
 
-### 3 项目开始
+### 4.3 项目开始
 
 1. 创建controller
 2. 创建启动类EduApplication
@@ -991,7 +991,7 @@ Unable to infer base url. This is common when using dynamic servlet registration
 
 无意中解决：先把原来swagger的版本2.7换成2.10，然后再换回来，就解决了
 
-### 4 统一返回数据格式
+### 4.4 统一返回数据格式
 
 JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
@@ -1068,12 +1068,12 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 4. 在service模块中引入common_utils
 5. 修改controller中返回结果，都改为R
 
-### 5 讲师分页功能
+### 4.5 讲师分页功能
 
 1. 配置mp分页插件
 2. 编写讲师分页查询
 
-### 6 条件查询
+### 4.6 条件查询
 
 **多条件组合**查询带分页
 
@@ -1099,7 +1099,7 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
 
 > 实际开发中会把这些条件构建部分等都放到service（业务逻辑层），而不是controller。
 
-### 7 添加讲师
+### 4.7 添加讲师
 
 自动填充：
 
@@ -1141,12 +1141,12 @@ JSON数据格式的两种形式：**对象，数组**。一般混合使用。
    > 注意：传递参数eduTeacher的json中，id、两个时间字段不需要。
    >
 
-### 8 讲师修改
+### 4.8 讲师修改
 
 1. 根据讲师id查询
 2. 讲师修改， 测试是JSON中需要有id
 
-### 9 统一异常处理
+### 4.9 统一异常处理
 
 没有统一处理异常处理的情况：
 
@@ -1238,7 +1238,7 @@ public class GlobalExceptionHandler {
 
 > 第三天
 
-### 10 统一日志处理
+### 4.10 统一日志处理
 
 #### 配置日志级别
 
@@ -1349,6 +1349,8 @@ Logback和log4j非常相似，logback相对于log4j的一些优点：https://blo
 > log.error(ExceptionUtil.getMessage(e));
 > ```
 
+🔖  不同模块的日志配置需要各自配置吗？
+
 ## 5 前端知识
 
 前端工程师
@@ -1357,7 +1359,7 @@ Logback和log4j非常相似，logback相对于log4j的一些优点：https://blo
 
 PRD（产品原型-产品经理）-PSD（视觉设计-UI工程师）-HTML/CSS/JavaScript（PC/移动端网页，实现网页端的视觉展示和交互-前端工程师）
 
-### 1 Vscode的安装和使用
+### 5.1 Vscode的安装和使用
 
 vs插件：
 
@@ -1375,7 +1377,7 @@ Vetur  vue工具
 
 > 实际，就是在对应目录中创建一个 `***.code-workspace`文件。
 
-### 2 ES6
+### 5.2 ES6
 
 ECMAScript6，2015-6发布
 
@@ -1569,7 +1571,7 @@ console.log(f4(2, 3))
 
 多用于匿名函数定义是使用
 
-### 3 Vue
+### 5.3 Vue
 
 #### Vue.js是什么
 
@@ -2086,7 +2088,7 @@ router-view
 
 > 第四天
 
-### 4 axios
+### 5.4 axios
 
 Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
 
@@ -2149,7 +2151,7 @@ axios请求的一般形式：
 axios.提交方式("请求接口路径").then(箭头函数).catch(箭头函数)
 ```
 
-### 5 element-ui
+### 5.5 element-ui
 
 [element官网](https://element.eleme.cn/#/zh-CN)
 
@@ -2159,7 +2161,7 @@ element-ui 是饿了么前端出品的基于 Vue.js的 **后台组件库**，方
 
 通过文档会使用即可。
 
-### 6 nodejs
+### 5.6 nodejs
 
 #### nodejs是什么？
 
@@ -2201,7 +2203,7 @@ console.log('Server running at http://127.0.0.1:8888/')
 
 右击相应文件或目录，【在集成终端打开】；菜单栏中打开。
 
-### 7 npm
+### 5.7 npm
 
 NPM（Node Package Manager），Node.js包管理工具。
 
@@ -2269,7 +2271,7 @@ npm uninstall -g 包名
 npm list -g
 ```
 
-### 8 babel
+### 5.8 babel
 
 babel是转码器，把es6代码转换为es5代码（因为es6兼容性很差）。
 
@@ -2326,7 +2328,7 @@ babel --version
    console.log(input);
    ```
 
-### 9 模块化
+### 5.9 模块化
 
 #### 模块化是什么
 
@@ -2463,7 +2465,7 @@ $ node modulees6-2-dist/02.js
 保存数据
 ```
 
-### 10 webpack
+### 5.10 webpack
 
 webpack是打包工具，把多种静态资源（如js、css、less）打包一个静态文件，减少页面请求次数。一般在项目开发完成，部署之前操作。
 
@@ -2595,7 +2597,7 @@ $ webpack -v
 > npm run dev
 > ```
 
-### 11 vue-element-admin和vue-admin-template
+### 5.11 vue-element-admin和vue-admin-template
 
 vue-element-admin是基于element-ui 的一套后台管理系统集成方案。
 
@@ -2639,7 +2641,7 @@ npm install
 npm run dev
 ```
 
-### 12 搭建项目前端页面环境 🔖
+### 5.12 搭建项目前端页面环境 🔖
 
 ![](images/image-20220712181503198.png)
 
@@ -4543,7 +4545,7 @@ Where ec.id=?
 >                          <include>**/*.xml</include>
 >                      </includes>
 >                  </resource>
->          
+>                    
 >      <!--            上述的指定是将原有的编译资源resources目录覆盖掉了，而不是添加编译目录，因此需要补充原有的编译资源目录-->
 >                  <resource>
 >                      <directory>src/main/resources</directory>
@@ -4551,7 +4553,7 @@ Where ec.id=?
 >                          <include>**/*.*</include>
 >                      </includes>
 >                  </resource>
->          
+>                    
 >      <!--            有webapp的Maven工程也需要重新指定webapp这个目录-->
 >      <!--            <resource>-->
 >      <!--                <directory>src/main/webapp</directory>-->
@@ -4907,7 +4909,7 @@ Spring Boot使用了默认大于配置的理念 ，很多集成方案已经帮�
 
 服务调用 —— Netflix Feign
 
-熔断器 —— Netflix Hystrix
+熔断器 —— Netflix Hystrix   （Resilience4j，Sentinel）
 
 服务网关 —— Spring Cloud GateWay
 
@@ -4935,7 +4937,9 @@ spring Cloud 小版本分为：
 
 实现不同模块间的调用（不是引入，独立运行）。把这些模块在注册中心进行注册，注册之后，实现互相调用。
 
-### Nacos
+### Nacos❤️
+
+https://github.com/alibaba/nacos
 
 Nacos 是阿里巴巴推出来的一个新开源项目，是一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您**发现、配置和管理**微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构(例如微服务范式、 云原生范式）的服务基础设施。
 
@@ -5214,6 +5218,14 @@ public void removeVideoByCourseId(String courseId) {
 
 ### 1 Hystrix基本概念
 
+https://github.com/Netflix/Hystrix
+
+> Hystrix已停更，但思想经典；
+>
+> [Resilience4j](https://github.com/resilience4j/resilience4j)，当前主流，Spring Cloud官方推荐
+>
+> [Sentinel](https://github.com/alibaba/Sentinel)（阿里开源，功能全面）
+
 #### Spring Cloud调用接口过程
 
 > Feign -> Hystrix -> Ribbon -> Http Client（apache http components 或 Okhttp）
@@ -5347,7 +5359,7 @@ P163后半段
 
 ![](images/image-20230302153959910.png)
 
-### 1 服务端渲染技术Nuxt
+### 12.1 服务端渲染技术Nuxt
 
 #### 什么是服务端渲染
 
@@ -5367,7 +5379,7 @@ https://nuxtjs.org/
 
 https://www.nuxtjs.cn/
 
-### 2 使用Nuxt框架搭建前台环境
+### 12.2 使用Nuxt框架搭建前台环境
 
 - 通过下面命令安装：
 
@@ -5471,7 +5483,7 @@ const service = axios.create({
 export default service
 ```
 
-### 3 首页数据banner显示
+### 12.3 首页数据banner显示
 
 #### 后端
 
@@ -5551,7 +5563,7 @@ export default {
 2. 在页面index.vue调用接口得到数据进行显示
 3. nginx中进行访问配置
 
-### 4 首页课程和名师
+### 12.4 首页课程和名师
 
 > 网站那个页面访问量最大？
 >
@@ -5710,13 +5722,13 @@ spring.redis.lettuce.pool.min-idle=0
 >
 > 4 注册和登录前端实现
 
-### 5 登录实现流程
+### 12.5 登录实现流程
 
 #### 单一服务器模式
 
 ![](images/image-20230406202742386.png)
 
-#### 单点登录
+#### 单点登录 ❤️
 
 分布式，SSO(single sign on)模式
 
@@ -5821,7 +5833,7 @@ JWT的原则是在服务器身份验证之后，将生成一个JSON对象并将�
 
 2. 工具类JwtUtils
 
-### 6 整合阿里云短信服务
+### 12.6 整合阿里云短信服务
 
 短信验证码
 
@@ -5911,7 +5923,7 @@ redis，生成验证码发送后把存入redis中，并设置有效时间。
 【我的谷粒学院在线教育网站】您正在申请注册，验证码为：1330，5分钟内有效！
 ```
 
-### 7 登录注册
+### 12.7 登录注册
 
 #### 后端
 
@@ -6086,7 +6098,7 @@ showInfo() {
 
 > day13
 
-### 8 OAuth2
+### 12.8 OAuth2 ❤️
 
 OAuth2是针对特定问题一种解决方案。
 
@@ -6196,7 +6208,7 @@ OAuth2主要可以解决两个问题：开发系统间授权；分布式访问�
 
 OAuth2仅仅是一个解决方案
 
-### 9 微信扫描登录 🔖
+### 12.9 微信扫描登录 🔖
 
 #### 一、准备工作
 
@@ -6278,7 +6290,7 @@ OAuth2仅仅是一个解决方案
 >
 > 课程评论
 
-### 10 名师、课程
+### 12.10 名师、课程
 
 #### 名师列表
 
@@ -6384,7 +6396,7 @@ public class VideoVo {
 >
 >     微信扫码支付
 
-### 11 课程评论 🔖
+### 12.11 课程评论 🔖
 
 ```sql
 CREATE TABLE `edu_comment` (
@@ -6411,7 +6423,7 @@ CREATE TABLE `edu_comment` (
 
 ![](images/image-20240224185351752.png)
 
-### 12 课程支付🔖
+### 12.12 课程支付🔖
 
 #### 课程支付需求描述
 
@@ -6554,7 +6566,7 @@ npm install --save echarts
 >
 > 3 权限管理模块
 
-## 14 数据同步工具canal
+## 14 数据同步工具canal 🔖
 
 ### 应用场景
 
@@ -6661,7 +6673,7 @@ Disconnected from the target VM, address: '127.0.0.1:59776', transport: 'socket'
 
 ## 15 网关
 
-### 1 API网关介绍
+### 15.1 API网关介绍
 
 API网关出现的原因是微服务架构的出现，不同的微服务一般会有不同的网络地址，而外部客户端可能需要调用多个服务的接口才能完成一个业务需求，如果让客户端直接与各个微服务通信，会有以下的问题：
 
@@ -6677,13 +6689,13 @@ API网关出现的原因是微服务架构的出现，不同的微服务一般�
 
 请求转发、负载均衡、权限控制、跨域等。
 
-### 2 Spring Cloud Gateway
+### 15.2 Spring Cloud Gateway
 
 Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project Reactor等技术开发的网关，Spring cloud Gateway旨在**为微服务架构提供简单、有效和统一的API路由管理方式**，Spring Cloud Gateway作为Spring cloud生态系统中的网关，目标是替代Netflix Zuul，其不仅提供统一的==路由==方式，并且还基于Filer链的方式提供了网关基本的功能，例如：==安全、监控/埋点、限流==等。
 
 ![](images/image-20230416110926380.png)
 
-### 3 Spring Cloud Gateway核心概念
+### 15.3 Spring Cloud Gateway核心概念
 
 网关提供API全托管服务，丰富的API管理功能，辅助企业管理大规模的API，以降低管理成本和安全风险，包括==协议适配、协议转发、交全策略、防刷、流量、监控日志==等。一般来说网关对外暴露的URL或者接口信息，我们统称为==路由信息==。如果研发过网关中间件或者使用过zuul的人，会知道网关的核心是==Filter以及Filter Chain (Filter责任链〉==。
 
@@ -6697,7 +6709,7 @@ Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring 
 
 上图，Spring Cloud Gateway发出求。然后再由Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Web handler。Handler再通过指定的过滤器链将请求发送到我们实际的服务执行业务逻辑，然后返回。
 
-### 4 Gateway具体使用
+### 15.4 Gateway具体使用
 
 1. 在infrastructure模块下创建api_gateway模块
 
@@ -6840,7 +6852,7 @@ Gateway网关会**自动做负载均衡**，而不需要做额外配置（多态
 VUE_APP_BASE_API = 'http://localhost:8222/'
 ```
 
-### 5 网关其它作用
+### 15.5 网关其它作用
 
 #### 网关解决跨域问题
 
@@ -7867,7 +7879,9 @@ SpringBoot
 >
 > guli_frontend/*			  前端练习	
 
-http://localhost:9528/  http://localhost:9001  `http://localhost:800*`
+http://localhost:9528/  前端
+
+http://localhost:9001  `http://localhost:800*`  后端
 
 http://localhost:3000/
 
@@ -7875,23 +7889,23 @@ http://localhost:3000/
 
 ```
 guli_parent： 在线教学根目录（父工程），管理四个子模块：
-	canal-client： canal数据库表同步模块（统计同步数据）				【10000】
-	common： 公共模块父节点
-    common-util：工具类模块，所有模块都可以依赖于它；统一返回数据格式
-    service-base: service服务的base包，包含service服务的公共配置类，所有service模块依赖于它；swagger；统一异常处理
-    spring-security：认证与授权模块，需要认证授权的service服务依赖于它
-  infrastructure：基础服务模块父节点
-    api-gateway： api网关服务			【8222】
-  service: api接口服务父节点  
-  	service-acl： 用户权限管理api接口服务（用户管理、角色管理和权限管理等）【8009】
-    service-cms： cms api接口服务  （前台首页banner部分）	【8004】
-    service-edu：教学相关api接口服务（前台、后台都会用到）		【8001】
-    service-msm：短信api接口服务			【8005】
-    service-order：订单相关api接口服务
-    service-oss：阿里云oss（对象存储） api接口服务  				【8002】
-    service-statistics：统计报表api接口服务			【8008】
-    service-ucenter：会员api接口服务						【8006】
-    service-vod： 视频点播api接口服务						【8003】
+    canal-client： canal数据库表同步模块（统计同步数据）				【10000】
+    common： 公共模块父节点
+        common-util：工具类模块，所有模块都可以依赖于它；统一返回数据格式
+        service-base: service服务的base包，包含service服务的公共配置类，所有service模块依赖于它；swagger；统一异常处理；redis
+        spring-security：认证与授权模块，需要认证授权的service服务依赖于它
+    infrastructure：基础服务模块父节点
+        api-gateway： api网关服务			【8222】
+    service: api接口服务父节点  
+        service-acl： 用户权限管理api接口服务（用户管理、角色管理和权限管理等）【8009】
+        service-cms： cms api接口服务  （前台首页banner部分）	【8004】
+        service-edu：教学相关api接口服务（前台、后台都会用到）		【8001】
+        service-msm：短信api接口服务			【8005】
+        service-order：订单相关api接口服务
+        service-oss：阿里云oss（对象存储） api接口服务  				【8002】
+        service-statistics：统计报表api接口服务			【8008】
+        service-ucenter：会员api接口服务						【8006】
+        service-vod： 视频点播api接口服务						【8003】
 ```
 
 service-base 依赖 common-util，
@@ -7903,6 +7917,44 @@ service 依赖 service-base
 Nginx反向代理。
 
 Nginx 监听 9001 端口，作为统一的 API 网关。当用户请求以特定路径（如 `/eduservice/xxx`）开头时，Nginx 会将该请求透明地转发到对应的后端服务（如 localhost:8001），并返回响应。用户感知不到后端有多个服务。
+
+```nginx
+    server {
+        listen      9001;
+        listen [::1]:9001;    # 
+
+        server_name localhost;
+
+        location ~ /eduservice/ {  # ~ 表示正则匹配，只要访问路径中有eduservice就进入这里
+            proxy_pass http://localhost:8001;
+        }
+
+        location ~ /eduoss/ {
+            proxy_pass http://localhost:8002;
+        }
+        location ~ /eduvod/ {
+            proxy_pass http://localhost:8003;
+        }
+        location ~ /educms/ {
+            proxy_pass http://localhost:8004;
+        }
+        location ~ /edumsm/ {
+            proxy_pass http://localhost:8005;
+        }
+        location ~ /educenter/ {
+            proxy_pass http://localhost:8006;
+        }
+        location ~ /orderservice/ {
+            proxy_pass http://localhost:8007;
+        }
+        location ~ /staservice/ {
+            proxy_pass http://localhost:8008;
+        }
+    }
+
+```
+
+
 
 ### 待改进
 
