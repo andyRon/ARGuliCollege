@@ -13,7 +13,7 @@ import java.util.List;
 /**
  *
  * VodClient这个接口没有具体的实现类；VodClient注入到Controller里，可以把它的实现类理解为根据调用服务名称远程调用service-vod的方法
- * @Author: andyron
+ * @author andyron
  **/
 @FeignClient(name = "service-vod", fallback = VodFileDegradeFeignClient.class) // 指定调用的服务名称
 @Component

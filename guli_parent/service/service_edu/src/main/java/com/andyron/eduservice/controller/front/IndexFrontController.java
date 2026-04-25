@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @Author: andyron
+ * @author andyron
  **/
 @Api(tags = "前台首页")
 @RestController

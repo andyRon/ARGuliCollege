@@ -5,7 +5,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 
 /**
- * @Author: andyron
+ * @author andyron
  **/
 public class InitVodClient {
     public static DefaultAcsClient initVodClient(String accessKeyId, String accessKeySecret) throws ClientException {

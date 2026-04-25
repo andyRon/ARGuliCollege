@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 出错之后执行
- * @Author: andyron
+ * @author andyron
  **/
 @Component
 public class VodFileDegradeFeignClient implements VodClient {
