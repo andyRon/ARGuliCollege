@@ -4545,7 +4545,7 @@ Where ec.id=?
 >                          <include>**/*.xml</include>
 >                      </includes>
 >                  </resource>
->                         
+>                              
 >      <!--            上述的指定是将原有的编译资源resources目录覆盖掉了，而不是添加编译目录，因此需要补充原有的编译资源目录-->
 >                  <resource>
 >                      <directory>src/main/resources</directory>
@@ -4553,7 +4553,7 @@ Where ec.id=?
 >                          <include>**/*.*</include>
 >                      </includes>
 >                  </resource>
->                         
+>                              
 >      <!--            有webapp的Maven工程也需要重新指定webapp这个目录-->
 >      <!--            <resource>-->
 >      <!--                <directory>src/main/webapp</directory>-->
@@ -5216,7 +5216,7 @@ public void removeVideoByCourseId(String courseId) {
 
 ## 11 熔断器
 
-### 1 Hystrix基本概念
+### 11.1 Hystrix基本概念
 
 https://github.com/Netflix/Hystrix
 
@@ -5260,7 +5260,7 @@ Hystrix是一个供分布式系统使用，提供==延迟==和==容错==功能�
 
 ![](images/image-20230302085112331.png)
 
-### 2 Feign结合Hystrix使用
+### 11.2 Feign结合Hystrix使用
 
 改造service-edu模块
 
@@ -5316,7 +5316,7 @@ public interface VodClient {
 
 5. 测试
 
-P163后半段
+P163后半段 🔖
 
 - 在删除小节的接口添加测试代码
 
@@ -6691,7 +6691,7 @@ API网关出现的原因是微服务架构的出现，不同的微服务一般�
 
 ### 15.2 Spring Cloud Gateway
 
-Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project Reactor等技术开发的网关，Spring cloud Gateway旨在**为微服务架构提供简单、有效和统一的API路由管理方式**，Spring Cloud Gateway作为Spring cloud生态系统中的网关，目标是替代Netflix Zuul，其不仅提供统一的==路由==方式，并且还基于Filer链的方式提供了网关基本的功能，例如：==安全、监控/埋点、限流==等。
+Spring Cloud Gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project Reactor等技术开发的网关，Spring cloud Gateway旨在**为微服务架构提供简单、有效和统一的API路由管理方式**，Spring Cloud Gateway作为Spring cloud生态系统中的网关，目标是替代Netflix Zuul，其不仅提供统一的==路由==方式，并且还基于Filer链的方式提供了网关基本的功能，例如：==安全、监控/埋点、限流==等。
 
 ![](images/image-20230416110926380.png)
 
@@ -6699,11 +6699,13 @@ Spring cloud gateway是spring官方基于Spring 5.0、Spring Boot2.0和Project R
 
 网关提供API全托管服务，丰富的API管理功能，辅助企业管理大规模的API，以降低管理成本和安全风险，包括==协议适配、协议转发、交全策略、防刷、流量、监控日志==等。一般来说网关对外暴露的URL或者接口信息，我们统称为==路由信息==。如果研发过网关中间件或者使用过zuul的人，会知道网关的核心是==Filter以及Filter Chain (Filter责任链〉==。
 
-Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Soring Cloud Gateway中几个重要的概念。
+Sprig Cloud Gateway也具有路由和Filter的概念。下面介绍一下Spring Cloud Gateway中几个重要的概念。
 
-1. 路由。 路由是网关最基础的部分，路由信息有一个ID、一个目的URL、一组断言和一组Filter组成。如果断言路由为真，则说明请求的URL和配置匹配。
+1. 路由。 路由是网关最基础的部分，路由信息有**一个ID、一个目的URL、一组断言和一组Filter**组成。如果断言路由为真，则说明请求的URL和配置匹配。
 2. 断言（匹配规则）。Java8中的断言函数。Spring Cloud Gateway中的断言函数输入类型是Spring5.0框架中的 `ServerWebExchange`。 Spring Cloud Gateway中的断言函数允许开发者去定义匹配来自于http request中的任何信息，比如请求头和参数等。
-3. 过滤器。一个标准的Spring Web Filter。 Soring cloud gateway中的filter分为两种类型的Filter，分别是Gateway Filter和Global Filter。过滤器Filter将会对请求和响应进行修改处理。
+3. 过滤器。一个标准的Spring Web Filter。 Soring cloud gateway中的filter分为两种类型的Filter，分别是**Gateway Filter**和**Global Filter**。过滤器Filter将会对请求和响应进行修改处理。
+
+> `ServerWebExchange`是 Spring WebFlux 框架中的核心接口，类似于传统 Spring MVC 中的 HttpServletRequest 和 HttpServletResponse 的组合。它代表了服务器端的一次 HTTP 请求-响应交换。
 
 ![](images/image-20230416115534168.png)
 
@@ -6858,7 +6860,7 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 `CorsConfig`
 
-#### 全局Filter，统一处理会员登录与外部不允许访问的服务 🔖
+#### 全局Filter，统一处理会员登录与外部不允许访问的服务 
 
 `AuthGlobalFilter`
 
@@ -6902,15 +6904,15 @@ VUE_APP_BASE_API = 'http://localhost:8222/'
 
 至少五张表
 
-acl_permission 菜单表  相关权限
+`acl_permission` 菜单表  相关权限
 
-acl_role  角色表
+`acl_role`  角色表
 
-acl_user  用户表
+`acl_user`  用户表
 
-acl_role_permission  角色和菜单的关系表
+`acl_role_permission`  角色和菜单的关系表
 
-acl_user_role  用户和角色的关系表
+`acl_user_role`  用户和角色的关系表
 
 ![](images/image-20230416154407430.png)
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
+ * 熔断器的实现类
  * 出错之后执行
  * @author andyron
  **/

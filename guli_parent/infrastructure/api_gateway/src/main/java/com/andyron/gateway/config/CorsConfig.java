@@ -10,7 +10,7 @@ import org.springframework.web.util.pattern.PathPatternParser;
 /**
  * 统一处理跨域问题
  * 让所有请求都没有跨域
- * 需要删除之前controller上的@CrossOrigin，要不然跨两次等于没夸
+ * 需要删除之前controller上的@CrossOrigin，要不然跨两次等于没跨
  * @author andyron
  **/
 @Configuration
