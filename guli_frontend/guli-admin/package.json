@@ -4,9 +4,9 @@
   "description": "谷粒学院后台管理系统",
   "author": "andyron <rongming.2008@163.com>",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build:prod": "vue-cli-service build",
-    "build:stage": "vue-cli-service build --mode staging",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "build:prod": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
+    "build:stage": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "lint": "eslint --ext .js,.vue src",

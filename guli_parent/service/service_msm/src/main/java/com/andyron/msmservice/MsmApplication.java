@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * 短信服务 (阿里云SMS)
  * @author andyron
  **/
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)

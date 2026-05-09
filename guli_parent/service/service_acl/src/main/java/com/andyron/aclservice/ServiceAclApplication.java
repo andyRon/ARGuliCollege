@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * 权限管理服务
  * @author andyron
  **/
 //@SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // TODO 临时关闭Spring Security

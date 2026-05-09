@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
+ * 统计分析服务
  * @author andyron
  **/
 @SpringBootApplication

@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * 视频点播服务 (阿里云VOD)
  * 这个模块不需要加载数据库，用这个注解排除加载数据库
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
